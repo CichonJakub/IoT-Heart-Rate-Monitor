@@ -3,8 +3,8 @@ const express = require('express');
 const app = require('express')();
 const server = require('http').Server(app);
 const io = require('socket.io')(server);
-const { Client } = require('pg')
-
+const pg = require('pg');
+/*
 const client = new Client({
   user: 'pulsometr',
   host: 'localhost',
@@ -12,6 +12,7 @@ const client = new Client({
   password: 'Marcin',
   port: 5432,
 })
+*/
 
 const port = 80;
 
@@ -20,8 +21,17 @@ server.listen(port, function(){
     console.log(`App listening on port ${port}!`);
 });
 
-client.connect();
-init();
+var connectionString = 'postgres://pulsometr:Marcin@localhost:5432/iot';
+
+var client = new pg.Client(connectionString);
+client.connect(function(err) {
+    if (err) {
+        console.log(err);
+    }
+    else{
+        init();
+    }
+});
 
 function init(){
     client.query('SELECT * from test', (err, res) => {
