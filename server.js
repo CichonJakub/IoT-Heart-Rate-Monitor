@@ -6,7 +6,7 @@ const io = require('socket.io')(server);
 const { Client } = require('pg')
 
 const client = new Client({
-  user: 'root',
+  user: 'pulsometr',
   host: 'localhost',
   database: 'iot',
   password: 'Marcin',
