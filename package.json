@@ -1,0 +1,25 @@
+{
+  "name": "iot",
+  "version": "1.0.0",
+  "description": "IoT-pulsometr",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/CichonJakub/IoT.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/CichonJakub/IoT/issues"
+  },
+  "homepage": "https://github.com/CichonJakub/IoT#readme",
+  "dependencies": {
+    "express": "^4.17.1",
+    "request": "^2.88.2",
+    "socketio": "^1.0.0"
+  }
+}
