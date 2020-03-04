@@ -21,7 +21,7 @@ server.listen(port, function(){
     console.log(`App listening on port ${port}!`);
 });
 
-var connectionString = 'postgres://pulsometr:Marcin@localhost:5432/iot';
+var connectionString = 'postgres://postgres:postgres@localhost:5432/iot';
 
 var client = new pg.Client(connectionString);
 client.connect(function(err) {
