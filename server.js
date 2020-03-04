@@ -21,6 +21,7 @@ server.listen(port, function(){
 });
 
 client.connect();
+init();
 
 function init(){
     client.query('SELECT * from test', (err, res) => {
