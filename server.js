@@ -37,9 +37,8 @@ function init(){
     client.query('SELECT * from test', (err, res) => {
         if( !err ){
             console.log(res.rowCount);
-            console.log(res.rows);
             if( res.rowCount > 0 ){
-                console.log(res);
+                console.log(res.rows);
             }
         }else{
             console.log(err);
