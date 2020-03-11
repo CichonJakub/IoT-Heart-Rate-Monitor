@@ -46,3 +46,11 @@ function init(){
         client.end();
     })
 }
+
+io.on('connection', function (socket) {
+
+    socket.on('hello', function(data){
+        socket.emit('ack', "TEST");
+    })
+
+});
