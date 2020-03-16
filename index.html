@@ -1,1 +1,20 @@
-TEST
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+        <title>Pulsometr</title>
+        <script src="/socket.io/socket.io.js"></script>
+        <script src="socket.io-1.4.5.js"></script>
+        <script>
+          var socket = io.connect('http://80.49.249.163:25444');
+          socket.emit('hello', 'Ola test');
+          socket.on('ack', function (data) {
+            console.log(data);
+
+          });
+        </script>
+  </head>
+  <body>
+
+  </body>
+</html>
