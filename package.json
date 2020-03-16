@@ -19,6 +19,7 @@
   "homepage": "https://github.com/CichonJakub/IoT#readme",
   "dependencies": {
     "express": "^4.17.1",
+    "pg": "^7.18.2",
     "request": "^2.88.2",
     "socketio": "^1.0.0"
   }

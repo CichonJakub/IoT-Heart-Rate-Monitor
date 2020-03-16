@@ -14,27 +14,30 @@ const client = new Client({
 })
 */
 
-const port = 80;
+const port = process.env.PORT || 80;
 
 app.get('/', (req, res) => res.sendFile(__dirname + '/index.html'));
 server.listen(port, function(){
     console.log(`App listening on port ${port}!`);
 });
 
-var connectionString = 'postgres://postgres:postgres@localhost:5432/iot';
+//var connectionString = 'postgres://postgres:postgres@localhost:5432/postgres';
+const client = new Client({
+  connectionString: process.env.DATABASE_URL,
+  ssl: true,
+});
 
-var client = new pg.Client(connectionString);
 client.connect(function(err) {
     if (err) {
         console.log(err);
     }
     else{
-        init();
+        //init();
     }
 });
 
 function init(){
-    client.query('SELECT * from test', (err, res) => {
+    client.query('SELECT * from test;', (err, res) => {
         if( !err ){
             console.log(res.rowCount);
             if( res.rowCount > 0 ){
