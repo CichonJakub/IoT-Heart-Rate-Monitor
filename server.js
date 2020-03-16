@@ -32,7 +32,7 @@ client.connect(function(err) {
         console.log(err);
     }
     else{
-        //init();
+        init();
     }
 });
 
