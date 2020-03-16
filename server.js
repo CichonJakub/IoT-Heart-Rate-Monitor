@@ -52,8 +52,11 @@ function init(){
 
 io.on('connection', function (socket) {
 
+    console.log("CONNECTED");
     socket.on('hello', function(data){
+        console.log(data);
         socket.emit('ack', "TEST");
+        console.log("HELLO RECEIVED");
     })
 
 });
