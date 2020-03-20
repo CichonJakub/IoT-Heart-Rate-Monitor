@@ -1,7 +1,7 @@
 import React from 'react';
 import { View, Text, Button } from 'react-native';
 import { styles } from '../styles/global';
-import RoundButton from '../shared/button';
+import { HomeButton } from '../shared/button';
 
 export default function Home({ navigation }) {
 
@@ -12,7 +12,7 @@ export default function Home({ navigation }) {
   return (
     <View style={styles.container}>
       <Text style={styles.txt}>Hello!</Text>
-      <RoundButton text='Zacznij Pomiar' onPress={pressHandler} />
+      <HomeButton text='Zacznij Pomiar' onPress={pressHandler} />
     </View>
   )
 }

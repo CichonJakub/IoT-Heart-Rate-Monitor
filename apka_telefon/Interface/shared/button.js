@@ -9,10 +9,30 @@ export default function RoundButton({ text, onPress }) {
       </View>
     </TouchableOpacity>
   )
-}
+};
+
+export function HomeButton({ text, onPress }) {
+  return (
+    <TouchableOpacity onPress={onPress}>
+      <View style={styles.homeButton}>
+        <Text style={styles.homeButtonText}>{ text }</Text>
+      </View>
+    </TouchableOpacity>
+  )
+};
 
 const styles = StyleSheet.create({
   button: {
+    width: 100,
+    height: 100,
+    borderRadius: 50,
+    paddingVertical: 10,
+    paddingHorizontal: 10,
+    margin: 6,
+    justifyContent: 'center',
+    backgroundColor: '#78d6f9',
+  },
+  homeButton: {
     width: 150,
     height: 150,
     borderRadius: 75,
@@ -25,7 +45,14 @@ const styles = StyleSheet.create({
     color: "#000",
     fontWeight: 'bold',
     textTransform: 'uppercase',
+    fontSize: 14,
+    textAlign: 'center',
+  },
+  homeButtonText: {
+    color: "#000",
+    fontWeight: 'bold',
+    textTransform: 'uppercase',
     fontSize: 20,
     textAlign: 'center',
-  }
+  },
 })

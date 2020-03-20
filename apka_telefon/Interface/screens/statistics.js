@@ -5,7 +5,7 @@ import { styles } from '../styles/global';
 export default function Statistics() {
   return (
     <View style={styles.container}>
-      <Text style={styles.txt}>Statistics{"\n"}Hello!</Text>
+      <Text style={styles.txt}>Tutaj będą statystyki</Text>
     </View>
   )
 }

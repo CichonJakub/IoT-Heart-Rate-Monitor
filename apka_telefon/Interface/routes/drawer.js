@@ -2,6 +2,7 @@ import { createDrawerNavigator } from 'react-navigation-drawer';
 import { createAppContainer } from 'react-navigation';
 import StatisticsStack from './statisticsStack';
 import HomeStack from './homeStack';
+import ResultStack from './resultStack';
 
 const RootDrawerNavigator = createDrawerNavigator({
   Home: {
@@ -9,6 +10,9 @@ const RootDrawerNavigator = createDrawerNavigator({
   },
   Statistics: {
     screen: StatisticsStack,
+  },
+  Result: {
+    screen: ResultStack,
   }
 })
 

@@ -1,4 +1,5 @@
 import { StyleSheet } from 'react-native';
+import { Dimensions } from 'react-native';
 
 export const styles = StyleSheet.create({
   container: {
@@ -14,4 +15,12 @@ export const styles = StyleSheet.create({
     textAlign: 'center',
     paddingBottom: 100,
   },
+  resultButtons: {
+    flex: 1,
+    width: Dimensions.get('screen').width,
+    flexDirection: 'row',
+    justifyContent: 'center',
+    position: 'absolute',
+    bottom: 25,
+  }
 })
