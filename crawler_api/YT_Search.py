@@ -48,7 +48,7 @@ class YTSearch:
                      'video_link' : link
                  })
             print(len(data['YT_data_high']))
-            with open('YT_data_high.txt', 'w') as outfile:
+            with open('Data/YT_data_high.txt', 'w') as outfile:
                  json.dump(data, outfile)
         elif key_word == "low": # puls za niski, dla rozruszania
             playlists_ids, playlists_links = self.get_playlists("hard rock")  # wypluwa id playlist i linki do nich
@@ -62,7 +62,7 @@ class YTSearch:
                     'video_link': link
                 })
             print(len(data['YT_data_low']))
-            with open('YT_data_low.txt', 'w') as outfile:
+            with open('Data/YT_data_low.txt', 'w') as outfile:
                 json.dump(data, outfile)
 
 yt = YTSearch()
