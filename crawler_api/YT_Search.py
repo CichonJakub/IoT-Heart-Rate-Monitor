@@ -32,21 +32,41 @@ class YTSearch:
         videos_ids = set(videos_ids)
         return videos_ids, videos_links
 
-    def update(self): #odświerzanie danych raz na 24 h
+#TODO : add counter ??? zeby user mial niepowtarzajace sie dane
+    def update(self, key_word): #odświerzanie danych raz na 24 h
         #zapisz jako plik
-        playlists_ids, playlists_links = self.get_playlists("calm music")  # wypluwa id playlist i linki do nich
-        videos_ids, videos_links = self.get_videos_from_playlist(playlists_ids) #linki do muzyki z danej playlisty
-        print(videos_links)
-        print(videos_ids)
-        data = {'YT_data': []}
-        for ids, link in zip(videos_ids, videos_links):
-             data['YT_data'].append({
-                 'video_id' : ids,
-                 'video_link' : link
-             })
-        with open('YT_data.txt', 'w') as outfile:
-             json.dump(data, outfile)
+        if key_word == "high": # puls za wysoki, dla uspokojenia
+            playlists_ids, playlists_links = self.get_playlists("calm music")  # wypluwa id playlist i linki do nich
+            videos_ids, videos_links = self.get_videos_from_playlist(playlists_ids) #linki do muzyki z danej playlisty
+            print(videos_links)
+            print(videos_ids)
+            data = {'YT_data_high': []}
+            i = 0
+            for ids, link in zip(videos_ids, videos_links):
+                 data['YT_data_high'].append({
+                     'video_id' : ids,
+                     'video_link' : link
+                 })
+            with open('YT_data_high.txt', 'w') as outfile:
+                 json.dump(data, outfile)
+        elif key_word == "low": # puls za niski, dla rozruszania
+            playlists_ids, playlists_links = self.get_playlists("hard rock")  # wypluwa id playlist i linki do nich
+            videos_ids, videos_links = self.get_videos_from_playlist(playlists_ids)  # linki do muzyki z danej playlisty
+            print(videos_links)
+            print(videos_ids)
+            data = {'YT_data_low': []}
+            for ids, link in zip(videos_ids, videos_links):
+                data['YT_data_low'].append({
+                    'video_id': ids,
+                    'video_link': link
+                })
+            print(len(data))
+            with open('YT_data_low.txt', 'w') as outfile:
+                json.dump(data, outfile)
 
+yt = YTSearch()
+#yt.update("high")
+yt.update("low")
     # def choose_resuls(self):
     # #     print("wylosowanie 3 muzyczek ")
     # #
