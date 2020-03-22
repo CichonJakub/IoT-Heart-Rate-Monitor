@@ -47,6 +47,7 @@ class YTSearch:
                      'video_id' : ids,
                      'video_link' : link
                  })
+            print(len(data['YT_data_high']))
             with open('YT_data_high.txt', 'w') as outfile:
                  json.dump(data, outfile)
         elif key_word == "low": # puls za niski, dla rozruszania
@@ -60,12 +61,12 @@ class YTSearch:
                     'video_id': ids,
                     'video_link': link
                 })
-            print(len(data))
+            print(len(data['YT_data_low']))
             with open('YT_data_low.txt', 'w') as outfile:
                 json.dump(data, outfile)
 
 yt = YTSearch()
-#yt.update("high")
+yt.update("high")
 yt.update("low")
     # def choose_resuls(self):
     # #     print("wylosowanie 3 muzyczek ")
