@@ -2,17 +2,18 @@ import React, { useState} from 'react';
 import { View, Text } from 'react-native';
 import { styles } from '../styles/global';
 import RoundButton from '../shared/button';
+import Tabs from './tabs';
 
 export default function Result({ navigation }) {
 
   const toImages = () => {
-    navigation.navigate('Images');
+    navigation.navigate('Tabs');
   }
   const toVideos = () => {
-    navigation.navigate('Videos');
+    navigation.navigate('Tabs');
   }
   const toAdvice = () => {
-    navigation.navigate('Advice');
+    navigation.navigate('Tabs');
   }
 
   return (

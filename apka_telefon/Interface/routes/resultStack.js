@@ -6,7 +6,7 @@ import Images from '../screens/images';
 import Videos from '../screens/videos';
 import Advice from '../screens/advice';
 import Header from '../shared/header';
-
+import Tabs from '../screens/tabs';
 
 const screens = {
   Result: {
@@ -17,22 +17,11 @@ const screens = {
       }
     }
   },
-  Images: {
-    screen: Images,
+
+  Tabs: {
+    screen: Tabs,
     navigationOptions: {
-      title: "Obrazki"
-    },
-  },
-  Videos: {
-    screen: Videos,
-    navigationOptions: {
-      title: "Wideo"
-    },
-  },
-  Advice: {
-    screen: Advice,
-    navigationOptions: {
-      title: "Porady"
+      title: ""
     },
   },
 }
