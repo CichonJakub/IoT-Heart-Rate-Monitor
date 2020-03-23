@@ -1,18 +1,11 @@
 from bs4 import BeautifulSoup
-import requests
-from requests import Session
-from selenium import webdriver
-import urllib.request
-from bs4 import BeautifulSoup
 import time
 from selenium import webdriver
 from selenium.webdriver.support import ui
-import threading
 import json
 
-from selenium.webdriver import DesiredCapabilities
-from selenium.webdriver.firefox.firefox_binary import FirefoxBinary
-
+#MOZE BY SPRAWDZIC CZY FAKTYCZNIE UNIKALNE HEHZ -> lista set
+#zeby sie odpalal raz na 24 h
 
 class PinCrawling:
 
@@ -26,8 +19,8 @@ class PinCrawling:
         wait.until(self.page_is_loaded)
         email = browser.find_element_by_xpath("//input[@type='email']")
         password = browser.find_element_by_xpath("//input[@type='password']")
-        email.send_keys("rozanna.boczar@gmail.com")
-        password.send_keys("miro2010")
+        email.send_keys("IoT.agh123@gmail.com")
+        password.send_keys("qwerty#1234")
         # driver.find_element_by_xpath("//div[@data-reactid='30']").click()
         password.submit()
         time.sleep(3)
@@ -42,90 +35,117 @@ class PinCrawling:
             browser.get(url+"/")
         wait = ui.WebDriverWait(browser, 10)
         wait.until(self.page_is_loaded)
+
         url_image = []
         soup = BeautifulSoup(browser.page_source, 'html.parser')
         urls = soup.find_all("img", {"class": "GrowthUnauthPinImage__Image"})
         # url_image = url_image.__getattr__("img")
         for i in urls:
-            print(i.get("src"))
+            #print(i.get("src"))
             url_image.append(i.get('src'))
         urls = soup.find_all("img", {"class": "hCL kVc L4E MIw"})
         # url_image = url_image.__getattr__("img")
         for i in urls:
-            print(i.get("src"))
+            #print(i.get("src"))
             url_image.append(i.get('src'))
         # url_image = url_image['href']
         # print(url_image)
         return url_image[0]
 
-    def update_data(self, data, keyword):
+    def update_data(self, pin_ids, pin_urls, keyword):
+        data = {'Pinterest_data_'+keyword: []}
+        for ids, url in zip(pin_ids, pin_urls):
+            data['Pinterest_data_'+keyword].append({
+                'pin_id': ids,
+                'pin_url': url
+            })
+        #print(len(data['YT_data_high']))
         with open('Data/Pinterest_data_' + keyword + '.txt', 'w') as outfile:
             json.dump(data, outfile)
+        print("THE END OF UPDATING: "+keyword)
 
-    # def get_pin_ids(self, browser, keyword):
-    #     pin_ids = []
-    #     browser.get("https://pinterest.com/search/pins/?q=" + str(keyword) + "&rs=typed&term_meta[]=" + str(
-    #         keyword) + "%7Ctyped")
-    #     print("started scrapping pin ids")
-    #     get_pic_counter = 0
-    #     time.sleep(5)
+    # def get_pins(self, browser, keyword):
+    #     pins_urls = []
+    #     pins_ids = []
+    #     data = {'Pinterest_data_' + keyword: []}
+    #     pin_counter = 0
+    #     pin_amount = 500
+    #     i = 0
+    #     url = "https://pl.pinterest.com/search/pins/?q=" + str(keyword) + "&rs=typed&term_meta[]=" + str(
+    #         keyword) + "%7Ctyped"
+    #     browser.get(url)
+    #     while browser.current_url != url:
+    #         print("EH")
+    #         browser.get(url)
+    #     wait = ui.WebDriverWait(browser, 10)
+    #     wait.until(self.page_is_loaded)
     #
-    #     while (get_pic_counter < len()):
-    #     return pin_ids
+    #     beginning = time.time()
+    #     end = time.time()
+    #     while pin_counter < pin_amount and beginning - end < 10:
+    #         beginning = time.time()
+    #         soup = BeautifulSoup(browser.page_source, "html.parser")
+    #         for pins in soup.find_all("a", {"data-force-refresh": "1"}):
+    #             i += 1
+    #             id = str(pins.get("href"))
+    #             id = id[5:len(id)-1]
+    #             #print(id)
+    #             pins_ids.append(id)
+    #         browser.execute_script("window.scrollBy(0,300)")
+    #     print(i)  # licznik pinów
     #
-    def get_pins(self, browser, keyword):
-        pins_urls = []
-        pins_ids = []
-        data = {'Pinterest_data_' + keyword: []}
+    #     pins_ids = set(pins_ids)
+    #     for pin in pins_ids:
+    #         pins_urls.append(self.get_image_url(browser, pin))
+
+    #    return pins_ids, pins_urls
+
+    def get_data(self, browser, keyword):
+        url = "https://pl.pinterest.com/search/pins/?q=" + str(keyword) + "&rs=typed&term_meta[]=" + str(
+            keyword) + "%7Ctyped"
+        browser.get(url)
+        while browser.current_url != url:
+            print("EH")
+            browser.get(url)
+        wait = ui.WebDriverWait(browser, 10)
+        wait.until(self.page_is_loaded)
+        beginning = time.time()
+        end = time.time()
+
         pin_counter = 0
-        pin_amount = 1000
-
-        browser.get("https://pl.pinterest.com/search/pins/?q=" + str(keyword) + "&rs=typed&term_meta[]=" + str(
-            keyword) + "%7Ctyped")
-        # wait = ui.WebDriverWait(browser, 40)
-        # wait.until(self.page_is_loaded)
+        pin_amount = 500
         i = 0
 
-        # SCROLL_PAUSE_TIME = 0.5
-        #
-        # # Get scroll height
-        # last_height = browser.execute_script("return document.body.scrollHeight")
-        #
-        # while True:
-        #     # Scroll down to bottom
-        #     browser.execute_script("window.scrollTo(0, document.body.scrollHeight);")
-        #
-        #     # Wait to load page
-        #     time.sleep(SCROLL_PAUSE_TIME)
-        #
-        #     # Calculate new scroll height and compare with last scroll height
-        #     new_height = browser.execute_script("return document.body.scrollHeight")
-        #     if new_height == last_height:
-        #         break
-        #     last_height = new_height
-        #     soup = BeautifulSoup(browser.page_source, "html.parser")
-        #     a = soup.find_all("a", {"data-force-refresh": "1"})
-        #
-        #     for pin in a:
-        #         pins_urls.append(pin["href"])
-        #         print(pin["href"])
-        #         i += 1
-        #
-        # print(i)
+        pin_ids = []
+        pin_urls = []
 
-        # beginning = time.time()
-        # end = time.time()
-        #
-        # while pin_counter < pin_amount and beginning - end < 30:
-        #     beginning = time.time()
-        #
-        # for ids, url in zip(pins_ids, pins_urls):
-        #     data['Pinterest_data_'+keyword].append({
-        #         'pin_id': ids,
-        #         'pin_url': url
-        #     })
-        # print(len(data['YT_data_'+keyword]))
-        # return pins_ids, pins_urls
+        while pin_counter < pin_amount and beginning - end < 10:
+            beginning = time.time()
+            soup = BeautifulSoup(browser.page_source, "html.parser")
+            for pins in soup.find_all("a", {"data-force-refresh": "1"}):
+                #print(pins)
+                try:
+                    if pins.get("href") is not None and pins.find("img", {"class": "hCL kVc L4E MIw"}).get("src") is not None:
+
+                        #print(pins.get("href"))
+                        id = str(pins.get("href"))
+                        id = id[5:len(id)-1]
+                        pin_ids.append(id)
+
+                        url = pins.find("img", {"class": "hCL kVc L4E MIw"})
+                        url = url.get("src")
+                        pin_urls.append(url)
+                        #print(url)
+
+                        i += 1
+                except:
+                    print("Some pins are naughty!")
+
+            browser.execute_script("window.scrollBy(0,300)")
+
+        print(i)  # licznik pinów
+
+        return pin_ids, pin_urls
 
 
 def main():
@@ -134,34 +154,20 @@ def main():
     browser = webdriver.Firefox(executable_path='Data/geckodriver-v0.26.0-linux64/geckodriver')
     p.login(browser)
 
-    low = ["scary", "funny"]
-    high = ["cute", "views"]
+    #testy
+    #p.test(browser, "Jungkook")
+    # p.get_image_url(browser, "701435710696738294")
 
-    # p.get_pins(browser, "scary")
+    low = ["scary"]
+    high = ["cute"]
 
-    eh = p.get_image_url(browser, "598908450433466234")
-    print("NIHIHI")
-    print(eh)
-    # for item in low:
-    #     print("started updating low")
-    #     keyword = item
-    #     #browser.get("https://pinterest.com/search/pins/?q=" + str(keyword) + "&rs=typed&term_meta[]=" + str(
-    #     #   keyword) + "%7Ctyped")
-    #     p.get_pins(browser, keyword)
+    for item in low:
+        pins_ids, pins_urls = p.get_data(browser, item)
+        p.update_data(pins_ids, pins_urls, "low")
 
-    # for item in high:
-    #     print("started updating high")
-    #     keyword = item
-    #     browser.get("https://pinterest.com/search/pins/?q=" + str(keyword) + "&rs=typed&term_meta[]=" + str(
-    #         keyword) + "%7Ctyped")
-    #     t2 = threading.Thread(target=get_pic, args=(valid_urls, driver2,))
-    #     t2.setDaemon(True)
-    #     t2.start()
-
-    # time.sleep(3)
-
-    # t1.join()
-    # t2.join()
+    for item in high:
+        pins_ids, pins_urls = p.get_data(browser, item)
+        p.update_data(pins_ids, pins_urls, "high")
 
 
 main()
