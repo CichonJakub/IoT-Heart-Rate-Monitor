@@ -41,7 +41,6 @@ class YTSearch:
             print(videos_links)
             print(videos_ids)
             data = {'YT_data_high': []}
-            i = 0
             for ids, link in zip(videos_ids, videos_links):
                  data['YT_data_high'].append({
                      'video_id' : ids,
