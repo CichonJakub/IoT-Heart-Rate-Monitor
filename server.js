@@ -70,7 +70,8 @@ io.on('connection', function (socket) {
     socket.on("askForTest", function(data){
         if ( socketHardware != null ){
             let index = users.findIndex(obj => obj == socket);
-            socketHardware.emit("askForTest", index);
+            if( index != -1 )
+                socketHardware.emit("askForTest", index);
         }
     })
 
