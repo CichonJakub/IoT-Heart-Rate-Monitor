@@ -169,5 +169,6 @@ def main():
         pins_ids, pins_urls = p.get_data(browser, item)
         p.update_data(pins_ids, pins_urls, "high")
 
+    browser.close()
 
 main()
