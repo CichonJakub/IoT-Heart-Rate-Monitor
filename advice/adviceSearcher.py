@@ -26,6 +26,12 @@ def get_results(search_term):
     return results
 
 
+# Add data into an existing file
+def append_to_file(keyword, data):
+    with open('Advice_data_' + keyword + '.txt', 'a') as file:
+        file.write(data + '\n')
+
+
 urls = get_results("jak obnizyc puls")
 for url in urls:
-    print(url)
+    append_to_file('high', url)
