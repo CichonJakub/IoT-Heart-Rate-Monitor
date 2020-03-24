@@ -1,1 +1,36 @@
-TEST 
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+    <head>
+        <meta charset="utf-8">
+        <title>IOT PULSOMETR</title>
+        <script src="/socket.io/socket.io.js" charset="utf-8"></script>
+    </head>
+    <body>
+        IOT PULSOMETR TEST
+        <button type="button" name="button" id="testMierzenie">MIERZENIE</button>
+        WYNIK: <span id="testWynik"></span>
+        <script type="text/javascript">
+            socket = io();
+
+            socket.on('ack', funtion(data){
+                console.log(data);
+            })
+
+            socket.on('testMierzenie', funtion(data){
+                console.log("wyniki testu");
+                console.log(data);
+                let testWynik = document.getElementById('testWynik');
+                testWynik.innerHTML = data;
+            })
+
+            window.onload=function(){
+                socket.emit('hello');
+
+                document.getElementById('testMierzenie').addEventListener('click',function(){
+                    console.log("test mierzenia...");
+                    socket.emit('askForTest', "webBrowserTest");
+                })
+            }
+        </script>
+    </body>
+</html>
