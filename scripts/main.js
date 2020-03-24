@@ -12,7 +12,7 @@ socket.on('testMierzenie', function(data){
 })
 
 window.onload=function(){
-    socket.emit('hello');
+    socket.emit('hello', "webBrowser");
 
     document.getElementById('testMierzenie').addEventListener('click',function(){
         console.log("test mierzenia...");

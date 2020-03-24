@@ -16,6 +16,7 @@ const client = new Client({
 
 const port = process.env.PORT || 80;
 
+app.use('/scripts', express.static('scripts'));
 app.get('/', (req, res) => res.sendFile(__dirname + '/index.html'));
 server.listen(port, function(){
     console.log(`App listening on port ${port}!`);
