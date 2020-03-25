@@ -1,7 +1,7 @@
 import React from 'react';
 import { View, Text, Button } from 'react-native';
 import { styles } from '../styles/global';
-import RoundButton from '../shared/button';
+import RoundButton from '../styles/button';
 
 export default function Measure({ navigation }) {
 

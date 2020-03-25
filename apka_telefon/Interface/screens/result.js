@@ -1,7 +1,7 @@
 import React, { useState} from 'react';
 import { View, Text } from 'react-native';
 import { styles } from '../styles/global';
-import RoundButton from '../shared/button';
+import RoundButton from '../styles/button';
 import Tabs from './tabs';
 
 export default function Result({ navigation }) {

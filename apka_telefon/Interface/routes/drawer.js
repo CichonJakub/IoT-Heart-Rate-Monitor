@@ -5,7 +5,7 @@ import HomeStack from './homeStack';
 import ResultStack from './resultStack';
 import Tabs from '../screens/tabs';
 
-const RootDrawerNavigator = createDrawerNavigator({
+const DrawerNavigator = createDrawerNavigator({
   Home: {
     screen: HomeStack,
   },
@@ -14,7 +14,13 @@ const RootDrawerNavigator = createDrawerNavigator({
   },
   Result: {
     screen: ResultStack,
+  },
+},
+  {
+    initialRouteName: 'Home',
+    unmountInactiveRoutes: true,
+    headerMode: "none",
   }
-})
+)
 
-export default createAppContainer(RootDrawerNavigator);
+export default DrawerNavigator;

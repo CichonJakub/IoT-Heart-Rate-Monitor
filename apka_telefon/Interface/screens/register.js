@@ -4,25 +4,26 @@ import { styles } from '../styles/global';
 import { LoginButton } from '../styles/button';
 import { Formik } from 'formik';
 import DrawerNavigator from '../routes/drawer';
+import Login from './login';
 
-export default function Login({ navigation }) {
+export default function Register({ navigation }) {
 
   const pressHandler = () => {
     navigation.navigate('DrawerNavigator');
   }
-  const toRegister = () => {
-    navigation.navigate('Register');
+  const toLogin = () => {
+    navigation.navigate('Login');
   }
 
   return(
     <View style={styles.loginScreen}>
       <View style={styles.logoContainer}>
         <Image source= {require('../assets/Logo.png')} style={styles.logoImage} />
-        <Text style={styles.logoText}>Zaloguj się</Text>
+        <Text style={styles.logoText}>Utwórz konto</Text>
       </View>
       <View style={styles.loginScreen}>
         <Formik
-          initialValues={{ login: '', password: ''}}
+          initialValues={{ login: '', password: '', repeatPassword: ''}}
           onSubmit={(values) => {
             console.log(values);
           }}
@@ -45,11 +46,19 @@ export default function Login({ navigation }) {
                 onChangeText={props.handleChange('password')}
                 value={props.values.password}
               />
-              <LoginButton text='Zaloguj' onPress={pressHandler} />
+              <TextInput
+                style={styles.input}
+                placeholder='Powtórz Hasło'
+                placeholderTextColor='rgba(0, 0, 0, 0.6)'
+                selectionColor='#5d99c6'
+                onChangeText={props.handleChange('repeatPassword')}
+                value={props.values.repeatPassword}
+              />
+              <LoginButton text='Zarejestruj się' onPress={pressHandler} />
               <View style={styles.inRow}>
-                <Text style={styles.registerText}>Nie masz konta?</Text>
-                <TouchableOpacity onPress={toRegister}>
-                  <Text style={styles.registerText}> Zarejestruj się</Text>
+                <Text style={styles.registerText}>Masz już konto?</Text>
+                <TouchableOpacity onPress={toLogin}>
+                  <Text style={styles.registerText}> Zaloguj się</Text>
                 </TouchableOpacity>
               </View>
             </View>

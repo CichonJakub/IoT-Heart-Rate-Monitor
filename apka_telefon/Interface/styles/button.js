@@ -1,5 +1,6 @@
 import React from 'react';
 import { StyleSheet, TouchableOpacity, Text, View } from 'react-native';
+import { Dimensions } from 'react-native';
 
 export default function RoundButton({ text, onPress }) {
   return (
@@ -21,6 +22,16 @@ export function HomeButton({ text, onPress }) {
   )
 };
 
+export function LoginButton({ text, onPress}) {
+  return (
+    <TouchableOpacity onPress={onPress}>
+      <View style={styles.loginButton}>
+        <Text style={styles.loginButtonText}>{ text }</Text>
+      </View>
+    </TouchableOpacity>
+  )
+}
+
 const styles = StyleSheet.create({
   button: {
     width: 100,
@@ -30,7 +41,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: 10,
     margin: 6,
     justifyContent: 'center',
-    backgroundColor: '#78d6f9',
+    backgroundColor: '#8c2155',
   },
   homeButton: {
     width: 150,
@@ -39,20 +50,37 @@ const styles = StyleSheet.create({
     paddingVertical: 10,
     paddingHorizontal: 10,
     justifyContent: 'center',
-    backgroundColor: '#78d6f9',
+    backgroundColor: '#8c2155',
+  },
+  loginButton: {
+    width: Dimensions.get('screen').width*0.6,
+    height: 40,
+    borderRadius: 20,
+    paddingVertical: 10,
+    paddingHorizontal: 10,
+    marginTop: 40,
+    justifyContent: 'center',
+    backgroundColor: '#5a002c',
   },
   buttonText: {
-    color: "#000",
+    color: "#fff",
     fontWeight: 'bold',
     textTransform: 'uppercase',
     fontSize: 14,
     textAlign: 'center',
   },
   homeButtonText: {
-    color: "#000",
+    color: "#fff",
     fontWeight: 'bold',
     textTransform: 'uppercase',
     fontSize: 20,
+    textAlign: 'center',
+  },
+  loginButtonText: {
+    color: "#fff",
+    fontFamily: 'rubik-medium',
+    textTransform: 'uppercase',
+    fontSize: 14,
     textAlign: 'center',
   },
 })
