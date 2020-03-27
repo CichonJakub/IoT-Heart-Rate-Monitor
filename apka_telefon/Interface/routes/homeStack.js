@@ -1,9 +1,11 @@
 import React from 'react';
 import { createStackNavigator } from 'react-navigation-stack';
+import { MaterialIcons } from '@expo/vector-icons';
 import Home from '../screens/home';
 import Measure from '../screens/measure';
 import Result from '../screens/result';
-import Header from '../styles/header';
+import  MainHeader  from '../styles/header';
+import  { MeasureHeader } from '../styles/header';
 
 
 const screens = {
@@ -11,14 +13,18 @@ const screens = {
     screen: Home,
     navigationOptions: ({ navigation }) => {
       return {
-        headerTitle: () => <Header navigation={navigation} title='Hello screen' />,
+        headerLeft: () => <MainHeader navigation={navigation} title='Hello screen' />,
+        title: 'Nazwa Aplikacji',
       }
     }
   },
   Measure: {
     screen: Measure,
-    navigationOptions: {
-      title: "Pomiar"
+    navigationOptions: ({ navigation }) => {
+      return {
+        headerLeft: () => <MeasureHeader navigation={navigation} title='Hello screen' />,
+        title: 'Nazwa Aplikacji',
+      }
     }
   },
 }
@@ -26,7 +32,8 @@ const screens = {
 const HomeStack = createStackNavigator(screens, {
   defaultNavigationOptions: {
     headerTintColor: '#000',
-    headerStyle: { backgroundColor: '#90caf9', height: 70}
+    headerTitleStyle: { fontFamily: 'rubik-medium', fontSize: 20, paddingLeft: 8},
+    headerStyle: { backgroundColor: '#5d99c6', height: 80 }
   }
 });
 

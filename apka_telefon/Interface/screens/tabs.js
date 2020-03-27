@@ -11,7 +11,9 @@ export default function Tabs() {
   return (
     <NavigationContainer>
       <Tab.Navigator tabBarOptions={{
-        style: {backgroundColor: '#c3fdff'}, indicatorStyle: {backgroundColor: '#5a002c'}
+        style: {backgroundColor: '#c3fdff'},
+        labelStyle: {fontFamily: 'rubik-medium', fontSize: 14},
+        indicatorStyle: {backgroundColor: '#5a002c'}
       }}>
         <Tab.Screen name="Obrazki" component={Images} />
         <Tab.Screen name="Wideo" component={Videos} />

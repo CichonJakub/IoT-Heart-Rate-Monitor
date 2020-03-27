@@ -18,7 +18,10 @@ export default function Result({ navigation }) {
 
   return (
     <View style={styles.container}>
-      <Text style={styles.txt}>Coś poszło nie tak...{"\n"}Powtórz pomiar</Text>
+      <Text style={styles.h5}>Twój wynik</Text>
+      <View style={styles.resultContainer}>
+        <Text style={styles.h4}>Wynik</Text>
+      </View>
       <View style={styles.resultButtons}>
         <RoundButton text='Obrazek' onPress={toImages} />
         <RoundButton text='Wideo' onPress={toVideos} />

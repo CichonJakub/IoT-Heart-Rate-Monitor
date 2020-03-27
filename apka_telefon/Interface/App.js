@@ -6,8 +6,8 @@ import Navigator from './routes/AppNavigation';
 const getFonts = () => Font.loadAsync({
   'rubik-regular': require('./assets/fonts/Rubik-Regular.ttf'),
   'rubik-medium': require('./assets/fonts/Rubik-Medium.ttf'),
+  'rubik-light': require('./assets/fonts/Rubik-Light.ttf'),
 });
-
 
 export default function App() {
   const [fontsLoaded, setFontsLoaded] = useState(false);

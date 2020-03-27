@@ -1,9 +1,9 @@
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, Text, View, Image } from 'react-native';
 import { MaterialIcons } from '@expo/vector-icons';
 import { Dimensions } from 'react-native';
 
-export default function Header({ navigation, title}){
+export default function MainHeader({ navigation, title}){
 
   const openMenu = () => {
       navigation.openDrawer()
@@ -11,27 +11,37 @@ export default function Header({ navigation, title}){
 
   return (
     <View style={styles.header}>
-      <MaterialIcons name='menu'size={28} onPress={openMenu} style={styles.icon} />
-      <View>
-        <Text style={styles.headerText}>{ title }</Text>
-      </View>
+      <MaterialIcons name='menu'size={24} onPress={openMenu} style={styles.icon} />
+      <Image source= {require('../assets/heart.png')} style={styles.headerIcon} />
+    </View>
+  );
+}
+
+export function MeasureHeader({ navigation: { goBack }, title}){
+
+  return (
+    <View style={styles.header}>
+      <MaterialIcons name='arrow-back'size={24} onPress={() => goBack()} style={styles.icon} />
+      <Image source= {require('../assets/heart.png')} style={styles.headerIcon} />
     </View>
   );
 }
 
 const styles = StyleSheet.create({
   header: {
+    flex: 1,
     width: Dimensions.get('screen').width,
+    height: 56,
     flexDirection: 'row',
-    alignItems: 'center',
-  },
-  headerText: {
-    fontWeight: 'bold',
-    fontSize: 20,
-    left: 40,
+    backgroundColor: '#90caf9',
   },
   icon: {
-    position: 'absolute',
-    left: 1,
+    padding: 16,
+    paddingRight: 4,
+  },
+  headerIcon: {
+  //  backgroundColor: 'green',
+    height: 56,
+    width: 32,
   }
 })

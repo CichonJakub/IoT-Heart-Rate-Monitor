@@ -30,7 +30,17 @@ export function LoginButton({ text, onPress}) {
       </View>
     </TouchableOpacity>
   )
-}
+};
+
+export function TemporaryButton({ text, onPress}) {
+  return (
+    <TouchableOpacity onPress={onPress}>
+      <View style={styles.tmpButton}>
+        <Text style={styles.tmpButtonText}>{ text }</Text>
+      </View>
+    </TouchableOpacity>
+  )
+};
 
 const styles = StyleSheet.create({
   button: {
@@ -43,25 +53,6 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     backgroundColor: '#8c2155',
   },
-  homeButton: {
-    width: 150,
-    height: 150,
-    borderRadius: 75,
-    paddingVertical: 10,
-    paddingHorizontal: 10,
-    justifyContent: 'center',
-    backgroundColor: '#8c2155',
-  },
-  loginButton: {
-    width: Dimensions.get('screen').width*0.6,
-    height: 40,
-    borderRadius: 20,
-    paddingVertical: 10,
-    paddingHorizontal: 10,
-    marginTop: 40,
-    justifyContent: 'center',
-    backgroundColor: '#5a002c',
-  },
   buttonText: {
     color: "#fff",
     fontWeight: 'bold',
@@ -69,14 +60,50 @@ const styles = StyleSheet.create({
     fontSize: 14,
     textAlign: 'center',
   },
+  homeButton: {
+    width: 130,
+    height: 130,
+    borderRadius: 65,
+    paddingVertical: 10,
+    paddingHorizontal: 10,
+    justifyContent: 'center',
+    backgroundColor: '#8c2155',
+  },
   homeButtonText: {
     color: "#fff",
-    fontWeight: 'bold',
+    fontFamily: 'rubik-medium',
     textTransform: 'uppercase',
-    fontSize: 20,
+    fontSize: 16,
     textAlign: 'center',
   },
+  loginButton: {
+    width: Dimensions.get('screen').width*0.6,
+    height: 40,
+    borderRadius: 14,
+    paddingVertical: 10,
+    paddingHorizontal: 10,
+    marginTop: 40,
+    justifyContent: 'center',
+    backgroundColor: '#5a002c',
+  },
   loginButtonText: {
+    color: "#fff",
+    fontFamily: 'rubik-medium',
+    textTransform: 'uppercase',
+    fontSize: 14,
+    textAlign: 'center',
+  },
+  tmpButton: {
+    width: Dimensions.get('screen').width*0.6,
+    height: 40,
+    borderRadius: 14,
+    paddingVertical: 10,
+    paddingHorizontal: 10,
+    marginTop: 40,
+    justifyContent: 'center',
+    backgroundColor: '#8c2155',
+  },
+  tmpButtonText: {
     color: "#fff",
     fontFamily: 'rubik-medium',
     textTransform: 'uppercase',

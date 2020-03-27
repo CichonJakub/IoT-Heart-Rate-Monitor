@@ -1,6 +1,6 @@
 import { createStackNavigator } from 'react-navigation-stack';
 import Statistics from '../screens/statistics';
-import Header from '../styles/header';
+import MainHeader from '../styles/header';
 import React from 'react';
 
 const screens = {
@@ -8,7 +8,8 @@ const screens = {
     screen: Statistics,
     navigationOptions: ({ navigation }) => {
       return {
-        headerTitle: () => <Header navigation={navigation} title='Statystyki' />,
+        headerLeft: () => <MainHeader navigation={navigation} title='Hello screen' />,
+      title: 'Statystyki',
       }
     }
   },
@@ -16,7 +17,9 @@ const screens = {
 
 const StatisticsStack = createStackNavigator(screens, {
   defaultNavigationOptions: {
-    headerStyle: { backgroundColor: '#90caf9', height: 70}
+    headerTintColor: '#000',
+    headerTitleStyle: { fontFamily: 'rubik-medium', fontSize: 20, paddingLeft: 8},
+    headerStyle: { backgroundColor: '#5d99c6', height: 80 }
   }
 });
 
