@@ -11,8 +11,11 @@ export default function Home({ navigation }) {
 
   return (
     <View style={styles.container}>
-      <Text style={styles.txt}>Hello!</Text>
-      <HomeButton text='Zacznij Pomiar' onPress={pressHandler} />
+      <Text style={styles.h4}>Uszanowanko</Text>
+      <Text style={styles.s1}>Naciśnij przycisk poniżej {"\n"} i przyłóż palec do czujnika</Text>
+      <View style={styles.buttonContainer}>
+        <HomeButton text='Zacznij Pomiar' onPress={pressHandler} />
+      </View>
     </View>
   )
 }

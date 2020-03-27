@@ -5,8 +5,7 @@ export const styles = StyleSheet.create({
   container: {
     flex: 1,
     alignItems: 'center',
-    //backgroundColor: '#90caf9',
-    //justifyContent: 'center',
+    padding: 40,
   },
   logoContainer: {
     flex: 0.7,
@@ -26,17 +25,42 @@ export const styles = StyleSheet.create({
     backgroundColor: '#90caf9',
     alignItems: 'center',
     paddingTop: 10,
-    //justifyContent: 'center',
   },
   inRow: {
     flexDirection: 'row',
   },
-  txt: {
-    color: '#000',
-    fontWeight: 'bold',
-    fontSize: 30,
+  h4: {
+    fontFamily: 'rubik-regular',
+    fontSize: 35,
+  },
+  h5: {
+    fontFamily: 'rubik-regular',
+    fontSize: 24,
     textAlign: 'center',
-    paddingBottom: 100,
+  },
+  s1: {
+    fontFamily: 'rubik-regular',
+    fontSize: 16,
+    textAlign: 'center',
+    padding: 10,
+  },
+  body1: {
+    fontFamily: 'rubik-regular',
+    fontSize: 16,
+  },
+  buttonContainer: {
+    flex: 1,
+    paddingTop: 70,
+  },
+  loadingIconContainer: {
+    flex: 1,
+    paddingTop: 120,
+    //backgroundColor: 'pink',
+  },
+  resultContainer: {
+    flex: 1,
+    paddingTop: 60,
+    //backgroundColor: 'pink',
   },
   resultButtons: {
     flex: 1,
@@ -64,5 +88,9 @@ export const styles = StyleSheet.create({
     marginTop: 12,
     fontFamily: 'rubik-regular',
     fontSize: 14,
+  },
+  tmp: {
+    position: 'absolute',
+    bottom: 30,
   },
 })

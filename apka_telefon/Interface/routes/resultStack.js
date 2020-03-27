@@ -5,7 +5,8 @@ import Result from '../screens/result';
 import Images from '../screens/images';
 import Videos from '../screens/videos';
 import Advice from '../screens/advice';
-import Header from '../styles/header';
+import MainHeader from '../styles/header';
+import  { MeasureHeader } from '../styles/header';
 import Tabs from '../screens/tabs';
 
 const screens = {
@@ -13,22 +14,29 @@ const screens = {
     screen: Result,
     navigationOptions: ({ navigation }) => {
       return {
-        headerTitle: () => <Header navigation={navigation} title='Wynik' />,
+        headerLeft: () => <MainHeader navigation={navigation} title='Hello screen' />,
+      title: 'Wynik',
       }
     }
   },
 
   Tabs: {
     screen: Tabs,
-    navigationOptions: {
-      title: ""
-    },
+    navigationOptions: ({ navigation }) => {
+      return {
+        headerLeft: () => <MeasureHeader navigation={navigation} title='Hello screen' />,
+      title: '',
+      }
+    }
   },
+
 }
 
 const ResultStack = createStackNavigator(screens, {
   defaultNavigationOptions: {
-    headerStyle: { backgroundColor: '#90caf9', height: 70}
+    headerTintColor: '#000',
+    headerTitleStyle: { fontFamily: 'rubik-medium', fontSize: 20, paddingLeft: 8},
+    headerStyle: { backgroundColor: '#5d99c6', height: 80 }
   }
 });
 

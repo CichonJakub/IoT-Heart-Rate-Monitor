@@ -1,7 +1,7 @@
 import React from 'react';
 import { View, Text, Button } from 'react-native';
 import { styles } from '../styles/global';
-import RoundButton from '../styles/button';
+import { TemporaryButton } from '../styles/button';
 
 export default function Measure({ navigation }) {
 
@@ -11,8 +11,13 @@ export default function Measure({ navigation }) {
 
   return (
     <View style={styles.container}>
-      <Text style={styles.txt}>Measure Screen{"\n"}Hello!</Text>
-      <RoundButton text='Wynik' onPress={pressHandler} />
+      <Text style={styles.h5}>Przytrzymaj palec na czujniku przez ? sekund</Text>
+      <View style={styles.loadingIconContainer}>
+        <Text>Loading Icon</Text>
+      </View>
+      <View style={styles.tmp}>
+        <TemporaryButton text='Przycisk tymczasowy' onPress={pressHandler} />
+      </View>
     </View>
   )
 }
