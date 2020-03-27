@@ -22,14 +22,13 @@ class YTSearch:
     def get_videos_from_playlist(self, playlists_ids):
         videos_ids = []
         videos_links = []
+        # unikalne wartosci:
+        playlists_ids = set(playlists_ids)
         for ids in playlists_ids:
             videos = self.yt.get_videos_from_playlist_id(playlist_id=ids)
             for video in videos:
                 videos_links.append("https://www.youtube.com/watch?v="+video['video_id'])
                 videos_ids.append(video['video_id'])
-        #unikalne wartosci:
-        videos_links = set(videos_links)
-        videos_ids = set(videos_ids)
         return videos_ids, videos_links
 
 #TODO : add counter ??? zeby user mial niepowtarzajace sie dane

@@ -100,48 +100,49 @@ class PinCrawling:
 
     #    return pins_ids, pins_urls
 
-    def get_data(self, browser, keyword):
-        url = "https://pl.pinterest.com/search/pins/?q=" + str(keyword) + "&rs=typed&term_meta[]=" + str(
-            keyword) + "%7Ctyped"
-        browser.get(url)
-        while browser.current_url != url:
-            print("EH")
-            browser.get(url)
-        wait = ui.WebDriverWait(browser, 10)
-        wait.until(self.page_is_loaded)
-        beginning = time.time()
-        end = time.time()
-
-        pin_counter = 0
-        pin_amount = 500
+    def get_data(self, browser, keywords):
         i = 0
-
         pin_ids = []
         pin_urls = []
 
-        while pin_counter < pin_amount and beginning - end < 10:
+        for keyword in keywords:
+            url = "https://pl.pinterest.com/search/pins/?q=" + str(keyword) + "&rs=typed&term_meta[]=" + str(
+                keyword) + "%7Ctyped"
+            browser.get(url)
+            while browser.current_url != url:
+                print("EH")
+                browser.get(url)
+            wait = ui.WebDriverWait(browser, 10)
+            wait.until(self.page_is_loaded)
             beginning = time.time()
-            soup = BeautifulSoup(browser.page_source, "html.parser")
-            for pins in soup.find_all("a", {"data-force-refresh": "1"}):
-                #print(pins)
-                try:
-                    if pins.get("href") is not None and pins.find("img", {"class": "hCL kVc L4E MIw"}).get("src") is not None:
+            end = time.time()
 
-                        #print(pins.get("href"))
-                        id = str(pins.get("href"))
-                        id = id[5:len(id)-1]
-                        pin_ids.append(id)
+            pin_counter = 0
+            pin_amount = 500
 
-                        url = pins.find("img", {"class": "hCL kVc L4E MIw"})
-                        url = url.get("src")
-                        pin_urls.append(url)
-                        #print(url)
+            while pin_counter < pin_amount and beginning - end < 10:
+                beginning = time.time()
+                soup = BeautifulSoup(browser.page_source, "html.parser")
+                for pins in soup.find_all("a", {"data-force-refresh": "1"}):
+                    #print(pins)
+                    try:
+                        if pins.get("href") is not None and pins.find("img", {"class": "hCL kVc L4E MIw"}).get("src") is not None:
 
-                        i += 1
-                except:
-                    print("Some pins are naughty!")
+                            #print(pins.get("href"))
+                            id = str(pins.get("href"))
+                            id = id[5:len(id)-1]
+                            pin_ids.append(id)
 
-            browser.execute_script("window.scrollBy(0,300)")
+                            url = pins.find("img", {"class": "hCL kVc L4E MIw"})
+                            url = url.get("src")
+                            pin_urls.append(url)
+                            #print(url)
+
+                            i += 1
+                    except:
+                        print("Some pins are naughty!")
+
+                browser.execute_script("window.scrollBy(0,300)")
 
         print(i)  # licznik pinów
 
@@ -154,21 +155,16 @@ def main():
     browser = webdriver.Firefox(executable_path='Data/geckodriver-v0.26.0-linux64/geckodriver')
     p.login(browser)
 
-    #testy
-    #p.test(browser, "Jungkook")
-    # p.get_image_url(browser, "701435710696738294")
-
-    low = ["scary"]
+    low = ["horror"]
     high = ["cute"]
 
-    for item in low:
-        pins_ids, pins_urls = p.get_data(browser, item)
-        p.update_data(pins_ids, pins_urls, "low")
+    pins_ids, pins_urls = p.get_data(browser, low)
+    p.update_data(pins_ids, pins_urls, "low")
 
-    for item in high:
-        pins_ids, pins_urls = p.get_data(browser, item)
-        p.update_data(pins_ids, pins_urls, "high")
+    pins_ids, pins_urls = p.get_data(browser, high)
+    p.update_data(pins_ids, pins_urls, "high")
 
     browser.close()
+
 
 main()
