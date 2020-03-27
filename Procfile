@@ -1,2 +1,2 @@
 web: node server.js
-clock: python clock.py
+clock: python3.7 clock.py
