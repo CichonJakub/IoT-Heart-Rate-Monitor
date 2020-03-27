@@ -1,2 +1,2 @@
 web: node server.js
-web: python eh.py
+worker: python eh.py
