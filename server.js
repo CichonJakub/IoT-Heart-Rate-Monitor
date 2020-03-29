@@ -75,7 +75,7 @@ io.on('connection', function (socket) {
     socket.on("askForTest", function(data){
         console.log("askForTest: " + data);
         if ( socketHardware != null ){
-                console.log("Relaying ask for test for " + data ]);
+                console.log("Relaying ask for test for " + data);
                 socketHardware.emit("askForTest", data);
         }
     })
