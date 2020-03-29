@@ -56,9 +56,12 @@ let users = [];
 
 io.on('connection', function (socket) {
 
-    users.push(socket);
     console.log("CONNECTED");
     socket.on('hello', function(data){
+        let tmpId = 1;
+        if( data == "webBrowser" )
+            tmpId = 666;
+        users.push({id: tmpId, socket: socket});
         console.log(data);
         socket.emit('ack', "TEST");
         console.log("HELLO RECEIVED");
@@ -66,22 +69,26 @@ io.on('connection', function (socket) {
 
     socket.on('iAmHardware', function(data){
         socketHardware = socket;
+        users.push({id: 0, socket: socket});
     })
 
     socket.on("askForTest", function(data){
+        console.log("askForTest: " + data);
         if ( socketHardware != null ){
-            let index = users.findIndex(obj => obj == socket);
-            if( index != -1 ){
-                console.log("INDEX: " + index);
-                socketHardware.emit("askForTest", index);
-            }
+                console.log("Relaying ask for test for " + data);
+                socketHardware.emit("askForTest", data);
         }
     })
 
     socket.on("testMierzenie", function(data){
         console.log(data);
-        console.log("sockets number: " + users.length);
-        users[data.user].emit('testMierzenie', data.pomiar);
+        console.log("connected sockets number: " + users.length);
+        let index = users.findIndex(obj => obj.id == data.user);
+        if( index != -1 )
+            users[index].socket.emit('testMierzenie', data.pomiar);
+        else{
+            console.log("Something went wrong, this id is not connected");
+        }
     })
 
     socket.on('database_porady', function(data){
@@ -106,5 +113,13 @@ io.on('connection', function (socket) {
             client.end();
         })
     })
+
+    socket.on('disconnect', function(data){
+            //console.log("Disconnect");
+            let index = users.findIndex(obj => obj.socket == socket);
+            if( index != -1 ){
+                users.splice(index, 1);
+            }
+        })
 
 });
