@@ -71,12 +71,16 @@ io.on('connection', function (socket) {
     socket.on("askForTest", function(data){
         if ( socketHardware != null ){
             let index = users.findIndex(obj => obj == socket);
-            if( index != -1 )
+            if( index != -1 ){
+                console.log("INDEX: " + index);
                 socketHardware.emit("askForTest", index);
+            }
         }
     })
 
     socket.on("testMierzenie", function(data){
+        console.log(data);
+        console.log("sockets number: " + users.length);
         users[data.user].emit('testMierzenie', data.pomiar);
     })
 
