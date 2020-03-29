@@ -16,6 +16,6 @@ window.onload=function(){
 
     document.getElementById('testMierzenie').addEventListener('click',function(){
         console.log("test mierzenia...");
-        socket.emit('askForTest', "webBrowserTest");
+        socket.emit('askForTest', 666);
     })
 }
