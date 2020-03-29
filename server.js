@@ -60,7 +60,7 @@ io.on('connection', function (socket) {
     socket.on('hello', function(data){
         let tmpId = 1;
         if( data == "webBrowser" )
-            let tmpId = 666;
+            tmpId = 666;
         users.push({id: tmpId, socket: socket});
         console.log(data);
         socket.emit('ack', "TEST");
