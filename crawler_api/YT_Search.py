@@ -32,11 +32,14 @@ class YTSearch:
         return videos_ids, videos_links
 
 #TODO : add counter ??? zeby user mial niepowtarzajace sie dane
+
     def update(self, key_word): #odświerzanie danych raz na 24 h
         #zapisz jako plik
+        urls = []
         if key_word == "high": # puls za wysoki, dla uspokojenia
             playlists_ids, playlists_links = self.get_playlists("calm music")  # wypluwa id playlist i linki do nich
             videos_ids, videos_links = self.get_videos_from_playlist(playlists_ids) #linki do muzyki z danej playlisty
+            urls = videos_links
             print(videos_links)
             print(videos_ids)
             data = {'YT_data_high': []}
@@ -51,6 +54,7 @@ class YTSearch:
         elif key_word == "low": # puls za niski, dla rozruszania
             playlists_ids, playlists_links = self.get_playlists("hard rock")  # wypluwa id playlist i linki do nich
             videos_ids, videos_links = self.get_videos_from_playlist(playlists_ids)  # linki do muzyki z danej playlisty
+            urls = videos_links
             print(videos_links)
             print(videos_ids)
             data = {'YT_data_low': []}
@@ -62,10 +66,12 @@ class YTSearch:
             print(len(data['YT_data_low']))
             with open('Data/YT_data_low.txt', 'w') as outfile:
                 json.dump(data, outfile)
+        return urls
 
-yt = YTSearch()
-yt.update("high")
-yt.update("low")
+def main():
+    yt = YTSearch()
+    yt.update("high")
+    yt.update("low")
     # def choose_resuls(self):
     # #     print("wylosowanie 3 muzyczek ")
     # #

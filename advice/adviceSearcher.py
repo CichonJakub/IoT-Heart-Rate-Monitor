@@ -3,7 +3,8 @@ import selenium.webdriver as webdriver
 
 def get_results(search_term):
     url = "https://www.startpage.com"
-    browser = webdriver.Chrome("drivers\chromedriver.exe")
+    browser = webdriver.Chrome("drivers/chromedriver.exe")
+
     browser.get(url)
     search_box = browser.find_element_by_id("query")
     search_box.send_keys(search_term)

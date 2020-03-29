@@ -9,6 +9,9 @@ import json
 
 class PinCrawling:
 
+    def __init__(self):
+        self.browser = webdriver.Firefox(executable_path='Data/geckodriver-v0.26.0-linux64/geckodriver')
+
     def page_is_loaded(self, browser):
         return browser.find_element_by_tag_name("body") != None
 
@@ -164,7 +167,7 @@ def main():
     pins_ids, pins_urls = p.get_data(browser, high)
     p.update_data(pins_ids, pins_urls, "high")
 
-    browser.close()
+    p.browser.close()
 
 
 main()

@@ -83,4 +83,3 @@ def run():
 
 run()
 #database() jeszcze zeby sprawdzalo czy takie cos jest w bazie i ewentualnie dodac
-
