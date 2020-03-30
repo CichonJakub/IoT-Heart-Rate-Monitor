@@ -82,6 +82,8 @@ io.on('connection', function (socket) {
 
     socket.on("testMierzenie", function(data){
         console.log(data);
+        console.log(data.user);
+        console.log(data.pomiar);
         console.log("connected sockets number: " + users.length);
         let index = users.findIndex(obj => obj.id == data.user);
         if( index != -1 )
