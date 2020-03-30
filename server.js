@@ -1,6 +1,7 @@
 // server.js
 const express = require('express');
 const app = require('express')();
+const fernet = require('fernet');
 const server = require('http').Server(app);
 const io = require('socket.io')(server);
 const { Client } = require('pg');
@@ -27,6 +28,8 @@ const client = new Client({
   connectionString: process.env.DATABASE_URL,
   ssl: true,
 });
+
+const secret = new fernet.Secret("cw_0x689RpI-jtRR7oE8h_eQsKImvJapLeSbXpwF4e4=");
 
 client.connect(function(err) {
     if (err) {
@@ -88,8 +91,14 @@ io.on('connection', function (socket) {
         console.log("connected sockets number: " + users.length);
         let index = users.findIndex(obj => obj.id == data.user);
         if( index != -1 )
-            users[index].socket.emit('testMierzenie', data.pomiar);
-        else{
+            var token = new fernet.Token({
+                secret: secret,
+                token: data.pomiar,
+                ttl: 0
+            })
+            let pomiar = token.decode();
+            users[index].socket.emit('testMierzenie', pomiar);
+w        else{
             console.log("Something went wrong, this id is not connected");
         }
     })
