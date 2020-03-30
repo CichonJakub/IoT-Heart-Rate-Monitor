@@ -82,7 +82,7 @@ io.on('connection', function (socket) {
 
     socket.on("testMierzenie", function(data){
         console.log(data);
-        data = JSON_PARSE(data);
+        data = JSON.parse(data);
         console.log(data.user);
         console.log(data.pomiar);
         console.log("connected sockets number: " + users.length);
