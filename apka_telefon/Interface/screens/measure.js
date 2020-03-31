@@ -6,7 +6,7 @@ import { TemporaryButton } from '../styles/button';
 export default function Measure({ navigation }) {
 
   const pressHandler = () => {
-    navigation.navigate('Result');
+    navigation.navigate('Wynik');
   }
 
   return (

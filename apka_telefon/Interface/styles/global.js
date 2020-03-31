@@ -48,6 +48,10 @@ export const styles = StyleSheet.create({
     fontFamily: 'rubik-regular',
     fontSize: 16,
   },
+  body1: {
+    fontFamily: 'rubik-regular',
+    fontSize: 14,
+  },
   buttonContainer: {
     flex: 1,
     paddingTop: 70,
@@ -92,5 +96,37 @@ export const styles = StyleSheet.create({
   tmp: {
     position: 'absolute',
     bottom: 30,
+  },
+  sidebarContainer: {
+    flex: 1,
+    width: 256,
+    alignItems: 'center',
+    backgroundColor: '#fff',
+    borderTopRightRadius: 18,
+    borderBottomRightRadius: 18,
+  },
+  sidebarHeader: {
+    backgroundColor: '#5d99c6',
+    borderTopRightRadius: 18,
+    height: 24,
+    width: 256,
+  },
+  sidebarLogo: {
+    width: Dimensions.get('screen').width*0.3,
+    height: 130,
+  },
+  sidebarDivider: {
+    height:1,
+    width:"100%",
+    backgroundColor:"rgba(0, 0, 0, 0.12)",
+    marginVertical: 20,
+  },
+  sidebarListItem: {
+    flexDirection: 'row',
+    height: 48,
+    paddingLeft: 16,
+  },
+  icon: {
+    paddingRight: 14,
   },
 })
