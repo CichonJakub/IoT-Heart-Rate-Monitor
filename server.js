@@ -112,8 +112,35 @@ io.on('connection', function (socket) {
 
     socket.on('login', function(data){
         console.log(data);
+        /*  //  JAK LOGIN BĘDZIE GOTOWY
+        let queryString = "SELECT * from uzytkownicy WHERE login='" + data.login + "';";
+        client.query(queryString, (err, res) => {
+            if( !err ){
+                console.log(res.rowCount);
+                if( res.rowCount > 0 ){
+                    if( res.password == data.password ){
+                        let userdata = res.rows[0];
+                        users.push({id: userdata.id_uzytkownika, login: data.user, socket: socket});
+                        socket.emit('confirmLogin', "Test login id=" + data.login);
+                    }
+                    else{
+                        console.log("Bad login data.");
+                        socket.emit('confirmLogin', "BADLOGIN");
+                    }
+                    return;
+                }
+                else{
+                    console.log("Unknown login: " + data.login);
+                    socket.emit('confirmLogin', "BADLOGIN");
+                    return;
+                }
+            }
+            console.log(err);
+            socket.emit('confirmLogin', "DATABASEERROR");
+        })
+        */
         users.push({id: data, socket: socket});
-        socket.emit('confirmLogin', "Test login id=" + data);
+        socket.emit('confirmLogin', "Test login id=" + data.login);
     });
 
     socket.on('requestPomiar', function(data){
@@ -135,7 +162,20 @@ io.on('connection', function (socket) {
     });
 
     socket.on('pomiarResults', function(data){
-        let index = users.findIndex(obj => obj.id == data.id);
+        // TUTAJ BĘDZIE WSTAWIANIE WYNIKU DO BAZY ORAZ
+        // ALGORYTM DOBIERAJĄCY LINKI
+        /*
+        let queryString = "INSERT INTO pomiary(id_uzytkownika, wartosc) VALUES ("+data.is+","+data.pomiar+");";
+        client.query(queryString, (err, res) => {
+            if( !err ){
+                console.log(res);
+            }
+            else {
+                console.log(err);
+            }
+        })
+        */
+        let index = users.findIndex(obj => obj.id == data.user);
         if( index != -1 ){
             users[index].socket.emit('pomiarResult2', data.pomiar);
         }
