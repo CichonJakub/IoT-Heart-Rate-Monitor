@@ -98,7 +98,7 @@ io.on('connection', function (socket) {
             })
             let pomiar = token.decode();
             users[index].socket.emit('testMierzenie', pomiar);
-w        else{
+        else{
             console.log("Something went wrong, this id is not connected");
         }
     })
