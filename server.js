@@ -90,7 +90,7 @@ io.on('connection', function (socket) {
         console.log(data.pomiar);
         console.log("connected sockets number: " + users.length);
         let index = users.findIndex(obj => obj.id == data.user);
-        if( index != -1 )
+        if( index != -1 ){
             var token = new fernet.Token({
                 secret: secret,
                 token: data.pomiar,
@@ -98,7 +98,8 @@ io.on('connection', function (socket) {
             })
             let pomiar = token.decode();
             users[index].socket.emit('testMierzenie', pomiar);
-        else{
+        }
+        else{//czy to działa?
             console.log("Something went wrong, this id is not connected");
         }
     })
