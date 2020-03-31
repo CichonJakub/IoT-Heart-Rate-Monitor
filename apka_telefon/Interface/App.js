@@ -9,6 +9,8 @@ const getFonts = () => Font.loadAsync({
   'rubik-light': require('./assets/fonts/Rubik-Light.ttf'),
 });
 
+
+
 export default function App() {
   const [fontsLoaded, setFontsLoaded] = useState(false);
 

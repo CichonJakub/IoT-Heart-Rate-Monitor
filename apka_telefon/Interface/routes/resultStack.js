@@ -10,7 +10,7 @@ import  { MeasureHeader } from '../styles/header';
 import Tabs from '../screens/tabs';
 
 const screens = {
-  Wynik: {
+  Result: {
     screen: Result,
     navigationOptions: ({ navigation }) => {
       return {

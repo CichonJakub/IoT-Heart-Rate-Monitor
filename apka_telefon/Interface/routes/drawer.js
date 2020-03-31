@@ -11,10 +11,10 @@ const DrawerNavigator = createDrawerNavigator({
   Home: {
     screen: HomeStack,
   },
-  Wynik: {
+  Result: {
     screen: ResultStack,
   },
-  Statystyki: {
+  Statistics: {
     screen: StatisticsStack,
   },
 },

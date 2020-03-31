@@ -4,7 +4,7 @@ import MainHeader from '../styles/header';
 import React from 'react';
 
 const screens = {
-  Statystyki: {
+  Statistics: {
     screen: Statistics,
     navigationOptions: ({ navigation }) => {
       return {

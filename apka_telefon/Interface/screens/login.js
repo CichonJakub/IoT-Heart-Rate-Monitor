@@ -4,11 +4,17 @@ import { styles } from '../styles/global';
 import { LoginButton } from '../styles/button';
 import { Formik } from 'formik';
 import DrawerNavigator from '../routes/drawer';
+//import { socket } from './home';
+import io from 'socket.io-client';
+
+export const socket = io('https://iot-pulsometr.herokuapp.com', {
+  transports: ['websocket'],
+});
 
 export default function Login({ navigation }) {
-
   const pressHandler = () => {
     navigation.navigate('DrawerNavigator');
+    socket.emit('login', 17);
   }
   const toRegister = () => {
     navigation.navigate('Register');

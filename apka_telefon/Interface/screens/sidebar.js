@@ -7,15 +7,18 @@ export default class Sidebar extends React.Component {
     state = {
       routes:[
         {
-          name: "Strona Główna",
+          name: "Home",
+          title: "Strona Główna",
           icon: "home"
         },
         {
-          name: "Wynik",
+          name: "Result",
+          title: "Wynik",
           icon: "assignment-turned-in"
         },
         {
-          name: "Statystyki",
+          name: "Statistics",
+          title: "Statystyki",
           icon: "show-chart"
         },
       ]
@@ -43,7 +46,7 @@ function Item({ item, navigate }) {
   return (
     <TouchableOpacity style={styles.sidebarListItem} onPress={()=>navigate(item.name)}>
       <MaterialIcons name={item.icon} size={24} style={styles.icon}/>
-      <Text style={styles.body2}>{item.name}</Text>
+      <Text style={styles.body2}>{item.title}</Text>
     </TouchableOpacity>
   );
 }
