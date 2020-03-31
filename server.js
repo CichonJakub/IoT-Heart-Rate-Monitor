@@ -121,11 +121,11 @@ io.on('connection', function (socket) {
         let index = users.findIndex(obj => obj.socket == socket);
         if( socketHardware == null ){
             console.log("NO DEVICE");
-            socket.emit('pomiarResults2', "FAILEDTOMEASURE");
+            socket.emit('pomiarResult2', "FAILEDTOMEASURE");
         }
         else if( index == -1 ){
             console.log("USER ERROR");
-            socket.emit('pomiarResults2', "FAILEDTOMEASURE");
+            socket.emit('pomiarResult2', "FAILEDTOMEASURE");
         }
         else{
             let userId = users[index].id;
@@ -137,7 +137,7 @@ io.on('connection', function (socket) {
     socket.on('pomiarResults', function(data){
         let index = users.findIndex(obj => obj.id == data.id);
         if( index != -1 ){
-            users[index].socket.emit('pomiarResults2', data.pomiar);
+            users[index].socket.emit('pomiarResult2', data.pomiar);
         }
     });
 
