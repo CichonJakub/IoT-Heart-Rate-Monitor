@@ -121,11 +121,11 @@ io.on('connection', function (socket) {
         let index = users.findIndex(obj => obj.socket == socket);
         if( socketHardware == null ){
             console.log("NO DEVICE");
-            socket.emit('requestPomiar2', "FAILEDTOMEASURE");
+            socket.emit('pomiarResults2', "FAILEDTOMEASURE");
         }
         else if( index == -1 ){
             console.log("USER ERROR");
-            socket.emit('requestPomiar2', "FAILEDTOMEASURE");
+            socket.emit('pomiarResults2', "FAILEDTOMEASURE");
         }
         else{
             let userId = users[index].id;
