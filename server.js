@@ -150,8 +150,10 @@ io.on('connection', function (socket) {
     })
 
     socket.on('register', function(data){
+        console.log(data);
         console.log("Register " + data.login + " attempt.");
-        client.query('INSERT INTO uzytkownicy(login, haslo) VALUES("' + data.login + '","' + data.password + "');", (err, res) => {
+        let queryString = "INSERT INTO uzytkownicy(login, haslo) VALUES('" + data.login + "','" + data.password + "');";
+        client.query(queryString, (err, res) => {
             if( !err ){
                 console.log("Register success.");
                 console.log(res.rows);
@@ -166,15 +168,16 @@ io.on('connection', function (socket) {
 
     socket.on('login', function(data){
         console.log(data);
-        /*  //  JAK LOGIN BĘDZIE GOTOWY
+
         let queryString = "SELECT * from uzytkownicy WHERE login='" + data.login + "';";
         client.query(queryString, (err, res) => {
             if( !err ){
                 console.log(res.rowCount);
                 if( res.rowCount > 0 ){
                     if( res.password == data.password ){
+                        console.log("Login successful: " + data.);
                         let userdata = res.rows[0];
-                        users.push({id: userdata.id_uzytkownika, login: data.user, socket: socket});
+                        users.push({id: userdata.id_uzytkownika, login: data.login, socket: socket});
                         socket.emit('confirmLogin', "Test login id=" + data.login);
                     }
                     else{
@@ -192,9 +195,9 @@ io.on('connection', function (socket) {
             console.log(err);
             socket.emit('confirmLogin', "DATABASEERROR");
         })
-        */
-        users.push({id: data, socket: socket});
-        socket.emit('confirmLogin', "Test login id=" + data.login);
+
+        //users.push({id: data, socket: socket});
+        //socket.emit('confirmLogin', "Test login id=" + data.login);
     });
 
     socket.on('requestPomiar', function(data){
