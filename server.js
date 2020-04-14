@@ -175,7 +175,7 @@ io.on('connection', function (socket) {
                 console.log(res.rowCount);
                 if( res.rowCount > 0 ){
                     if( res.password == data.password ){
-                        console.log("Login successful: " + data.);
+                        console.log("Login successful: " + data.login);
                         let userdata = res.rows[0];
                         users.push({id: userdata.id_uzytkownika, login: data.login, socket: socket});
                         socket.emit('confirmLogin', "Test login id=" + data.login);
