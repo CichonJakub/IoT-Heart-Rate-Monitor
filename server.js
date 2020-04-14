@@ -1,7 +1,11 @@
 // server.js
 const express = require('express');
 const app = require('express')();
-const fernet = require('fernet');
+const utf8 = require('utf8');
+const nacl = require('tweetnacl')
+const utils = require('tweetnacl-util')
+const encodeBase64 = utils.encodeBase64
+const decodeBase64 = utils.decodeBase64
 const server = require('http').Server(app);
 const io = require('socket.io')(server);
 const { Client } = require('pg');
@@ -29,7 +33,8 @@ const client = new Client({
   ssl: true,
 });
 
-const secret = new fernet.Secret("cw_0x689RpI-jtRR7oE8h_eQsKImvJapLeSbXpwF4e4=");
+secretKey = 'BKg4kwwjXOe57iMhtBb2B3oakMP4z6xE'
+secretKey = Buffer.from(secretKey, 'utf8')
 
 client.connect(function(err) {
     if (err) {
@@ -52,6 +57,50 @@ function init(){
         }
         client.end();
     })
+}
+
+function update_content(category, table, what_to_change, change, user_id){
+    let old_data = '';
+    let new_data = '';
+    let link = '';
+    let queryString = "SELECT " + what_to_change + " FROM uzytkownicy WHERE id_uzytkownika = " + user_id + ";";
+        client.query(queryString, (err, res) => {
+            if( !err ){
+                old_data = res.rows[0];
+                console.log(res);
+                queryString = "SELECT " + change + ", link FROM " + table + " WHERE " + change + " > " + old_data + " AND kategoria = " + category + " limit 1;";
+                    client.query(queryString, (err, res) => {
+                        if( !err ){
+                            let tmpRow = res.rows[0];
+                            let tmpData = [];
+                            for (var key in tmpRow) {
+                                console.log("Key: " + key);
+                                console.log("Value: " + tmpRow[key]);
+                                tmpData.push(tmpRow[key]);
+                            }
+                            new_data = tmpRow[0];
+                            link = tmpRow[1];
+                            //console.log(res.rows);
+                            queryString = "UPDATE uzytkownicy SET " + what_to_change + " = " + new_data + " WHERE id_uzytkownika = " + user_id + ";";
+                                client.query(queryString, (err, res) => {
+                                    if( !err ){
+                                        console.log(res);
+                                    }
+                                    else {
+                                        console.log(err);
+                                    }
+                                })
+                        }
+                        else {
+                            console.log(err);
+                        }
+                        return link;
+                    })
+            }
+            else {
+                console.log(err);
+            }
+        })
 }
 
 let socketHardware;
@@ -92,13 +141,7 @@ io.on('connection', function (socket) {
         console.log(data.pomiar);
         console.log("connected sockets number: " + users.length);
         let index = users.findIndex(obj => obj.id == data.user);
-        if( index != -1 ){/*
-            var token = new fernet.Token({
-                secret: secret,
-                token: data.pomiar,
-                ttl: 0
-            })
-            let pomiar = token.decode();*/
+        if( index != -1 ){
             users[index].socket.emit('testMierzenie', data.pomiar);
         }
         else{
@@ -161,11 +204,24 @@ io.on('connection', function (socket) {
         }
     });
 
-    socket.on('pomiarResults', function(data){
+    socket.on('pomiarResults', async function(data){
+
         // TUTAJ BĘDZIE WSTAWIANIE WYNIKU DO BAZY ORAZ
         // ALGORYTM DOBIERAJĄCY LINKI
-        /*
-        let queryString = "INSERT INTO pomiary(id_uzytkownika, wartosc) VALUES ("+data.is+","+data.pomiar+");";
+
+        let encrypted = data.pomiar;
+        let pomiar = "";
+
+        nonce = encrypted.substring(0,32)
+        nonce = decodeBase64(nonce)
+
+        ciphertext = encrypted.substring(32)
+        ciphertext = decodeBase64(ciphertext)
+
+        decryption = nacl.secretbox.open(ciphertext, nonce, secretKey)
+        pomiar = utils.encodeUTF8(decryption)
+
+        let queryString = "INSERT INTO pomiary(id_uzytkownika, wartosc) VALUES ("+data.id+","+data.pomiar+");";
         client.query(queryString, (err, res) => {
             if( !err ){
                 console.log(res);
@@ -174,10 +230,23 @@ io.on('connection', function (socket) {
                 console.log(err);
             }
         })
-        */
+
+        let porada = "", zdjecie = "", muzyka = "";
+
+        if (data.pomiar > 100){
+            porada = await update_content('1', 'Porady', 'Nr_rady_H', 'Nr_porady', data.id);
+            zdjecie = await update_content('1', 'Zdjecia', 'Nr_zdj_H', 'Nr_zdjecia', data.id);
+            muzyka = await update_content('1', 'Muzyka', 'Nr_muzyki_H', 'Nr_muzyki', data.id);
+        }
+        else{
+            porada = await update_content('0', 'Porady', 'Nr_rady_L', 'Nr_porady', data.id);
+            zdjecie = await update_content('0', 'Zdjecia', 'Nr_zdj_L', 'Nr_zdjecia', data.id);
+            muzyka = await update_content('0', 'Muzyka', 'Nr_muzyki_L', 'Nr_muzyki', data.id);
+        }
+
         let index = users.findIndex(obj => obj.id == data.user);
         if( index != -1 ){
-            users[index].socket.emit('pomiarResult2', data.pomiar);
+            users[index].socket.emit('pomiarResult2', {pomiar: pomiar, porada: porada, zdjecie: zdjecie, muzyka: muzyka});
         }
     });
 

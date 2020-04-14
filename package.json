@@ -22,6 +22,9 @@
     "fernet": "^0.3.1",
     "pg": "^7.18.2",
     "request": "^2.88.2",
-    "socketio": "^1.0.0"
+    "socketio": "^1.0.0",
+    "tweetnacl": "^1.0.3",
+    "tweetnacl-util": "^0.15.1",
+    "utf8": "^3.0.0"
   }
 }
