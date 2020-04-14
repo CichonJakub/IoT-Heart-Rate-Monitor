@@ -32,6 +32,7 @@ export const styles = StyleSheet.create({
   h4: {
     fontFamily: 'rubik-regular',
     fontSize: 35,
+    textAlign: 'center',
   },
   h5: {
     fontFamily: 'rubik-regular',

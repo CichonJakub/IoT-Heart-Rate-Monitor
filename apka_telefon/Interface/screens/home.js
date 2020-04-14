@@ -18,8 +18,15 @@ console.warn = message => {
   }
 };
 
+export let results;
 
 socket.on('confirmLogin', function(data){
+  console.log(data);
+});
+
+socket.on('pomiarResult2', function(data){
+  //receiveResult(data);
+  results = data;
   console.log(data);
 });
 
