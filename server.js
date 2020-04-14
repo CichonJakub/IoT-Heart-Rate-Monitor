@@ -55,7 +55,6 @@ function init(){
         }else{
             console.log(err);
         }
-        client.end();
     })
 }
 
@@ -284,7 +283,6 @@ io.on('connection', function (socket) {
             }else{
                 console.log(err);
             }
-            client.end();
         })
     })
 
