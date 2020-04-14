@@ -247,14 +247,14 @@ io.on('connection', function (socket) {
         let porada = "", zdjecie = "", muzyka = "";
 
         if (data.pomiar > 100){
-            porada = await update_content('1', 'porady', 'nr_rady_H', 'nr_porady', data.id);
-            zdjecie = await update_content('1', 'zdjecia', 'nr_zdj_H', 'nr_zdjecia', data.id);
-            muzyka = await update_content('1', 'muzyka', 'nr_muzyki_H', 'nr_muzyki', data.id);
+            porada = await update_content('1', 'porady', 'nr_rady_h', 'nr_porady', data.id);
+            zdjecie = await update_content('1', 'zdjecia', 'nr_zdj_h', 'nr_zdjecia', data.id);
+            muzyka = await update_content('1', 'muzyka', 'nr_muzyki_h', 'nr_muzyki', data.id);
         }
         else{
-            porada = await update_content('0', 'porady', 'nr_rady_L', 'nr_porady', data.id);
-            zdjecie = await update_content('0', 'zdjecia', 'nr_zdj_L', 'nr_zdjecia', data.id);
-            muzyka = await update_content('0', 'muzyka', 'nr_muzyki_L', 'nr_muzyki', data.id);
+            porada = await update_content('0', 'porady', 'nr_rady_l', 'nr_porady', data.id);
+            zdjecie = await update_content('0', 'zdjecia', 'nr_zdj_l', 'nr_zdjecia', data.id);
+            muzyka = await update_content('0', 'muzyka', 'nr_muzyki_l', 'nr_muzyki', data.id);
         }
 
         let index = users.findIndex(obj => obj.id == data.user);
