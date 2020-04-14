@@ -150,7 +150,18 @@ io.on('connection', function (socket) {
     })
 
     socket.on('register', function(data){
-        socket.emit('confirmRegister', false);
+        console.log("Register " + data.login + " attempt.");
+        client.query('INSERT INTO uzytkownicy(login, haslo) VALUES("' + data.login + '","' + data.password + "');", (err, res) => {
+            if( !err ){
+                console.log("Register success.");
+                console.log(res.rows);
+                socket.emit('confirmRegister', true);
+            }else{
+                console.log("Register failed.");
+                console.log(err);
+                socket.emit('confirmRegister', false);
+            }
+        })
     });
 
     socket.on('login', function(data){
