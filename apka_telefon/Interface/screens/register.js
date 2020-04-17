@@ -5,14 +5,34 @@ import { LoginButton } from '../styles/button';
 import { Formik } from 'formik';
 import DrawerNavigator from '../routes/drawer';
 import Login from './login';
+import Err_reg from './err_reg';
+import Wait from './wait';
+import { socket } from './login';
+
+
 
 export default function Register({ navigation }) {
 
   const pressHandler = () => {
-    navigation.navigate('DrawerNavigator');
+  //  navigation.navigate('DrawerNavigator');
+    if(values.password != values.repeatPassword){
+
+      console.log('przekierowuje');
+      navigation.navigate('Err_reg');
+    }
   }
+
+  const toErr_reg = () => {
+    console.log('probuje');
+    navigation.navigate('Err_reg');
+  }
+
   const toLogin = () => {
     navigation.navigate('Login');
+  }
+
+  const toWait = () => {
+    navigation.navigate('Wait');
   }
 
   return(
@@ -25,7 +45,29 @@ export default function Register({ navigation }) {
         <Formik
           initialValues={{ login: '', password: '', repeatPassword: ''}}
           onSubmit={(values) => {
-            console.log(values);
+            if(values.password == values.repeatPassword){
+              
+              toWait();
+              console.log(values);
+              socket.emit('register', values);
+              socket.on('confirmRegister', function(data){
+                  console.log(data);
+                  if(data == true){
+                      toLogin();
+                  }
+                  else{
+                      toRegister();
+                  }
+                });
+              
+              
+              
+            } else {
+            console.log('zle');
+            toErr_reg();
+            //toWait();
+          }
+
           }}
         >
           {(props) => (
@@ -54,7 +96,7 @@ export default function Register({ navigation }) {
                 onChangeText={props.handleChange('repeatPassword')}
                 value={props.values.repeatPassword}
               />
-              <LoginButton text='Zarejestruj się' onPress={pressHandler} />
+              <LoginButton text='Zarejestruj się' onPress={() => {  props.handleSubmit();}} />
               <View style={styles.inRow}>
                 <Text style={styles.registerText}>Masz już konto?</Text>
                 <TouchableOpacity onPress={toLogin}>
