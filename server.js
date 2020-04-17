@@ -213,7 +213,7 @@ io.on('connection', function (socket) {
         else{
             let userId = users[index].id;
             console.log("Relaying ask for test for " + userId);
-            socketHardware.emit("askForTest", userId);
+            socketHardware.emit("requestPomiar2", userId);
         }
     });
 
