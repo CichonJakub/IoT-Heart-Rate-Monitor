@@ -95,11 +95,11 @@ export default function Login({ navigation }) {
                 placeholderTextColor='rgba(0, 0, 0, 0.6)'
                 selectionColor='#5d99c6'
                 onChangeText={props.handleChange('password')}
-                value = {props.values.password}
+                //value = {props.values.password}
                 //var encrypted2 = {props.values.password}
                 //value={encrypted.createHash('sha256').update(encrypted2).digest('hex')}
                 //value = {Crypto.digestStringAsync(Crypto.CryptoDigestAlgorithm.SHA256,props.values.password)}
-                //value = {stringToHash(props.values.password)}
+                value = {stringToHash(props.values.password)}
               />
               <LoginButton text='Zaloguj' onPress={() => {props.handleSubmit();}} />
               <View style={styles.inRow}>

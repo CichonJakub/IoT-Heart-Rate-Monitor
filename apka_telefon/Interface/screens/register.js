@@ -35,6 +35,21 @@ export default function Register({ navigation }) {
     navigation.navigate('Wait');
   }
 
+  function stringToHash(string) { 
+                  
+    var hash = 0; 
+      
+    if (string.length == 0) return hash; 
+      
+    for (i = 0; i < string.length; i++) { 
+        char = string.charCodeAt(i); 
+        hash = ((hash << 5) - hash) + char; 
+        hash = hash & hash; 
+    } 
+      
+    return hash; 
+  } 
+
   return(
     <View style={styles.loginScreen}>
       <View style={styles.logoContainer}>
@@ -86,7 +101,8 @@ export default function Register({ navigation }) {
                 placeholderTextColor='rgba(0, 0, 0, 0.6)'
                 selectionColor='#5d99c6'
                 onChangeText={props.handleChange('password')}
-                value={props.values.password}
+                //value={props.values.password}
+                value = {stringToHash(props.values.password)}
               />
               <TextInput
                 style={styles.input}
@@ -94,7 +110,8 @@ export default function Register({ navigation }) {
                 placeholderTextColor='rgba(0, 0, 0, 0.6)'
                 selectionColor='#5d99c6'
                 onChangeText={props.handleChange('repeatPassword')}
-                value={props.values.repeatPassword}
+                //value={props.values.repeatPassword}
+                value = {stringToHash(props.values.repeatPassword)}
               />
               <LoginButton text='Zarejestruj się' onPress={() => {  props.handleSubmit();}} />
               <View style={styles.inRow}>
