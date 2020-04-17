@@ -20,6 +20,7 @@ console.warn = message => {
   }
 };
 
+export let results;
 
 // socket.on('confirmLogin', function(data){
 //   console.log(data);
@@ -29,6 +30,12 @@ console.warn = message => {
 // socket.on('confirmRegister', function(data){
 //   console.log(data);
 // });
+
+socket.on('pomiarResult2', function(data){
+  //receiveResult(data);
+  results = data;
+  console.log(data);
+});
 
 export default function Home({ navigation }) {
 
