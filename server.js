@@ -234,7 +234,7 @@ io.on('connection', function (socket) {
         decryption = nacl.secretbox.open(ciphertext, nonce, secretKey)
         pomiar = utils.encodeUTF8(decryption)
 
-        let queryString = "INSERT INTO pomiary(id_uzytkownika, wartosc) VALUES ("+data.id+","+data.pomiar+");";
+        let queryString = "INSERT INTO pomiary(id_uzytkownika, wartosc) VALUES ("+data.id+","+pomiar+");";
         client.query(queryString, (err, res) => {
             if( !err ){
                 console.log(res);
