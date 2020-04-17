@@ -222,7 +222,10 @@ io.on('connection', function (socket) {
         // TUTAJ BĘDZIE WSTAWIANIE WYNIKU DO BAZY ORAZ
         // ALGORYTM DOBIERAJĄCY LINKI
 
-        let encrypted = data.pomiar;
+        console.log("RESULTS IN:");
+        console.log(data);
+        data = JSON.parse(data);
+        let encrypted = data.pulse;
         let pomiar = "";
 
         nonce = encrypted.substring(0,32)
@@ -233,6 +236,9 @@ io.on('connection', function (socket) {
 
         decryption = nacl.secretbox.open(ciphertext, nonce, secretKey)
         pomiar = utils.encodeUTF8(decryption)
+
+        console.log("POMIAR: ");
+        console.log(pomiar);
 
         let queryString = "INSERT INTO pomiary(id_uzytkownika, wartosc) VALUES ("+data.id+","+pomiar+");";
         client.query(queryString, (err, res) => {
