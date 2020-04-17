@@ -53,4 +53,4 @@ def srednia_dzien(id_uzytkownika):
         print("Nie udalo sie zapisac do bazy")
 
 
-//srednia_dzien(2);
+#srednia_dzien(2);
