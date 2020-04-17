@@ -68,6 +68,7 @@ function update_content(category, table, what_to_change, change, user_id){
         client.query(queryString, (err, res) => {
             if( !err ){
                 tmpRow = res.rows[0];
+                let tmpData = [];
                 for (var key in tmpRow) {
                     console.log("Key: " + key);
                     console.log("Value: " + tmpRow[key]);
@@ -83,7 +84,7 @@ function update_content(category, table, what_to_change, change, user_id){
                             tmpRow = res.rows[0];
                             console.log("3");
                             console.log(res.rows);
-                            let tmpData = [];
+                            tmpData = [];
                             for (var key in tmpRow) {
                                 console.log("Key: " + key);
                                 console.log("Value: " + tmpRow[key]);
