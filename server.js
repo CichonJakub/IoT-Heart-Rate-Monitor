@@ -278,23 +278,17 @@ io.on('connection', function (socket) {
             porada = await update_content('1', 'porady', 'nr_rady_h', 'nr_rady', data.user);
             zdjecie = await update_content('1', 'zdjecia', 'nr_zdj_h', 'nr_zdj', data.user);
             muzyka = await update_content('1', 'muzyka', 'nr_muz_h', 'nr_muz', data.user);
-
-            index = users.findIndex(obj => obj.id == data.user);
-            if( index != -1 ){
-                console.log("SENDING RESULTS...");
-                users[index].socket.emit('pomiarResult2', {pomiar: pomiar, porada: porada, zdjecie: zdjecie, muzyka: muzyka});
-            }
         }
         else{
             porada = await update_content('0', 'porady', 'nr_rady_l', 'nr_rady', data.user);
             zdjecie = await update_content('0', 'zdjecia', 'nr_zdj_l', 'nr_zdj', data.user);
             muzyka = await update_content('0', 'muzyka', 'nr_muz_l', 'nr_muz', data.user);
+        }
 
-            index = users.findIndex(obj => obj.id == data.user);
-            if( index != -1 ){
-                console.log("SENDING RESULTS...");
-                users[index].socket.emit('pomiarResult2', {pomiar: pomiar, porada: porada, zdjecie: zdjecie, muzyka: muzyka});
-            }
+        index = users.findIndex(obj => obj.id == data.user);
+        if( index != -1 ){
+            console.log("SENDING RESULTS...");
+            users[index].socket.emit('pomiarResult2', {pomiar: pomiar, porada: porada, zdjecie: zdjecie, muzyka: muzyka});
         }
     });
 
