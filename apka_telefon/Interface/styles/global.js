@@ -6,6 +6,7 @@ export const styles = StyleSheet.create({
     flex: 1,
     alignItems: 'center',
     padding: 40,
+  //  backgroundColor: 'pink',
   },
   logoContainer: {
     flex: 0.7,
@@ -130,4 +131,22 @@ export const styles = StyleSheet.create({
   icon: {
     paddingRight: 14,
   },
+  imageScroll: {
+    flex: 1,
+    width: Dimensions.get('screen').width,
+  },
+  imagesScrollView: {
+    width: Dimensions.get('screen').width,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  badResultImageView: {
+    alignItems: 'center',
+    padding: 60,
+  },
+  txt: {
+    backgroundColor: 'pink',
+    margin: 10,
+    padding: 60,
+  }
 })

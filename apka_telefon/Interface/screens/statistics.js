@@ -77,12 +77,12 @@ return(
             Math.random(),
             Math.random(),
             Math.random(),
-            Math.random()  
+            Math.random()
           ]
         }
       ]
     }}
-    width={Dimensions.get("window").width} 
+    width={Dimensions.get("window").width}
     height={320}
     yAxisLabel=""
     yAxisSuffix=""

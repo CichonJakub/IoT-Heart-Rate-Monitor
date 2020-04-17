@@ -6,6 +6,7 @@ import { YellowBox } from 'react-native';
 import { socket } from './login';
 import Register from './register';
 import Login from './login';
+import io from 'socket.io-client';
 
 import _ from 'lodash';
 
@@ -20,6 +21,10 @@ console.warn = message => {
   }
 };
 
+const socket1 = io('https://iot-pulsometr.herokuapp.com', {
+  transports: ['websocket'],
+});
+
 export let results;
 
 // socket.on('confirmLogin', function(data){
@@ -31,20 +36,18 @@ export let results;
 //   console.log(data);
 // });
 
-socket.on('pomiarResult2', function(data){
-  //receiveResult(data);
+socket1.on('pomiarResult2', function(data){
+  receiveResult(data);
   results = data;
   console.log(data);
 });
 
 export default function Home({ navigation }) {
 
-
-
-
   const pressHandler = () => {
     navigation.navigate('Measure');
     socket.emit('requestPomiar');
+    console.log('zacznij pomiar');
   }
 
   return (
