@@ -251,7 +251,7 @@ io.on('connection', function (socket) {
         console.log("POMIAR: ");
         console.log(pomiar);
 
-        let queryString = "INSERT INTO pomiary(id_uzytkownika, wartosc) VALUES ("+data.id+","+pomiar+");";
+        let queryString = "INSERT INTO pomiary(id_uzytkownika, wartosc) VALUES ("+data.user+","+pomiar+");";
         console.log("POMIAR DO BAZY: " + queryString);
         client.query(queryString, (err, res) => {
             if( !err ){
@@ -267,18 +267,19 @@ io.on('connection', function (socket) {
         let porada = "", zdjecie = "", muzyka = "";
 
         if (data.pomiar > 100){
-            porada = await update_content('1', 'porady', 'nr_rady_h', 'nr_rady', data.id);
-            zdjecie = await update_content('1', 'zdjecia', 'nr_zdj_h', 'nr_zdj', data.id);
-            muzyka = await update_content('1', 'muzyka', 'nr_muz_h', 'nr_muz', data.id);
+            porada = await update_content('1', 'porady', 'nr_rady_h', 'nr_rady', data.user;
+            zdjecie = await update_content('1', 'zdjecia', 'nr_zdj_h', 'nr_zdj', data.user);
+            muzyka = await update_content('1', 'muzyka', 'nr_muz_h', 'nr_muz', data.user);
         }
         else{
-            porada = await update_content('0', 'porady', 'nr_rady_l', 'nr_rady', data.id);
-            zdjecie = await update_content('0', 'zdjecia', 'nr_zdj_l', 'nr_zdj', data.id);
-            muzyka = await update_content('0', 'muzyka', 'nr_muz_l', 'nr_muz', data.id);
+            porada = await update_content('0', 'porady', 'nr_rady_l', 'nr_rady', data.user);
+            zdjecie = await update_content('0', 'zdjecia', 'nr_zdj_l', 'nr_zdj', data.user);
+            muzyka = await update_content('0', 'muzyka', 'nr_muz_l', 'nr_muz', data.user);
         }
 
         let index = users.findIndex(obj => obj.id == data.user);
         if( index != -1 ){
+            console.log("SENDING RESULTS...");
             users[index].socket.emit('pomiarResult2', {pomiar: pomiar, porada: porada, zdjecie: zdjecie, muzyka: muzyka});
         }
     });
