@@ -280,7 +280,7 @@ io.on('connection', function (socket) {
 
         if (pomiar > 100){
             for( i = 0; i < 3; i++ ){
-                allData[i] = await update_content('1', dataToGetH[0], dataToGetH[1], dataToGetH[2], data.user);
+                allData[i] = await update_content('1', dataToGetH[i][0], dataToGetH[i][1], dataToGetH[i][2], data.user);
             }
 
             index = users.findIndex(obj => obj.id == data.user);
@@ -291,7 +291,7 @@ io.on('connection', function (socket) {
         }
         else{
             for( i = 0; i < 3; i++ ){
-                allData[i] = await update_content('0', dataToGetL[0], dataToGetL[1], dataToGetL[2], data.user);
+                allData[i] = await update_content('0', dataToGetL[i][0], dataToGetL[i][1], dataToGetL[i][2], data.user);
             }
 
             index = users.findIndex(obj => obj.id == data.user);
