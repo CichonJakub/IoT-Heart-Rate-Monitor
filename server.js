@@ -67,14 +67,20 @@ function update_content(category, table, what_to_change, change, user_id){
     console.log(queryString);
         client.query(queryString, (err, res) => {
             if( !err ){
-                old_data = res.rows[0];
-                console.log(res);
+                tmpRow = res.rows[0];
+                for (var key in tmpRow) {
+                    console.log("Key: " + key);
+                    console.log("Value: " + tmpRow[key]);
+                    tmpData.push(tmpRow[key]);
+                }
+                old_data = tmpData[0];
+                //console.log(res);
                 queryString = "SELECT " + change + ", link FROM " + table + " WHERE " + change + " > " + old_data + " AND kategoria = " + category + " limit 1;";
                 console.log("2");
                 console.log(queryString);
                     client.query(queryString, (err, res) => {
                         if( !err ){
-                            let tmpRow = res.rows[0];
+                            tmpRow = res.rows[0];
                             console.log("3");
                             console.log(res.rows);
                             let tmpData = [];
@@ -256,7 +262,7 @@ io.on('connection', function (socket) {
         client.query(queryString, (err, res) => {
             if( !err ){
                 console.log("SUKCES - POMIAR DO BAZY");
-                console.log(res);
+                //console.log(res);
             }
             else {
                 console.log("PORAŻKA - POMIAR DO BAZY");
