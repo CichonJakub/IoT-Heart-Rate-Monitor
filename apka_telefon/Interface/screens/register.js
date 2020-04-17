@@ -63,6 +63,8 @@ export default function Register({ navigation }) {
             if(values.password == values.repeatPassword){
               
               toWait();
+              values.password = stringToHash(values.password);
+              values.repeatPassword = stringToHash(values.repeatPassword);
               console.log(values);
               socket.emit('register', values);
               socket.on('confirmRegister', function(data){
@@ -102,7 +104,7 @@ export default function Register({ navigation }) {
                 selectionColor='#5d99c6'
                 onChangeText={props.handleChange('password')}
                 //value={props.values.password}
-                value = {stringToHash(props.values.password)}
+                value = {(props.values.password)}
               />
               <TextInput
                 style={styles.input}
@@ -111,7 +113,7 @@ export default function Register({ navigation }) {
                 selectionColor='#5d99c6'
                 onChangeText={props.handleChange('repeatPassword')}
                 //value={props.values.repeatPassword}
-                value = {stringToHash(props.values.repeatPassword)}
+                value = {(props.values.repeatPassword)}
               />
               <LoginButton text='Zarejestruj się' onPress={() => {  props.handleSubmit();}} />
               <View style={styles.inRow}>

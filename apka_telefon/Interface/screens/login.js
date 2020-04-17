@@ -66,6 +66,9 @@ export default function Login({ navigation }) {
             console.log(values);
             console.log(values.password);
             toWait();
+            values.password = stringToHash(values.password);
+            console.log(values);
+            console.log(values.password);
             socket.emit('login', values);
             socket.on('confirmLogin', function(data){
             console.log(data);
@@ -99,7 +102,7 @@ export default function Login({ navigation }) {
                 //var encrypted2 = {props.values.password}
                 //value={encrypted.createHash('sha256').update(encrypted2).digest('hex')}
                 //value = {Crypto.digestStringAsync(Crypto.CryptoDigestAlgorithm.SHA256,props.values.password)}
-                value = {stringToHash(props.values.password)}
+                value = {(props.values.password)}
               />
               <LoginButton text='Zaloguj' onPress={() => {props.handleSubmit();}} />
               <View style={styles.inRow}>
