@@ -225,7 +225,7 @@ io.on('connection', function (socket) {
         console.log("RESULTS IN:");
         console.log(data);
         data = JSON.parse(data);
-        let encrypted = data.pulse;
+        let encrypted = data.pomiar;
         let pomiar = "";
 
         nonce = encrypted.substring(0,32)
