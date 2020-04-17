@@ -274,24 +274,32 @@ io.on('connection', function (socket) {
         let porada = "", zdjecie = "", muzyka = "";
         let index;
 
-        if (pomiar > 100){
-            porada = await update_content('1', 'porady', 'nr_rady_h', 'nr_rady', data.user);
-            zdjecie = await update_content('1', 'zdjecia', 'nr_zdj_h', 'nr_zdj', data.user);
-            muzyka = await update_content('1', 'muzyka', 'nr_muz_h', 'nr_muz', data.user);
-        }
-        else{
-            porada = await update_content('0', 'porady', 'nr_rady_l', 'nr_rady', data.user);
-            zdjecie = await update_content('0', 'zdjecia', 'nr_zdj_l', 'nr_zdj', data.user);
-            muzyka = await update_content('0', 'muzyka', 'nr_muz_l', 'nr_muz', data.user);
-        }
+        let allData = ["","",""];
+        let dataToGetH = [['porady', 'nr_rady_h', 'nr_rady'],['zdjecia', 'nr_zdj_h', 'nr_zdj'],['muzyka', 'nr_muz_h', 'nr_muz']];
+        let dataToGetL = [['porady', 'nr_rady_l', 'nr_rady'],['zdjecia', 'nr_zdj_l', 'nr_zdj'],['muzyka', 'nr_muz_l', 'nr_muz']];
 
-        setTimeout(function(){
+        if (pomiar > 100){
+            for( i = 0; i < 3; i++ ){
+                allData[i] = await update_content('1', dataToGetH[0], dataToGetH[1], dataToGetH[2], data.user);
+            }
+
             index = users.findIndex(obj => obj.id == data.user);
             if( index != -1 ){
                 console.log("SENDING RESULTS...");
-                users[index].socket.emit('pomiarResult2', {pomiar: pomiar, porada: porada, zdjecie: zdjecie, muzyka: muzyka});
+                users[index].socket.emit('pomiarResult2', {pomiar: pomiar, porada: allData[0], zdjecie: allData[1], muzyka: allData[2]});
             }
-        }, 1000);
+        }
+        else{
+            for( i = 0; i < 3; i++ ){
+                allData[i] = await update_content('0', dataToGetL[0], dataToGetL[1], dataToGetL[2], data.user);
+            }
+
+            index = users.findIndex(obj => obj.id == data.user);
+            if( index != -1 ){
+                console.log("SENDING RESULTS...");
+                users[index].socket.emit('pomiarResult2', {pomiar: pomiar, porada: allData[0], zdjecie: allData[1], muzyka: allData[2]});
+            }
+        }
     });
 
 
