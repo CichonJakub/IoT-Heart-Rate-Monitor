@@ -4,6 +4,8 @@ import { styles } from '../styles/global';
 import { HomeButton } from '../styles/button';
 import { YellowBox } from 'react-native';
 import { socket } from './login';
+import Register from './register';
+import Login from './login';
 
 import _ from 'lodash';
 
@@ -20,9 +22,14 @@ console.warn = message => {
 
 export let results;
 
-socket.on('confirmLogin', function(data){
-  console.log(data);
-});
+// socket.on('confirmLogin', function(data){
+//   console.log(data);
+
+// });
+
+// socket.on('confirmRegister', function(data){
+//   console.log(data);
+// });
 
 socket.on('pomiarResult2', function(data){
   //receiveResult(data);
@@ -31,6 +38,9 @@ socket.on('pomiarResult2', function(data){
 });
 
 export default function Home({ navigation }) {
+
+
+
 
   const pressHandler = () => {
     navigation.navigate('Measure');
