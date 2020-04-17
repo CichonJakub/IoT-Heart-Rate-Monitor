@@ -267,7 +267,7 @@ io.on('connection', function (socket) {
         let porada = "", zdjecie = "", muzyka = "";
 
         if (data.pomiar > 100){
-            porada = await update_content('1', 'porady', 'nr_rady_h', 'nr_rady', data.user;
+            porada = await update_content('1', 'porady', 'nr_rady_h', 'nr_rady', data.user);
             zdjecie = await update_content('1', 'zdjecia', 'nr_zdj_h', 'nr_zdj', data.user);
             muzyka = await update_content('1', 'muzyka', 'nr_muz_h', 'nr_muz', data.user);
         }
