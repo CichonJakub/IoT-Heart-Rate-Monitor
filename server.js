@@ -63,29 +63,39 @@ function update_content(category, table, what_to_change, change, user_id){
     let new_data = '';
     let link = '';
     let queryString = "SELECT " + what_to_change + " FROM uzytkownicy WHERE id_uzytkownika = " + user_id + ";";
+    console.log("1");
+    console.log(queryString);
         client.query(queryString, (err, res) => {
             if( !err ){
                 old_data = res.rows[0];
                 console.log(res);
                 queryString = "SELECT " + change + ", link FROM " + table + " WHERE " + change + " > " + old_data + " AND kategoria = " + category + " limit 1;";
+                console.log("2");
+                console.log(queryString);
                     client.query(queryString, (err, res) => {
                         if( !err ){
                             let tmpRow = res.rows[0];
+                            console.log("3");
+                            console.log(res.rows);
                             let tmpData = [];
                             for (var key in tmpRow) {
                                 console.log("Key: " + key);
                                 console.log("Value: " + tmpRow[key]);
                                 tmpData.push(tmpRow[key]);
                             }
-                            new_data = tmpRow[0];
-                            link = tmpRow[1];
+                            new_data = tmpData[0];
+                            link = tmpData[1];
                             //console.log(res.rows);
+                            console.log("4");
+                            console.log(tmpData);
                             queryString = "UPDATE uzytkownicy SET " + what_to_change + " = " + new_data + " WHERE id_uzytkownika = " + user_id + ";";
                                 client.query(queryString, (err, res) => {
                                     if( !err ){
+                                        console.log("5");
                                         console.log(res);
                                     }
                                     else {
+                                        console.log("5E");
                                         console.log(err);
                                     }
                                 })
@@ -122,6 +132,7 @@ io.on('connection', function (socket) {
 
     socket.on('iAmHardware', function(data){
         socketHardware = socket;
+        console.log("HARDWARE CONNECTED");
         //users.push({id: 0, socket: socket});
     })
 
@@ -241,11 +252,14 @@ io.on('connection', function (socket) {
         console.log(pomiar);
 
         let queryString = "INSERT INTO pomiary(id_uzytkownika, wartosc) VALUES ("+data.id+","+pomiar+");";
+        console.log("POMIAR DO BAZY: " + queryString);
         client.query(queryString, (err, res) => {
             if( !err ){
+                console.log("SUKCES - POMIAR DO BAZY");
                 console.log(res);
             }
             else {
+                console.log("PORAŻKA - POMIAR DO BAZY");
                 console.log(err);
             }
         })
@@ -255,12 +269,12 @@ io.on('connection', function (socket) {
         if (data.pomiar > 100){
             porada = await update_content('1', 'porady', 'nr_rady_h', 'nr_rady', data.id);
             zdjecie = await update_content('1', 'zdjecia', 'nr_zdj_h', 'nr_zdj', data.id);
-            muzyka = await update_content('1', 'muzyka', 'nr_muzyki_h', 'nr_muz', data.id);
+            muzyka = await update_content('1', 'muzyka', 'nr_muz_h', 'nr_muz', data.id);
         }
         else{
             porada = await update_content('0', 'porady', 'nr_rady_l', 'nr_rady', data.id);
             zdjecie = await update_content('0', 'zdjecia', 'nr_zdj_l', 'nr_zdj', data.id);
-            muzyka = await update_content('0', 'muzyka', 'nr_muzyki_l', 'nr_muz', data.id);
+            muzyka = await update_content('0', 'muzyka', 'nr_muz_l', 'nr_muz', data.id);
         }
 
         let index = users.findIndex(obj => obj.id == data.user);
