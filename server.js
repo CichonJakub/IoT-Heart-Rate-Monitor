@@ -100,6 +100,11 @@ function update_content(category, table, what_to_change, change, user_id){
                                     if( !err ){
                                         console.log("5");
                                         console.log(res);
+                                        index = users.findIndex(obj => obj.id == user_id);
+                                        if( index != -1 ){
+                                            console.log("SENDING LINK FROM " + table);
+                                            users[index].socket.emit(table, {link: link});
+                                        }
                                     }
                                     else {
                                         console.log("5E");
@@ -274,7 +279,7 @@ io.on('connection', function (socket) {
         let porada = "", zdjecie = "", muzyka = "";
         let index;
 
-        let allData = ["","",""];
+        let allData = [];
         let dataToGetH = [['porady', 'nr_rady_h', 'nr_rady'],['zdjecia', 'nr_zdj_h', 'nr_zdj'],['muzyka', 'nr_muz_h', 'nr_muz']];
         let dataToGetL = [['porady', 'nr_rady_l', 'nr_rady'],['zdjecia', 'nr_zdj_l', 'nr_zdj'],['muzyka', 'nr_muz_l', 'nr_muz']];
 
@@ -286,7 +291,7 @@ io.on('connection', function (socket) {
             index = users.findIndex(obj => obj.id == data.user);
             if( index != -1 ){
                 console.log("SENDING RESULTS...");
-                users[index].socket.emit('pomiarResult2', {pomiar: pomiar, porada: allData[0], zdjecie: allData[1], muzyka: allData[2]});
+                users[index].socket.emit('pomiarResult2', {pomiar: pomiar});
             }
         }
         else{
@@ -297,7 +302,7 @@ io.on('connection', function (socket) {
             index = users.findIndex(obj => obj.id == data.user);
             if( index != -1 ){
                 console.log("SENDING RESULTS...");
-                users[index].socket.emit('pomiarResult2', {pomiar: pomiar, porada: allData[0], zdjecie: allData[1], muzyka: allData[2]});
+                users[index].socket.emit('pomiarResult2', {pomiar: pomiar});
             }
         }
     });
