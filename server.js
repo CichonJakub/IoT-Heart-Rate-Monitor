@@ -264,6 +264,15 @@ io.on('connection', function (socket) {
         console.log("POMIAR: ");
         console.log(pomiar);
 
+        if( pomiar == "BADMEASURE" ){
+            index = users.findIndex(obj => obj.id == data.user);
+            if( index != -1 ){
+                console.log("SENDING BAD MEASURE");
+                users[index].socket.emit('pomiarResult2', {pomiar: "BADMEASURE"});
+            }
+            return;
+        }
+
         let queryString = "INSERT INTO pomiary(id_uzytkownika, wartosc) VALUES ("+data.user+","+pomiar+");";
         console.log("POMIAR DO BAZY: " + queryString);
         client.query(queryString, (err, res) => {
