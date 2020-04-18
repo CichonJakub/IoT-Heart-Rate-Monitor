@@ -22,7 +22,7 @@ console.warn = message => {
 };
 
 
-export let results;
+export let results = '';
 export let resultsImages;
 export let resultsVideos;
 export let resultsAdvice;
@@ -42,23 +42,19 @@ export let resultsAdvice;
 export default function Home({ navigation }) {
 
   socket.on('pomiarResult2', function(data){
-    //receiveResult(data);
     results = data;
     console.log(data);
-    //navigation.navigate('Result');
+    navigation.navigate('Result');
   });
   socket.on('zdjecia', function(data){
-    //receiveResult(data);
     resultsImages = data;
     console.log(data);
   });
   socket.on('muzyka', function(data){
-    //receiveResult(data);
     resultsVideos = data;
     console.log(data);
   });
   socket.on('porady', function(data){
-    //receiveResult(data);
     resultsAdvice = data;
     console.log(data);
   });

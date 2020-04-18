@@ -1,10 +1,11 @@
 import React, { useState} from 'react';
-import { View, Text, Image } from 'react-native';
+import { View, Text, Image, TouchableOpacity, Linking } from 'react-native';
 import { styles } from '../styles/global';
 import { results, resultsVideos } from './home';
 
 export default function Videos() {
-  if(results.pomiar == "FAILEDTOMEASURE" || results.pomiar == "BADMEASURE"){
+
+  if(results.pomiar == "FAILEDTOMEASURE" || results.pomiar == "BADMEASURE" || results == ''){
     return(
       <View style={styles.badResultImageView}>
         <Image source={require('../assets/nothingToSee.png')}
@@ -14,8 +15,11 @@ export default function Videos() {
   }else{
     return(
       <View style={styles.container}>
-        <Text style={styles.txt}>Wideo here</Text>
+        <TouchableOpacity onPress={ ()=>{Linking.openURL(resultsVideos.link)}}>
+          <Text style={styles.txt}>{resultsVideos.link}</Text>
+        </TouchableOpacity>
       </View>
+
     )
   }
 }
