@@ -126,7 +126,7 @@ function update_content(category, table, what_to_change, change, user_id){
 
 let socketHardware;
 let users = [];
-let spawn, process;
+let spawn, newProcess;
 
 io.on('connection', function (socket) {
 
@@ -271,7 +271,7 @@ io.on('connection', function (socket) {
                 console.log("SUKCES - POMIAR DO BAZY");
                 //console.log(res);
                 spawn = require("child_process").spawn;
-                process = spawn('python', ["./srednia_dzien.py", data.user]);
+                newProcess = spawn('python', ["./srednia_dzien.py", data.user]);
             }
             else {
                 console.log("PORAŻKA - POMIAR DO BAZY");
