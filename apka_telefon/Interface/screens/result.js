@@ -3,13 +3,13 @@ import { View, Text, TouchableOpacity } from 'react-native';
 import { styles } from '../styles/global';
 import RoundButton from '../styles/button';
 import Tabs from './tabs';
-import { socket } from './login';
+import io from 'socket.io-client';
+//import { socket } from './login';
 import { results } from './home';
 
 let result;
 let helpText;
 let header;
-
 
 
 function receiveResult(){

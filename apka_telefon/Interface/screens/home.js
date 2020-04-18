@@ -21,11 +21,9 @@ console.warn = message => {
   }
 };
 
-const socket1 = io('https://iot-pulsometr.herokuapp.com', {
-  transports: ['websocket'],
-});
 
 export let results;
+
 
 // socket.on('confirmLogin', function(data){
 //   console.log(data);
@@ -36,13 +34,16 @@ export let results;
 //   console.log(data);
 // });
 
-socket1.on('pomiarResult2', function(data){
-  receiveResult(data);
-  results = data;
-  console.log(data);
-});
+
 
 export default function Home({ navigation }) {
+
+  socket.on('pomiarResult2', function(data){
+    //receiveResult(data);
+    results = data;
+    console.log(data);
+    navigation.navigate('Result');
+  });
 
   const pressHandler = () => {
     navigation.navigate('Measure');
