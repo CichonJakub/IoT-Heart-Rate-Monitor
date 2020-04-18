@@ -1,7 +1,7 @@
 import React, { useState} from 'react';
 import { View, Text, Image } from 'react-native';
 import { styles } from '../styles/global';
-import { results } from './home';
+import { results, resultsVideos } from './home';
 
 export default function Videos() {
   if(results.pomiar == "FAILEDTOMEASURE" || results.pomiar == "BADMEASURE"){

@@ -1,7 +1,7 @@
 import React, { useState} from 'react';
 import { View, Text, Image } from 'react-native';
 import { styles } from '../styles/global';
-import { results } from './home';
+import { results, resultsAdvice } from './home';
 
 export default function Advice() {
   if(results.pomiar == "FAILEDTOMEASURE" || results.pomiar == "BADMEASURE"){

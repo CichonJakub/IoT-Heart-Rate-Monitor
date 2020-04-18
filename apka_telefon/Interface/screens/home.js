@@ -23,6 +23,9 @@ console.warn = message => {
 
 
 export let results;
+export let resultsImages;
+export let resultsVideos;
+export let resultsAdvice;
 
 
 // socket.on('confirmLogin', function(data){
@@ -42,7 +45,22 @@ export default function Home({ navigation }) {
     //receiveResult(data);
     results = data;
     console.log(data);
-    navigation.navigate('Result');
+    //navigation.navigate('Result');
+  });
+  socket.on('zdjecia', function(data){
+    //receiveResult(data);
+    resultsImages = data;
+    console.log(data);
+  });
+  socket.on('muzyka', function(data){
+    //receiveResult(data);
+    resultsVideos = data;
+    console.log(data);
+  });
+  socket.on('porady', function(data){
+    //receiveResult(data);
+    resultsAdvice = data;
+    console.log(data);
   });
 
   const pressHandler = () => {

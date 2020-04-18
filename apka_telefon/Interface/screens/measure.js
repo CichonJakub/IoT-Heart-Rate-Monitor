@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Text, Button } from 'react-native';
+import { View, Text, Button, Image } from 'react-native';
 import { styles } from '../styles/global';
 import { TemporaryButton } from '../styles/button';
 
@@ -11,9 +11,10 @@ export default function Measure({ navigation }) {
 
   return (
     <View style={styles.container}>
-      <Text style={styles.h5}>Przytrzymaj palec na czujniku przez ? sekund</Text>
+      <Text style={styles.h5}>Przytrzymaj palec na czujniku przez 10 sekund</Text>
       <View style={styles.loadingIconContainer}>
-        <Text>Loading Icon</Text>
+        <Image source={require('../assets/loadingCat.gif')}
+          style={{width: 180, height: 180}} />
       </View>
       <View style={styles.tmp}>
         <TemporaryButton text='Przycisk tymczasowy' onPress={pressHandler} />

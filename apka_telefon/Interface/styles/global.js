@@ -60,7 +60,7 @@ export const styles = StyleSheet.create({
   },
   loadingIconContainer: {
     flex: 1,
-    paddingTop: 120,
+    paddingTop: 50,
     //backgroundColor: 'pink',
   },
   resultContainer: {
@@ -87,6 +87,17 @@ export const styles = StyleSheet.create({
     margin: 5,
     fontFamily: 'rubik-regular',
     fontSize: 16,
+    color: '#000',
+    backgroundColor: 'rgba(0, 0, 0, 0.12)',
+  },
+  inputContainer: {
+    width: Dimensions.get('screen').width*0.6,
+    borderBottomWidth: 1,
+    borderTopRightRadius: 14,
+    borderTopLeftRadius: 14,
+    borderColor: 'rgba(0, 0, 0, 0.42)',
+    margin: 5,
+    paddingLeft: 5,
     color: '#000',
     backgroundColor: 'rgba(0, 0, 0, 0.12)',
   },
@@ -148,5 +159,5 @@ export const styles = StyleSheet.create({
     backgroundColor: 'pink',
     margin: 10,
     padding: 60,
-  }
+  },
 })

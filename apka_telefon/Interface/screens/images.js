@@ -1,7 +1,8 @@
 import React, { useState} from 'react';
 import { View, Text, Image, ScrollView, FlatList} from 'react-native';
 import { styles } from '../styles/global';
-import { results } from './home';
+import { results, resultsImages } from './home';
+
 
 export default function Images() {
   if(results.pomiar == "FAILEDTOMEASURE" || results.pomiar == "BADMEASURE"){

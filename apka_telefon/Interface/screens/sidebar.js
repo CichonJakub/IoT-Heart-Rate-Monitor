@@ -1,7 +1,7 @@
 import React from 'react';
 import { View, Text, state, Image, FlatList, TouchableOpacity } from 'react-native';
 import { styles } from '../styles/global';
-import { MaterialIcons, Foundation } from '@expo/vector-icons';
+import { MaterialIcons } from '@expo/vector-icons';
 
 export default class Sidebar extends React.Component {
     state = {
