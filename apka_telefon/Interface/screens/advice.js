@@ -15,8 +15,9 @@ export default function Advice() {
     return(
       <View style={styles.container}>
         <TouchableOpacity onPress={ ()=>{Linking.openURL(resultsAdvice.link)}}>
-          <Text style={styles.txt}>{resultsAdvice.link}</Text>
+          <Text style={styles.boldLink}>Kliknij Tutaj</Text>
         </TouchableOpacity>
+        <Text style={styles.s1}>aby dowiedzieć się więcej{"\n"}o prawidłowym poziomie{"\n"}ciśnienia krwi</Text>
       </View>
     )
   }

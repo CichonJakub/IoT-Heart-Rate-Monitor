@@ -1,10 +1,17 @@
-import React, { useState} from 'react';
+//import 'react-native-get-random-values';
+import React, { useState, useRef } from 'react';
 import { View, Text, Image, TouchableOpacity, Linking } from 'react-native';
 import { styles } from '../styles/global';
 import { results, resultsVideos } from './home';
+import YouTube from 'react-native-youtube';
+import { YouTubeStandaloneAndroid } from 'react-native-youtube';
+import YouTubePlayer from 'react-native-youtube-iframe';
+import { Dimensions } from 'react-native';
 
 export default function Videos() {
 
+  //const playerRef = useRef();
+  const [playing, setPlaying] = useState(true);
   if(results.pomiar == "FAILEDTOMEASURE" || results.pomiar == "BADMEASURE" || results == ''){
     return(
       <View style={styles.badResultImageView}>
@@ -15,9 +22,14 @@ export default function Videos() {
   }else{
     return(
       <View style={styles.container}>
-        <TouchableOpacity onPress={ ()=>{Linking.openURL(resultsVideos.link)}}>
-          <Text style={styles.txt}>{resultsVideos.link}</Text>
-        </TouchableOpacity>
+        <YouTubePlayer
+            //ref={playerRef}
+            height={500}
+            width={Dimensions.get('screen').width*0.95}
+            videoId={resultsVideos.link}
+            onError={e => console.log(e)}
+            origin="http://youtube.com"
+        />
       </View>
 
     )

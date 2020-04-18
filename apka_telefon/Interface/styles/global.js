@@ -158,6 +158,12 @@ export const styles = StyleSheet.create({
   txt: {
     backgroundColor: 'pink',
     margin: 10,
-    padding: 60,
+    padding: 40,
   },
+  boldLink: {
+    fontFamily: 'rubik-regular',
+    fontSize: 24,
+    textAlign: 'center',
+    fontWeight: 'bold',
+  }
 })
