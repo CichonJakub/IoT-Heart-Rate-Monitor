@@ -99,7 +99,7 @@ function update_content(category, table, what_to_change, change, user_id){
                                 client.query(queryString, (err, res) => {
                                     if( !err ){
                                         console.log("5");
-                                        console.log(res);
+                                        //console.log(res);
                                         index = users.findIndex(obj => obj.id == user_id);
                                         if( index != -1 ){
                                             console.log("SENDING LINK FROM " + table);
@@ -126,7 +126,7 @@ function update_content(category, table, what_to_change, change, user_id){
 
 let socketHardware;
 let users = [];
-let spawn, process;
+let spawn, newProcess;
 
 io.on('connection', function (socket) {
 
@@ -271,7 +271,13 @@ io.on('connection', function (socket) {
                 console.log("SUKCES - POMIAR DO BAZY");
                 //console.log(res);
                 spawn = require("child_process").spawn;
-                process = spawn('python', ["./srednia_dzien.py", data.user]);
+                newProcess = spawn('python', ["./srednia_dzien.py", data.user]);
+                // the print() is our stdout. We capture the JSON as an argument called "data" in our callback function
+                console.log("PYTHON PROCESS DATA");
+                newProcess.stdout.on("data", function(dataP){
+                    // print out the data to our console to check
+                    console.log(dataP.toString());
+                });
             }
             else {
                 console.log("PORAŻKA - POMIAR DO BAZY");
