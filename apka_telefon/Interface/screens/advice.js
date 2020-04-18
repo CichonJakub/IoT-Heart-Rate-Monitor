@@ -1,10 +1,10 @@
 import React, { useState} from 'react';
-import { View, Text, Image } from 'react-native';
+import { View, Text, Image, TouchableOpacity, Linking } from 'react-native';
 import { styles } from '../styles/global';
-import { results } from './home';
+import { results, resultsAdvice } from './home';
 
 export default function Advice() {
-  if(results.pomiar == "FAILEDTOMEASURE" || results.pomiar == "BADMEASURE"){
+  if(results.pomiar == "FAILEDTOMEASURE" || results.pomiar == "BADMEASURE" || results == ''){
     return(
       <View style={styles.badResultImageView}>
         <Image source={require('../assets/nothingToSee.png')}
@@ -14,7 +14,9 @@ export default function Advice() {
   }else{
     return(
       <View style={styles.container}>
-        <Text style={styles.txt}>Porady here</Text>
+        <TouchableOpacity onPress={ ()=>{Linking.openURL(resultsAdvice.link)}}>
+          <Text style={styles.txt}>{resultsAdvice.link}</Text>
+        </TouchableOpacity>
       </View>
     )
   }

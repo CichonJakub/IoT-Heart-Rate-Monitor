@@ -22,7 +22,10 @@ console.warn = message => {
 };
 
 
-export let results;
+export let results = '';
+export let resultsImages;
+export let resultsVideos;
+export let resultsAdvice;
 
 
 // socket.on('confirmLogin', function(data){
@@ -39,10 +42,21 @@ export let results;
 export default function Home({ navigation }) {
 
   socket.on('pomiarResult2', function(data){
-    //receiveResult(data);
     results = data;
     console.log(data);
     navigation.navigate('Result');
+  });
+  socket.on('zdjecia', function(data){
+    resultsImages = data;
+    console.log(data);
+  });
+  socket.on('muzyka', function(data){
+    resultsVideos = data;
+    console.log(data);
+  });
+  socket.on('porady', function(data){
+    resultsAdvice = data;
+    console.log(data);
   });
 
   const pressHandler = () => {

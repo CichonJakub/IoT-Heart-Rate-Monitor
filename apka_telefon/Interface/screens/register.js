@@ -8,7 +8,7 @@ import Login from './login';
 import Err_reg from './err_reg';
 import Wait from './wait';
 import { socket } from './login';
-
+import FormInput from '../styles/FormInput';
 
 
 export default function Register({ navigation }) {
@@ -35,20 +35,48 @@ export default function Register({ navigation }) {
     navigation.navigate('Wait');
   }
 
-  function stringToHash(string) { 
-                  
-    var hash = 0; 
-      
-    if (string.length == 0) return hash; 
-      
-    for (i = 0; i < string.length; i++) { 
-        char = string.charCodeAt(i); 
-        hash = ((hash << 5) - hash) + char; 
-        hash = hash & hash; 
-    } 
-      
-    return hash; 
-  } 
+  let iconName = 'visibility-off';
+  let iconNameRepeat = 'visibility-off';
+  let secureTextEntry = true;
+  let secureTextEntryRepeat = true;
+
+  const showPassword = () => {
+    if(iconName == 'visibility'){
+      secureTextEntry = true;
+      iconName = 'visibility-off';
+      console.log('klik');
+    }else{
+      secureTextEntry = false;
+      iconName = 'visibility';
+      console.log('unklik');
+    }
+  }
+  const showRepeatPassword = () => {
+    if(iconNameRepeat == 'visibility'){
+      secureTextEntryRepeat = true;
+      iconNameRepeat = 'visibility-off';
+      console.log('klik');
+    }else{
+      secureTextEntryRepeat = false;
+      iconNameRepeat = 'visibility';
+      console.log('unklik');
+    }
+  }
+
+  function stringToHash(string) {
+
+    var hash = 0;
+
+    if (string.length == 0) return hash;
+
+    for (i = 0; i < string.length; i++) {
+        char = string.charCodeAt(i);
+        hash = ((hash << 5) - hash) + char;
+        hash = hash & hash;
+    }
+
+    return hash;
+  }
 
   return(
     <View style={styles.loginScreen}>
@@ -61,7 +89,7 @@ export default function Register({ navigation }) {
           initialValues={{ login: '', password: '', repeatPassword: ''}}
           onSubmit={(values) => {
             if(values.password == values.repeatPassword){
-              
+
               toWait();
               values.password = stringToHash(values.password);
               values.repeatPassword = stringToHash(values.repeatPassword);
@@ -76,9 +104,9 @@ export default function Register({ navigation }) {
                       toRegister();
                   }
                 });
-              
-              
-              
+
+
+
             } else {
             console.log('zle');
             toErr_reg();
@@ -97,23 +125,29 @@ export default function Register({ navigation }) {
                 onChangeText={props.handleChange('login')}
                 value={props.values.login}
               />
-              <TextInput
-                style={styles.input}
+              <FormInput
+                name='password'
+                secureTextEntry = {secureTextEntry}
+                value={(props.values.password)}
                 placeholder='Hasło'
                 placeholderTextColor='rgba(0, 0, 0, 0.6)'
                 selectionColor='#5d99c6'
                 onChangeText={props.handleChange('password')}
-                //value={props.values.password}
-                value = {(props.values.password)}
+                iconName={iconName}
+                iconColor='rgba(0, 0, 0, 0.54)'
+                iconAction= {() => showPassword()}
               />
-              <TextInput
-                style={styles.input}
-                placeholder='Powtórz Hasło'
+              <FormInput
+                name='password'
+                secureTextEntry = {secureTextEntryRepeat}
+                value={(props.values.repeatPassword)}
+                placeholder='Powtórz hasło'
                 placeholderTextColor='rgba(0, 0, 0, 0.6)'
                 selectionColor='#5d99c6'
                 onChangeText={props.handleChange('repeatPassword')}
-                //value={props.values.repeatPassword}
-                value = {(props.values.repeatPassword)}
+                iconName={iconNameRepeat}
+                iconColor='rgba(0, 0, 0, 0.54)'
+                iconAction= {() => showRepeatPassword()}
               />
               <LoginButton text='Zarejestruj się' onPress={() => {  props.handleSubmit();}} />
               <View style={styles.inRow}>

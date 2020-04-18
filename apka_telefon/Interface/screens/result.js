@@ -7,7 +7,7 @@ import io from 'socket.io-client';
 //import { socket } from './login';
 import { results } from './home';
 
-let result;
+let result = '';
 let helpText;
 let header;
 
