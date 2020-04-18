@@ -1,6 +1,5 @@
-import os
+import os, sys
 from statistics import mean
-
 import psycopg2 as pg
 from datetime import date
 
@@ -33,7 +32,7 @@ def srednia_dzien(id_uzytkownika):
     except:
         print('blad odczytu')
 
-    # wpisanie do bazy danych lub uaktualnianie danych
+        # wpisanie do bazy danych lub uaktualnianie danych
     try:
         select_user_and_date = "SELECT id_osoby, data_pomiaru from statystyki where data_pomiaru = \'" + str(
             today) + "\'"
@@ -54,3 +53,6 @@ def srednia_dzien(id_uzytkownika):
 
 
 #srednia_dzien(2);
+
+if __name__ == "__main__":
+    srednia_dzien(sys.argv[1]);
