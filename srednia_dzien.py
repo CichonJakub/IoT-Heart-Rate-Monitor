@@ -38,17 +38,17 @@ def srednia_dzien(id_uzytkownika):
 
     # wpisanie do bazy danych lub uaktualnianie danych
     try:
-        select_user_and_date = "SELECT id_osoby, data_pomiaru from statystyki2 where data_pomiaru = \'" + str(
+        select_user_and_date = "SELECT id_osoby, data_pomiaru from statystyki where data_pomiaru = \'" + str(
             today) + "\' and id_osoby = \'" + str(id_uzytkownika) + "\'"
         c.execute(select_user_and_date)
         results = c.fetchall()
         if len(results) == 0:
-            insert_all = "INSERT INTO statystyki2 (id_osoby, srednia) VALUES (%s,%s)"
+            insert_all = "INSERT INTO statystyki (id_osoby, srednia) VALUES (%s,%s)"
             c.execute(insert_all, (str(id_uzytkownika), str(srednia)))
             conn.commit()
             print(c.query)
         else:
-            update_avg = "UPDATE statystyki2 SET srednia = \'" + str(srednia) + "\' where data_pomiaru = \'" + str(
+            update_avg = "UPDATE statystyki SET srednia = \'" + str(srednia) + "\' where data_pomiaru = \'" + str(
                 today) + "\' and id_osoby = \'" + str(id_uzytkownika) + "\'"
             c.execute(update_avg)
             conn.commit()
