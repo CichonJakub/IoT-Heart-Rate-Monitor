@@ -1,6 +1,5 @@
-mport os, sys
+import os, sys
 from statistics import mean
-
 import psycopg2 as pg
 from datetime import date
 
