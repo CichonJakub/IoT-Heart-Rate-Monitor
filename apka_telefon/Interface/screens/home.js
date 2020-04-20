@@ -26,6 +26,7 @@ export let results = '';
 export let resultsImages;
 export let resultsVideos;
 export let resultsAdvice;
+export let resultsShortAdvice;
 
 
 // socket.on('confirmLogin', function(data){
@@ -58,6 +59,10 @@ export default function Home({ navigation }) {
     resultsAdvice = data;
     console.log(data);
   });
+  socket.on('krotkaporada', function(data){
+    resultsShortAdvice = data;
+    console.log(data);
+  });
 
   const pressHandler = () => {
     navigation.navigate('Measure');
@@ -68,7 +73,7 @@ export default function Home({ navigation }) {
   return (
     <View style={styles.container}>
       <Text style={styles.h4}>Uszanowanko</Text>
-      <Text style={styles.s1}>Naciśnij przycisk poniżej {"\n"} i przyłóż palec do czujnika</Text>
+      <Text style={styles.s1}>Przyłóż palec do czujnika{"\n"}i naciśnij przycisk poniżej</Text>
       <View style={styles.buttonContainer}>
         <HomeButton text='Zacznij Pomiar' onPress={pressHandler} />
       </View>

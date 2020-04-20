@@ -1,7 +1,7 @@
 import React from 'react';
 import { View, Text, Button, Image } from 'react-native';
 import { styles } from '../styles/global';
-import { TemporaryButton } from '../styles/button';
+import { AdviceButton } from '../styles/button';
 
 export default function Measure({ navigation }) {
 
@@ -15,9 +15,6 @@ export default function Measure({ navigation }) {
       <View style={styles.loadingIconContainer}>
         <Image source={require('../assets/loadingCat.gif')}
           style={{width: 180, height: 180}} />
-      </View>
-      <View style={styles.tmp}>
-        <TemporaryButton text='Przycisk tymczasowy' onPress={pressHandler} />
       </View>
     </View>
   )

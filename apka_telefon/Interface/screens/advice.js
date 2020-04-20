@@ -1,7 +1,7 @@
 import React, { useState} from 'react';
 import { View, Text, Image, TouchableOpacity, Linking } from 'react-native';
 import { styles } from '../styles/global';
-import { results, resultsAdvice } from './home';
+import { results, resultsAdvice, resultsShortAdvice } from './home';
 
 export default function Advice() {
   if(results.pomiar == "FAILEDTOMEASURE" || results.pomiar == "BADMEASURE" || results == ''){
@@ -14,10 +14,12 @@ export default function Advice() {
   }else{
     return(
       <View style={styles.container}>
+        <Text style={styles.shortAdviceText}>{resultsShortAdvice.porada}</Text>
+        <Text style={styles.s1}>Jeśli chcesz dowiedzieć się więcej{"\n"}o prawidłowym poziomie{"\n"}ciśnienia krwi</Text>
         <TouchableOpacity onPress={ ()=>{Linking.openURL(resultsAdvice.link)}}>
           <Text style={styles.boldLink}>Kliknij Tutaj</Text>
         </TouchableOpacity>
-        <Text style={styles.s1}>aby dowiedzieć się więcej{"\n"}o prawidłowym poziomie{"\n"}ciśnienia krwi</Text>
+
       </View>
     )
   }

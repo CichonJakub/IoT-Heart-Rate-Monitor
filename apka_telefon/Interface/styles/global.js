@@ -46,11 +46,25 @@ export const styles = StyleSheet.create({
     textAlign: 'center',
     padding: 10,
   },
+  s1Result1: {
+    fontFamily: 'rubik-regular',
+    fontSize: 18,
+    textAlign: 'center',
+    marginTop: 50,
+    padding: 10,
+  },
+  s1Result2: {
+    fontFamily: 'rubik-regular',
+    fontSize: 16,
+    textAlign: 'center',
+    marginTop: 5,
+    padding: 10,
+  },
   body1: {
     fontFamily: 'rubik-regular',
     fontSize: 16,
   },
-  body1: {
+  body2: {
     fontFamily: 'rubik-regular',
     fontSize: 14,
   },
@@ -162,8 +176,15 @@ export const styles = StyleSheet.create({
   },
   boldLink: {
     fontFamily: 'rubik-regular',
-    fontSize: 24,
+    fontSize: 20,
     textAlign: 'center',
     fontWeight: 'bold',
+  },
+  shortAdviceText: {
+    fontFamily: 'rubik-regular',
+    fontSize: 18,
+    textAlign: 'center',
+    padding: 10,
+    margin: 20,
   }
 })

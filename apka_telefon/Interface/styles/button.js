@@ -32,11 +32,11 @@ export function LoginButton({ text, onPress}) {
   )
 };
 
-export function TemporaryButton({ text, onPress}) {
+export function AdviceButton({ text, onPress}) {
   return (
     <TouchableOpacity onPress={onPress}>
-      <View style={styles.tmpButton}>
-        <Text style={styles.tmpButtonText}>{ text }</Text>
+      <View style={styles.AdviceButton}>
+        <Text style={styles.AdviceButtonText}>{ text }</Text>
       </View>
     </TouchableOpacity>
   )
@@ -93,21 +93,22 @@ const styles = StyleSheet.create({
     fontSize: 14,
     textAlign: 'center',
   },
-  tmpButton: {
+  AdviceButton: {
     width: Dimensions.get('screen').width*0.6,
-    height: 40,
+    height: 55,
     borderRadius: 14,
     paddingVertical: 10,
     paddingHorizontal: 10,
     marginTop: 40,
+    marginBottom: 30,
     justifyContent: 'center',
     backgroundColor: '#8c2155',
   },
-  tmpButtonText: {
+  AdviceButtonText: {
     color: "#fff",
     fontFamily: 'rubik-medium',
     textTransform: 'uppercase',
-    fontSize: 14,
+    fontSize: 16,
     textAlign: 'center',
   },
 })

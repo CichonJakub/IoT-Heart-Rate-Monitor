@@ -1,7 +1,7 @@
 import React, { useState} from 'react';
 import { View, Text, TouchableOpacity } from 'react-native';
 import { styles } from '../styles/global';
-import RoundButton from '../styles/button';
+import { AdviceButton } from '../styles/button';
 import Tabs from './tabs';
 import io from 'socket.io-client';
 //import { socket } from './login';
@@ -10,7 +10,8 @@ import { results } from './home';
 let result = '';
 let helpText;
 let header;
-
+let resultText1;
+let resultText2;
 
 function receiveResult(){
   if(results.pomiar == "FAILEDTOMEASURE"){
@@ -21,10 +22,25 @@ function receiveResult(){
     header = "";
     result = "Błąd pomiaru";
     helpText = "Spróbuj jeszcze raz";
+    resultText1 = "";
+    resultText2 = "";
+  }else if(result == "" || results == ""){
+    header = "";
+    result = "Brak pomiaru";
+    helpText = "";
+    resultText1 = "";
+    resultText2 = "";
   }else{
     header = "Twój wynik";
     result = results.pomiar
     helpText = "";
+    if(results.pomiar > 85){
+      resultText1 = "Twój puls jest za wysoki";
+      resultText2 = "Po kliknięcie przycisku poniżej\nznajdziesz porady,\nktóre pomogą Ci go obniżyć";
+    }else{
+      resultText1 = "Twój puls jest zbyt niski";
+      resultText2 = "Kliknij przycisk poniżej,\naby poznać sposoby\n na podwyższenie pulsu";
+    }
   }
 }
 
@@ -49,11 +65,11 @@ export default function Result({ navigation }) {
       <View style={styles.resultContainer}>
         <Text style={styles.h4}>{result}</Text>
         <Text style={styles.s1}>{helpText}</Text>
+        <Text style={styles.s1Result1}>{resultText1}</Text>
+        <Text style={styles.s1Result2}>{resultText2}</Text>
       </View>
-      <View style={styles.resultButtons}>
-        <RoundButton text='Obrazek' onPress={toImages} />
-        <RoundButton text='Wideo' onPress={toVideos} />
-        <RoundButton text='Porada' onPress={toAdvice} />
+      <View style={styles.AdviceButton}>
+        <AdviceButton text='Porady' onPress={toImages} />
       </View>
     </View>
   )

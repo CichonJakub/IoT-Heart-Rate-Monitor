@@ -6,6 +6,7 @@ import HomeStack from './homeStack';
 import ResultStack from './resultStack';
 import Tabs from '../screens/tabs';
 import Sidebar from '../screens/sidebar';
+import HelpStack from './helpStack';
 
 const DrawerNavigator = createDrawerNavigator({
   Home: {
@@ -16,6 +17,9 @@ const DrawerNavigator = createDrawerNavigator({
   },
   Statistics: {
     screen: StatisticsStack,
+  },
+  Help: {
+    screen: HelpStack,
   },
 },
   {

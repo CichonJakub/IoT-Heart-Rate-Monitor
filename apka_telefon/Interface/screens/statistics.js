@@ -29,7 +29,7 @@ import { socket } from './login';
 	        }
 	      ]
 	    }}
-	    width={Dimensions.get("window").width} 
+	    width={Dimensions.get("window").width}
 	    height={Dimensions.get("window").height/2-50}
 	    xAxisLabel=""
 	    yAxisSuffix=""
@@ -55,7 +55,7 @@ import { socket } from './login';
 	      marginVertical: 20,
 	    }}
 	  />
-	  
+
 	  <LineChart
 	    data={{
 	      labels: ["Pon", "Wt", "Sr", "Czw", "Pt", "Sob", "Nd"],
@@ -68,12 +68,12 @@ import { socket } from './login';
 	            Math.random(),
 	            Math.random(),
 	            Math.random(),
-	            Math.random()  
+	            Math.random()
 	          ]
 	        }
 	      ]
 	    }}
-	    width={Dimensions.get("window").width} 
+	    width={Dimensions.get("window").width}
 	    height={Dimensions.get("window").height/2-50}
 	    yAxisLabel=""
 	    yAxisSuffix=""

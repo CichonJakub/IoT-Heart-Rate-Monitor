@@ -1,21 +1,21 @@
 import { createStackNavigator } from 'react-navigation-stack';
-import Statistics from '../screens/statistics';
+import Help from '../screens/help';
 import MainHeader from '../styles/header';
 import React from 'react';
 
 const screens = {
-  Statistics: {
-    screen: Statistics,
+  Help: {
+    screen: Help,
     navigationOptions: ({ navigation }) => {
       return {
         headerLeft: () => <MainHeader navigation={navigation} title='Hello screen' />,
-        title: 'Statystyki',
+        title: 'Pomoc',
       }
     }
   },
 }
 
-const StatisticsStack = createStackNavigator(screens, {
+const HelpStack = createStackNavigator(screens, {
   defaultNavigationOptions: {
     headerTintColor: '#000',
     headerTitleStyle: { fontFamily: 'rubik-medium', fontSize: 20, paddingLeft: 8},
@@ -23,4 +23,4 @@ const StatisticsStack = createStackNavigator(screens, {
   }
 });
 
-export default StatisticsStack;
+export default HelpStack;
