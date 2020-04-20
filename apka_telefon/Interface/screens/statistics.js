@@ -8,107 +8,94 @@ import { socket } from './login';
 
  export default function Statistics() {
 
+	return(
+	<View>
 
-//   const info = 'To są moje statystyki';
-//   const zapytanie = 'SELECT * FROM statystyki ORDER BY data_pomiaru LIMIT 7';
-//   socket.emit('statystyki', zapytanie);
-//   socket.on('loginResult', function(data1){
-//   	data1 = [23,45,67,89]
-//   });
-
-//to działa w dol
-// class Chart extends Component
-// {
-//   constructor (props)
-//   {
-//     super(props);
-//   }
-
-//   render ()
-//   {
-//     const data   = [29, 30, 70, 50, 34, 98, 51];
-
-//     return (
-//       <View style={styles.container}>
-//         <BarChart
-//           style={{ flex: 1 }}
-//           data={ data }
-//           contentInset={{ top: 30, bottom: 30 }}/>
-
-//         <XAxis
-//           style={{ marginHorizontal: -10, marginTop: 15}}
-//           data={ data }
-//           formatLabel={ (value, index) => index }
-//           contentInset={{ left: 25, right: 25 }}
-//         />
-//       </View>
-//     );
-//   }
-// }
-
-// const styles = StyleSheet.create({
-//   container: {
-//     height: '70%'
-//   }
-// });
-
-// export default Chart;
-const chartConfig = {
-  backgroundGradientFrom: "#1E2923",
-  backgroundGradientFromOpacity: 0,
-  backgroundGradientTo: "#08130D",
-  backgroundGradientToOpacity: 0.5,
-  color: (opacity = 1) => `rgba(26, 255, 146, ${opacity})`,
-  strokeWidth: 2, // optional, default 3
-  barPercentage: 0.5
-};
-return(
-<View>
-  <Text>Ostatnie 7 dni</Text>
-  <LineChart
-    data={{
-      labels: ["Pon", "Wt", "Sr", "Czw", "Pt", "Sob", "Nd"],
-      datasets: [
-        {
-          data: [
-            Math.random(),
-            Math.random(),
-            Math.random(),
-            Math.random(),
-            Math.random(),
-            Math.random(),
-            Math.random()
-          ]
-        }
-      ]
-    }}
-    width={Dimensions.get("window").width}
-    height={320}
-    yAxisLabel=""
-    yAxisSuffix=""
-    yAxisInterval={1} // optional, defaults to 1
-    chartConfig={{
-      backgroundColor: "#0027c2",
-      backgroundGradientFrom: "#0027c2",
-      backgroundGradientTo: "#0027c2",
-      decimalPlaces: 2, // optional, defaults to 2dp
-      color: (opacity = 1) => `rgba(255, 255, 255, ${opacity})`,
-      labelColor: (opacity = 1) => `rgba(255, 255, 255, ${opacity})`,
-      style: {
-        borderRadius: 16
-      },
-      propsForDots: {
-        r: "6",
-        strokeWidth: "2",
-        stroke: "#ffa726"
-      }
-    }}
-    bezier
-    style={{
-      marginVertical: 100,
-      borderRadius: 16
-    }}
-  />
-</View>
-)
+		<LineChart
+	    data={{
+	      labels: ["0", "2", "4", "6", "8", "10", "12","14","16","18","20","22","24"],
+	      datasets: [
+	        {
+	          data: [
+	            Math.random(),
+	            Math.random(),
+	            Math.random(),
+	            Math.random(),
+	            Math.random(),
+	            Math.random(),
+	            Math.random(),
+	            Math.random(),
+	          ]
+	        }
+	      ]
+	    }}
+	    width={Dimensions.get("window").width} 
+	    height={Dimensions.get("window").height/2-50}
+	    xAxisLabel=""
+	    yAxisSuffix=""
+	    yAxisInterval={1} // optional, defaults to 1
+	    chartConfig={{
+	      backgroundColor: '#edb879',
+	      backgroundGradientFrom: '#f2f2f2',
+	      backgroundGradientTo: '#f2f2f2',
+	      decimalPlaces: 2, // optional, defaults to 2dp
+	      color: (opacity = 1) => `rgba(140,33,85, ${opacity})`,
+	      labelColor: (opacity = 1) => `rgba(90,0,44, ${opacity})`,
+	      style: {
+	        borderRadius: 16,
+	      },
+	      propsForDots: {
+	        r: "6",
+	        strokeWidth: "2",
+	        stroke: "#5a002c"
+	      }
+	    }}
+	    bezier
+	    style={{
+	      marginVertical: 20,
+	    }}
+	  />
+	  
+	  <LineChart
+	    data={{
+	      labels: ["Pon", "Wt", "Sr", "Czw", "Pt", "Sob", "Nd"],
+	      datasets: [
+	        {
+	          data: [
+	            Math.random(),
+	            Math.random(),
+	            Math.random(),
+	            Math.random(),
+	            Math.random(),
+	            Math.random(),
+	            Math.random()  
+	          ]
+	        }
+	      ]
+	    }}
+	    width={Dimensions.get("window").width} 
+	    height={Dimensions.get("window").height/2-50}
+	    yAxisLabel=""
+	    yAxisSuffix=""
+	    yAxisInterval={1} // optional, defaults to 1
+	    chartConfig={{
+	      backgroundColor: '#edb879',
+	      backgroundGradientFrom: '#f2f2f2',
+	      backgroundGradientTo: '#f2f2f2',
+	      decimalPlaces: 2, // optional, defaults to 2dp
+	      color: (opacity = 1) => `rgba(140,33,85, ${opacity})`,
+	      labelColor: (opacity = 1) => `rgba(90,0,44, ${opacity})`,
+	      style: {
+	        borderRadius: 16,
+	      },
+	      propsForDots: {
+	        r: "6",
+	        strokeWidth: "2",
+	        stroke: "#5a002c"
+	      }
+	    }}
+	    bezier
+	  />
+	</View>
+	)
 }
