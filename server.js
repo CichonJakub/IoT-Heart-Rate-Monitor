@@ -132,7 +132,7 @@ function sendShortAdvice(kategoria, user_id){
                 console.log(res.rows[0]);
                 index = users.findIndex(obj => obj.id == user_id);
                 if( index != -1 ){
-                    console.log("SENDING SHORT ADVICE FROM " + table);
+                    console.log("SENDING SHORT ADVICE");
                     users[index].socket.emit("krotkaporada", {porada: res.rows[0].porada});
                 }
             }
