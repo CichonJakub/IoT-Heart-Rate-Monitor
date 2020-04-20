@@ -143,6 +143,42 @@ function sendShortAdvice(kategoria, user_id){
         })
 }
 
+function sendStatData(user_id){
+    queryString = "SELECT * FROM pomiary WHERE timestamp::TIMESTAMP::DATE = current_date AND id_osoby =" + user_id + ";";
+        client.query(queryString, (err, res) => {
+            if( !err ){
+                console.log("statystykiPomiary");
+                console.log(res.rows);
+                index = users.findIndex(obj => obj.id == user_id);
+                if( index != -1 ){
+                    console.log("SENDING statystykiPomiary");
+                    users[index].socket.emit("statystykiPomiary", {statystykiPomiary: res.rows});
+                }
+            }
+            else {
+                console.log("ERROR statystykiPomiary");
+                console.log(err);
+            }
+        })
+
+        queryString = "SELECT * FROM statystyki WHERE data_pomiaru > current_date-7 AND id_osoby=" + user_id + ";";
+            client.query(queryString, (err, res) => {
+                if( !err ){
+                    console.log("statystykiSrednia");
+                    console.log(res.rows);
+                    index = users.findIndex(obj => obj.id == user_id);
+                    if( index != -1 ){
+                        console.log("SENDING statystykiSrednia");
+                        users[index].socket.emit("statystykiSrednia", {statystykiSrednia: res.rows});
+                    }
+                }
+                else {
+                    console.log("ERROR statystykiSrednia");
+                    console.log(err);
+                }
+            })
+}
+
 let socketHardware;
 let users = [];
 let spawn, newProcess;
@@ -221,6 +257,7 @@ io.on('connection', function (socket) {
                         let userdata = res.rows[0];
                         users.push({id: userdata.id_uzytkownika, login: data.login, socket: socket});
                         socket.emit('confirmLogin', "Test login id=" + data.login);
+                        sendStatData(userdata.id_uzytkownika);
                     }
                     else{
                         console.log("Bad login data.");
@@ -315,6 +352,15 @@ io.on('connection', function (socket) {
             return;
         }
 
+        if( pomiar == "WAITTOEND" ){
+            index = users.findIndex(obj => obj.id == data.user);
+            if( index != -1 ){
+                console.log("SENDING WAITTOEND");
+                users[index].socket.emit('pomiarResult2', {pomiar: "WAITTOEND"});
+            }
+            return;
+        }
+
         let queryString = "INSERT INTO pomiary(id_uzytkownika, wartosc) VALUES ("+data.user+","+pomiar+");";
         console.log("POMIAR DO BAZY: " + queryString);
         client.query(queryString, (err, res) => {
@@ -329,6 +375,9 @@ io.on('connection', function (socket) {
                     // print out the data to our console to check
                     console.log(dataP.toString());
                 });
+                setTimeout(function(){
+                    sendStatData(data.user);
+                }, 500);
             }
             else {
                 console.log("PORAŻKA - POMIAR DO BAZY");
