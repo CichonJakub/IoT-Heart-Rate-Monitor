@@ -152,7 +152,9 @@ function sendStatData(user_id){
                 index = users.findIndex(obj => obj.id == user_id);
                 if( index != -1 ){
                     console.log("SENDING statystykiPomiary");
-                    users[index].socket.emit("statystykiPomiary", JSON.stringify(res.rows));
+                    let pomiaryString = JSON.stringify(res.rows);
+                    console.log(pomiaryString);
+                    users[index].socket.emit("statystykiPomiary", pomiaryString);
                 }
             }
             else {
@@ -169,7 +171,9 @@ function sendStatData(user_id){
                     index = users.findIndex(obj => obj.id == user_id);
                     if( index != -1 ){
                         console.log("SENDING statystykiSrednia");
-                        users[index].socket.emit("statystykiSrednia", JSON.stringify(res.rows));
+                        let sredniaString = JSON.stringify(res.rows);
+                        console.log(sredniaString);
+                        users[index].socket.emit("statystykiSrednia", sredniaString);
                     }
                 }
                 else {
