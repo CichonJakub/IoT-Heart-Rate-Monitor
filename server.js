@@ -440,6 +440,14 @@ io.on('connection', function (socket) {
         })
     })
 
+    socket.on('logout', function(data){
+            console.log("User logout");
+            let index = users.findIndex(obj => obj.socket == socket);
+            if( index != -1 ){
+                users.splice(index, 1);
+            }
+        })
+
     socket.on('disconnect', function(data){
             console.log("Disconnect");
             if( socketHardware == socket ){
