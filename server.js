@@ -144,7 +144,7 @@ function sendShortAdvice(kategoria, user_id){
 }
 
 function sendStatData(user_id){
-    queryString = "SELECT * FROM pomiary WHERE timestamp::TIMESTAMP::DATE = current_date AND id_uzytkownika =" + user_id + ";";
+    queryString = "SELECT * FROM pomiary WHERE timestamp::TIMESTAMP::DATE = current_date AND id_uzytkownika=" + user_id + ";";
         client.query(queryString, (err, res) => {
             if( !err ){
                 console.log("statystykiPomiary");
@@ -152,7 +152,7 @@ function sendStatData(user_id){
                 index = users.findIndex(obj => obj.id == user_id);
                 if( index != -1 ){
                     console.log("SENDING statystykiPomiary");
-                    users[index].socket.emit("statystykiPomiary", {statystykiPomiary: res.rows});
+                    users[index].socket.emit("statystykiPomiary", JSON.stringify(res.rows));
                 }
             }
             else {
@@ -169,7 +169,7 @@ function sendStatData(user_id){
                     index = users.findIndex(obj => obj.id == user_id);
                     if( index != -1 ){
                         console.log("SENDING statystykiSrednia");
-                        users[index].socket.emit("statystykiSrednia", {statystykiSrednia: res.rows});
+                        users[index].socket.emit("statystykiSrednia", JSON.stringify(res.rows));
                     }
                 }
                 else {
