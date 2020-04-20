@@ -19,7 +19,7 @@ def srednia_dzien(id_uzytkownika):
 
     #wybranie wszytskich pomiarów wykonanych tego dnia przez uzytkownika
     try:
-        select_values = "SELECT wartosc from pomiary where id_uzytkownika = " + str(id_uzytkownika) + " and timestamp::TIMESTAMP::DATE = \'" + str(today) + "\'"
+        select_values = "SELECT wartosc FROM pomiary where id_uzytkownika = " + str(id_uzytkownika) + " and timestamp::TIMESTAMP::DATE = \'" + str(today) + "\'"
         c.execute(select_values)
         measurement_values = c.fetchall()
 
@@ -38,7 +38,7 @@ def srednia_dzien(id_uzytkownika):
     # wpisanie do bazy danych lub uaktualnianie danych
     try:
         select_user_and_date = "SELECT id_osoby, data_pomiaru from statystyki where data_pomiaru = \'" + str(
-            today) + "\' and id_osoby = \'" + str(id_uzytkownika) + "\'"
+            today) + "\' and id_osoby = " + str(id_uzytkownika) 
         c.execute(select_user_and_date)
         results = c.fetchall()
         if len(results) == 0:
