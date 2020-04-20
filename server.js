@@ -144,7 +144,7 @@ function sendShortAdvice(kategoria, user_id){
 }
 
 function sendStatData(user_id){
-    queryString = "SELECT * FROM pomiary WHERE timestamp::TIMESTAMP::DATE = current_date AND id_uzytkownika=" + user_id + ";";
+    queryString = "SELECT * FROM pomiary WHERE timestamp::TIMESTAMP::DATE = current_date AND id_uzytkownika=" + user_id + " ORDER BY timestamp;";
         client.query(queryString, (err, res) => {
             if( !err ){
                 console.log("statystykiPomiary");
@@ -163,7 +163,7 @@ function sendStatData(user_id){
             }
         })
 
-        queryString = "SELECT * FROM statystyki WHERE data_pomiaru > current_date-7 AND id_osoby=" + user_id + ";";
+        queryString = "SELECT * FROM statystyki WHERE data_pomiaru > current_date-7 AND id_osoby=" + user_id + " ORDER BY data_pomiaru;";
             client.query(queryString, (err, res) => {
                 if( !err ){
                     console.log("statystykiSrednia");
