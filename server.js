@@ -251,6 +251,7 @@ io.on('connection', function (socket) {
         data = JSON.parse(data);
         let encrypted = data.pomiar;
         let pomiar = "";
+        let index;
 
         nonce = encrypted.substring(0,32)
         nonce = decodeBase64(nonce)
@@ -295,7 +296,6 @@ io.on('connection', function (socket) {
         })
 
         let porada = "", zdjecie = "", muzyka = "";
-        let index;
 
         let allData = [];
         let dataToGetH = [['porady', 'nr_rady_h', 'nr_rady'],['zdjecia', 'nr_zdj_h', 'nr_zdj'],['muzyka', 'nr_muz_h', 'nr_muz']];
