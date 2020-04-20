@@ -3,6 +3,7 @@ import { View, Text, state, Image, FlatList, TouchableOpacity } from 'react-nati
 import { styles } from '../styles/global';
 import { MaterialIcons } from '@expo/vector-icons';
 import { socket } from './login';
+import { loginName } from './login';
 
 export default class Sidebar extends React.Component {
     state1 = {
@@ -43,7 +44,7 @@ export default class Sidebar extends React.Component {
         <View style={styles.sidebarContainer}>
           <View style={styles.sidebarHeader}></View>
           <Image source={require("../assets/Logo.png")} style={styles.sidebarLogo}/>
-          <Text style={styles.h5}>Login</Text>
+          <Text style={styles.h5}>{loginName}</Text>
           <View style={styles.sidebarDivider}></View>
           <FlatList
             style={{width:"100%", marginLeft:20, flex:1}}

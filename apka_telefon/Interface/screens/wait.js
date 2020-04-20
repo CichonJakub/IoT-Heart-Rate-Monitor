@@ -10,26 +10,18 @@ import { socket } from './login';
 import io from 'socket.io-client';
 
 
-
-
-
-
 export default function Wait({navigation}) {
 
-    const toRegister = () => {
-        navigation.navigate('Register');
-    }
-    
-
-
-    
+  const toRegister = () => {
+    navigation.navigate('Register');
+  }
 
   return (
-    <View style={styles.container}>
-      <Text style={styles.txt}>czekaj!</Text>
+    <View style={styles.errorContainer}>
+      <Text style={styles.h5}>Sprawdzanie poprawności danych</Text>
       <TouchableOpacity onPress={toRegister}>
-                  <Text style={styles.registerText}> Spróbuj ponownie</Text>
-        </TouchableOpacity>
+        <Text style={styles.s1}> Spróbuj ponownie</Text>
+      </TouchableOpacity>
     </View>
   )
 }

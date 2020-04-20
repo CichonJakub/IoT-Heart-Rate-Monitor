@@ -11,10 +11,10 @@ export default function Error_reg({navigation}) {
       }
 
   return (
-    <View style={styles.container}>
-      <Text style={styles.txt}>Podane hasła nie są identyczne!</Text>
+    <View style={styles.errorContainer}>
+      <Text style={styles.h5}>Podane hasła{"\n"}nie są identyczne</Text>
       <TouchableOpacity onPress={toRegister}>
-                  <Text style={styles.registerText}> Spróbuj ponownie</Text>
+                  <Text style={styles.s1}> Spróbuj ponownie</Text>
         </TouchableOpacity>
     </View>
   )

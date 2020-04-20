@@ -5,8 +5,13 @@ export const styles = StyleSheet.create({
   container: {
     flex: 1,
     alignItems: 'center',
-    padding: 40,
+    padding: 30,
   //  backgroundColor: 'pink',
+  },
+  errorContainer: {
+    flex: 1,
+    backgroundColor: '#90caf9',
+    justifyContent: 'center',
   },
   logoContainer: {
     flex: 0.7,
@@ -50,15 +55,15 @@ export const styles = StyleSheet.create({
     fontFamily: 'rubik-regular',
     fontSize: 18,
     textAlign: 'center',
-    marginTop: 50,
-    padding: 10,
+    marginTop: 5,
+    padding: 5,
   },
   s1Result2: {
     fontFamily: 'rubik-regular',
     fontSize: 16,
     textAlign: 'center',
     marginTop: 5,
-    padding: 10,
+    padding: 5,
   },
   body1: {
     fontFamily: 'rubik-regular',
@@ -80,6 +85,7 @@ export const styles = StyleSheet.create({
   resultContainer: {
     flex: 1,
     paddingTop: 60,
+    alignItems: 'center',
     //backgroundColor: 'pink',
   },
   resultButtons: {
@@ -186,5 +192,13 @@ export const styles = StyleSheet.create({
     textAlign: 'center',
     padding: 10,
     margin: 20,
-  }
+  },
+  resultCircle: {
+    width: 160,
+    height: 160,
+    borderWidth: 3,
+    borderRadius: 80,
+    borderColor: '#000',
+    justifyContent: 'center',
+  },
 })

@@ -14,7 +14,7 @@ import { CryptoEncoding } from 'expo-crypto';
 import { MaterialIcons } from '@expo/vector-icons';
 import FormInput from '../styles/FormInput';
 
-
+export let loginName;
 
 export const socket = io('https://iot-pulsometr.herokuapp.com', {
   transports: ['websocket'],
@@ -99,6 +99,7 @@ export default function Login({ navigation }) {
                 toErr_log();
             }else{
                 toHome();
+                loginName = values.login;
             }
             });
 

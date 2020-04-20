@@ -11,11 +11,11 @@ export default function Error_log({navigation}) {
       }
 
   return (
-    <View style={styles.container}>
-      <Text style={styles.txt}>Błąd w logowaniu!</Text>
+    <View style={styles.errorContainer}>
+      <Text style={styles.h5}>Błąd w logowaniu</Text>
       <TouchableOpacity onPress={toLogin}>
-                  <Text style={styles.registerText}> Spróbuj ponownie</Text>
-        </TouchableOpacity>
+        <Text style={styles.s1}> Spróbuj ponownie</Text>
+      </TouchableOpacity>
     </View>
   )
 }
