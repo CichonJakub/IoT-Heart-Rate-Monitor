@@ -124,6 +124,25 @@ function update_content(category, table, what_to_change, change, user_id){
         })
 }
 
+function sendShortAdvice(kategoria, user_id){
+    queryString = "SELECT porada FROM wlasneporady WHERE kategoria=" + kategoria + " ORDER BY RANDOM() LIMIT 1;";
+        client.query(queryString, (err, res) => {
+            if( !err ){
+                console.log("SHORT ADVICE");
+                console.log(res.rows[0]);
+                index = users.findIndex(obj => obj.id == user_id);
+                if( index != -1 ){
+                    console.log("SENDING SHORT ADVICE FROM " + table);
+                    users[index].socket.emit("krotkaporada", {porada: res.rows[0].porada});
+                }
+            }
+            else {
+                console.log("ERROR SHORT ADVICE");
+                console.log(err);
+            }
+        })
+}
+
 let socketHardware;
 let users = [];
 let spawn, newProcess;
@@ -223,6 +242,28 @@ io.on('connection', function (socket) {
         //socket.emit('confirmLogin', "Test login id=" + data.login);
     });
 
+    function askForRawData(){
+        socket.emit('askForRawData');
+    }
+
+    socket.on('testRawData', function(data){
+        data = JSON.parse(data);
+        let encrypted = data.pomiar;
+        let pomiar = "";
+        let index;
+
+        nonce = encrypted.substring(0,32)
+        nonce = decodeBase64(nonce)
+
+        ciphertext = encrypted.substring(32)
+        ciphertext = decodeBase64(ciphertext)
+
+        decryption = nacl.secretbox.open(ciphertext, nonce, secretKey)
+        pomiar = utils.encodeUTF8(decryption)
+
+        let rawDataPomiar = pomiar.split(';');
+    })
+
     socket.on('requestPomiar', function(data){
         //console.log("askForTest: " + data);
         let index = users.findIndex(obj => obj.socket == socket);
@@ -302,6 +343,7 @@ io.on('connection', function (socket) {
         let dataToGetL = [['porady', 'nr_rady_l', 'nr_rady'],['zdjecia', 'nr_zdj_l', 'nr_zdj'],['muzyka', 'nr_muz_l', 'nr_muz']];
 
         if (pomiar > 85){
+            sendShortAdvice(1, data.user);
             for( i = 0; i < 3; i++ ){
                 allData[i] = await update_content('1', dataToGetH[i][0], dataToGetH[i][1], dataToGetH[i][2], data.user);
             }
@@ -313,6 +355,7 @@ io.on('connection', function (socket) {
             }
         }
         else{
+            sendShortAdvice(0, data.user);
             for( i = 0; i < 3; i++ ){
                 allData[i] = await update_content('0', dataToGetL[i][0], dataToGetL[i][1], dataToGetL[i][2], data.user);
             }
