@@ -144,7 +144,7 @@ function sendShortAdvice(kategoria, user_id){
 }
 
 function sendStatData(user_id){
-    queryString = "SELECT * FROM pomiary WHERE timestamp::TIMESTAMP::DATE = current_date AND id_osoby =" + user_id + ";";
+    queryString = "SELECT * FROM pomiary WHERE timestamp::TIMESTAMP::DATE = current_date AND id_uzytkownika =" + user_id + ";";
         client.query(queryString, (err, res) => {
             if( !err ){
                 console.log("statystykiPomiary");
