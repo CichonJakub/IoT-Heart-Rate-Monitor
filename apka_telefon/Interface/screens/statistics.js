@@ -88,7 +88,8 @@ import { styles } from '../styles/global';
 	    }}
 	    width={Dimensions.get("window").width}
 	    height={Dimensions.get("window").height/2-50}
-	    yAxisLabel=""
+		fromZero
+		yAxisLabel=""
 	    yAxisSuffix=""
 	    yAxisInterval={1} // optional, defaults to 1
 	    chartConfig={{
