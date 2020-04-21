@@ -407,7 +407,7 @@ io.on('connection', function (socket) {
                 users[index].socket.emit('pomiarResult2', {pomiar: pomiar});
             }
         }
-        if else( pomiar >= 75 && pomiar < 85 ){
+        else if( pomiar >= 75 && pomiar < 85 ){
             index = users.findIndex(obj => obj.id == data.user);
             if( index != -1 ){
                 console.log("SENDING RESULTS...");
