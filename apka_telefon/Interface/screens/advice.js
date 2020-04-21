@@ -4,7 +4,7 @@ import { styles } from '../styles/global';
 import { results, resultsAdvice, resultsShortAdvice } from './home';
 
 export default function Advice() {
-  if(results.pomiar == "FAILEDTOMEASURE" || results.pomiar == "BADMEASURE" || results == '' || results.pomiar < 85 || results.pomiar > 75){
+  if(results.pomiar == "FAILEDTOMEASURE" || results.pomiar == "BADMEASURE" || results == '' || (results.pomiar < 85 && results.pomiar > 75)){
     return(
       <View style={styles.badResultImageView}>
         <Image source={require('../assets/nothingToSee.png')}
