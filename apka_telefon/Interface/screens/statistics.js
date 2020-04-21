@@ -112,17 +112,13 @@ import { VictoryLine, VictoryChart, VictoryTheme, VictoryLabel } from "victory-n
 	    }}
 	  />
 
-<<<<<<< HEAD
 	  <Text> Śrenie wyniki pomiarów z ostatnich 7 dni </Text>
-=======
->>>>>>> cf9839b17367008f9305c17092c653a73e75cef5
 	  <LineChart
 	    data={{
 	      labels: dni,
 	      datasets: [
 	        {
 	          data: [
-<<<<<<< HEAD
 	            srednie[0],
 	            srednie[1],
 	            srednie[2],
@@ -130,15 +126,6 @@ import { VictoryLine, VictoryChart, VictoryTheme, VictoryLabel } from "victory-n
 	            srednie[4],
 	            srednie[5],
 	            srednie[6]
-=======
-	            Math.random(),
-	            Math.random(),
-	            Math.random(),
-	            Math.random(),
-	            Math.random(),
-	            Math.random(),
-	            Math.random()
->>>>>>> cf9839b17367008f9305c17092c653a73e75cef5
 	          ]
 	        }
 	      ]
@@ -170,4 +157,3 @@ import { VictoryLine, VictoryChart, VictoryTheme, VictoryLabel } from "victory-n
 	</ScrollView>
 	)
 }
-
