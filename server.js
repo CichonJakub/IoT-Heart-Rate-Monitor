@@ -395,12 +395,19 @@ io.on('connection', function (socket) {
         let dataToGetH = [['porady', 'nr_rady_h', 'nr_rady'],['zdjecia', 'nr_zdj_h', 'nr_zdj'],['muzyka', 'nr_muz_h', 'nr_muz']];
         let dataToGetL = [['porady', 'nr_rady_l', 'nr_rady'],['zdjecia', 'nr_zdj_l', 'nr_zdj'],['muzyka', 'nr_muz_l', 'nr_muz']];
 
-        if (pomiar > 85){
+        if (pomiar >= 85){
             sendShortAdvice(1, data.user);
             for( i = 0; i < 3; i++ ){
                 allData[i] = await update_content('1', dataToGetH[i][0], dataToGetH[i][1], dataToGetH[i][2], data.user);
             }
 
+            index = users.findIndex(obj => obj.id == data.user);
+            if( index != -1 ){
+                console.log("SENDING RESULTS...");
+                users[index].socket.emit('pomiarResult2', {pomiar: pomiar});
+            }
+        }
+        if else( pomiar >= 65 && pomiar < 85 ){
             index = users.findIndex(obj => obj.id == data.user);
             if( index != -1 ){
                 console.log("SENDING RESULTS...");
