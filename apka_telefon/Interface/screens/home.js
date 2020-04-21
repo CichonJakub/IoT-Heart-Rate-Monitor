@@ -27,6 +27,8 @@ export let resultsImages;
 export let resultsVideos;
 export let resultsAdvice;
 export let resultsShortAdvice;
+export let statystykiPomiary;
+export let statystykiSrednia;
 
 
 // socket.on('confirmLogin', function(data){
@@ -62,6 +64,14 @@ export default function Home({ navigation }) {
   socket.on('krotkaporada', function(data){
     resultsShortAdvice = data;
     console.log(data);
+  });
+  socket.on('statystykiSrednia', function(data){
+    statystykiSrednia = JSON.parse(data);
+    console.log(statystykiSrednia);
+  });
+  socket.on('statystykiPomiary', function(data){
+    statystykiPomiary = JSON.parse(data);
+    console.log(statystykiPomiary);
   });
 
   const pressHandler = () => {
