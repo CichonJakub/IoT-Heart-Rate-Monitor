@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { View, Text, StyleSheet, Dimensions, ScrollView } from 'react-native';
 import { LineChart } from 'react-native-chart-kit';
 import { statystykiSrednia, statystykiPomiary } from './home';
-import { VictoryLine, VictoryChart, VictoryTheme, VictoryLabel } from "victory-native";
+//import { VictoryLine, VictoryChart, VictoryTheme, VictoryLabel } from "victory-native";
 
  export default function Statistics() {
 
