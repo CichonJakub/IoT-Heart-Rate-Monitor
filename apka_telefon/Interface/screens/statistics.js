@@ -1,41 +1,97 @@
 import React, { Component } from 'react';
-import { View, Text, StyleSheet, Dimensions } from 'react-native';
-//import { BarChart, XAxis } from 'react-native-svg-charts';
-import { LineChart, BarChart, PieChart, ProgressChart, ContributionGraph, StackedBarChart } from 'react-native-chart-kit';
-//import { styles } from '../styles/global';
-import { socket } from './login';
-//import Chart from "react-apexcharts";
+import { View, Text, StyleSheet, Dimensions, ScrollView } from 'react-native';
+import { LineChart } from 'react-native-chart-kit';
+import { statystykiSrednia, statystykiPomiary } from './home';
+import { VictoryLine, VictoryChart, VictoryTheme, VictoryLabel } from "victory-native";
 
  export default function Statistics() {
 
-	return(
-	<View>
+ 	let srednie = [0,0,0,0,0,0,0];
+ 	let pomiary_dzisiaj = [0];
+ 	let nr_pomiaru = [0];
+ 	var dzis = new Date();
 
-		<LineChart
+	var dni_tygodnia = new Array(7);
+	dni_tygodnia[0] = "Nd";
+	dni_tygodnia[1] = "Pon";
+	dni_tygodnia[2] = "Wt";
+	dni_tygodnia[3] = "Sr";
+	dni_tygodnia[4] = "Czw";
+	dni_tygodnia[5] = "Pt";
+	dni_tygodnia[6] = "Sob";
+
+	let dni = [
+		dni_tygodnia[(dzis.getDay()-6+7) % 7],
+		dni_tygodnia[(dzis.getDay()-5+7) % 7],
+		dni_tygodnia[(dzis.getDay()-4+7) % 7],
+		dni_tygodnia[(dzis.getDay()-3+7) % 7],
+		dni_tygodnia[(dzis.getDay()-2+7) % 7],
+		dni_tygodnia[(dzis.getDay()-1+7) % 7],
+		dni_tygodnia[dzis.getDay()]
+		]
+
+ 	if(statystykiSrednia != undefined){
+	 	for(let i=0; i < statystykiSrednia.length; i++){
+	 		switch(statystykiSrednia[i].data_pomiaru.substr(0,10)){
+	 			case dzis.getFullYear()+'-0'+(dzis.getMonth()+1)+'-'+dzis.getDate(): 
+	 				srednie[6] = statystykiSrednia[i].srednia;
+	 				break;
+	 			case dzis.getFullYear()+'-0'+(dzis.getMonth()+1)+'-'+(dzis.getDate()-1):
+	 				srednie[5] = statystykiSrednia[i].srednia;
+	 				break;
+	 			case dzis.getFullYear()+'-0'+(dzis.getMonth()+1)+'-'+(dzis.getDate()-2):
+	 				srednie[4] = statystykiSrednia[i].srednia;
+	 				break;
+	 			case dzis.getFullYear()+'-0'+(dzis.getMonth()+1)+'-'+(dzis.getDate()-3):
+	 				srednie[3] = statystykiSrednia[i].srednia;
+	 				break;
+	 			case dzis.getFullYear()+'-0'+(dzis.getMonth()+1)+'-'+(dzis.getDate()-4):
+	 				srednie[2] = statystykiSrednia[i].srednia;
+	 				break;
+	 			case dzis.getFullYear()+'-0'+(dzis.getMonth()+1)+'-'+(dzis.getDate()-5):
+	 				srednie[1] = statystykiSrednia[i].srednia;
+	 				break;
+	 			case dzis.getFullYear()+'-0'+(dzis.getMonth()+1)+'-'+(dzis.getDate()-6):
+	 				srednie[0] = statystykiSrednia[i].srednia;
+	 				break;
+	 			default:
+	 				console.log("cos nie tak");
+	 		}
+
+	 	}
+	 }
+
+	 if(statystykiPomiary != undefined){
+	 	for(let i=0; i < statystykiPomiary.length; i++){
+	 		pomiary_dzisiaj[i] = statystykiPomiary[i].wartosc;
+	 		nr_pomiaru[i] = i+1;
+	 	}
+
+	 }
+
+
+
+	return(
+		<ScrollView>
+		    
+    <View>
+    <Text> Dzisiejsze pomiary </Text>
+    <LineChart
 	    data={{
-	      labels: ["0", "2", "4", "6", "8", "10", "12","14","16","18","20","22","24"],
+	      labels: nr_pomiaru,
 	      datasets: [
 	        {
-	          data: [
-	            Math.random(),
-	            Math.random(),
-	            Math.random(),
-	            Math.random(),
-	            Math.random(),
-	            Math.random(),
-	            Math.random(),
-	            Math.random(),
-	          ]
+	          data: pomiary_dzisiaj
 	        }
 	      ]
 	    }}
 	    width={Dimensions.get("window").width}
 	    height={Dimensions.get("window").height/2-50}
-	    xAxisLabel=""
+	    yAxisLabel=""
 	    yAxisSuffix=""
 	    yAxisInterval={1} // optional, defaults to 1
 	    chartConfig={{
-	      backgroundColor: '#edb879',
+	      backgroundColor: '#f2f2f2',
 	      backgroundGradientFrom: '#f2f2f2',
 	      backgroundGradientTo: '#f2f2f2',
 	      decimalPlaces: 2, // optional, defaults to 2dp
@@ -52,16 +108,29 @@ import { socket } from './login';
 	    }}
 	    bezier
 	    style={{
-	      marginVertical: 20,
+	      marginVertical: 10,
 	    }}
 	  />
 
+<<<<<<< HEAD
+	  <Text> Śrenie wyniki pomiarów z ostatnich 7 dni </Text>
+=======
+>>>>>>> cf9839b17367008f9305c17092c653a73e75cef5
 	  <LineChart
 	    data={{
-	      labels: ["Pon", "Wt", "Sr", "Czw", "Pt", "Sob", "Nd"],
+	      labels: dni,
 	      datasets: [
 	        {
 	          data: [
+<<<<<<< HEAD
+	            srednie[0],
+	            srednie[1],
+	            srednie[2],
+	            srednie[3],
+	            srednie[4],
+	            srednie[5],
+	            srednie[6]
+=======
 	            Math.random(),
 	            Math.random(),
 	            Math.random(),
@@ -69,6 +138,7 @@ import { socket } from './login';
 	            Math.random(),
 	            Math.random(),
 	            Math.random()
+>>>>>>> cf9839b17367008f9305c17092c653a73e75cef5
 	          ]
 	        }
 	      ]
@@ -79,7 +149,7 @@ import { socket } from './login';
 	    yAxisSuffix=""
 	    yAxisInterval={1} // optional, defaults to 1
 	    chartConfig={{
-	      backgroundColor: '#edb879',
+	      backgroundColor: '#f2f2f2',
 	      backgroundGradientFrom: '#f2f2f2',
 	      backgroundGradientTo: '#f2f2f2',
 	      decimalPlaces: 2, // optional, defaults to 2dp
@@ -97,5 +167,7 @@ import { socket } from './login';
 	    bezier
 	  />
 	</View>
+	</ScrollView>
 	)
 }
+
