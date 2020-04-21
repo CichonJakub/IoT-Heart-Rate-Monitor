@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { View, Text, StyleSheet, Dimensions, ScrollView } from 'react-native';
 import { LineChart } from 'react-native-chart-kit';
 import { statystykiSrednia, statystykiPomiary } from './home';
+import { styles } from '../styles/global';
 //import { VictoryLine, VictoryChart, VictoryTheme, VictoryLabel } from "victory-native";
 
  export default function Statistics() {
@@ -33,7 +34,7 @@ import { statystykiSrednia, statystykiPomiary } from './home';
  	if(statystykiSrednia != undefined){
 	 	for(let i=0; i < statystykiSrednia.length; i++){
 	 		switch(statystykiSrednia[i].data_pomiaru.substr(0,10)){
-	 			case dzis.getFullYear()+'-0'+(dzis.getMonth()+1)+'-'+dzis.getDate(): 
+	 			case dzis.getFullYear()+'-0'+(dzis.getMonth()+1)+'-'+dzis.getDate():
 	 				srednie[6] = statystykiSrednia[i].srednia;
 	 				break;
 	 			case dzis.getFullYear()+'-0'+(dzis.getMonth()+1)+'-'+(dzis.getDate()-1):
@@ -73,9 +74,9 @@ import { statystykiSrednia, statystykiPomiary } from './home';
 
 	return(
 		<ScrollView>
-		    
+
     <View>
-    <Text> Dzisiejsze pomiary </Text>
+    <Text style={styles.s1}> Dzisiejsze pomiary </Text>
     <LineChart
 	    data={{
 	      labels: nr_pomiaru,
@@ -112,7 +113,7 @@ import { statystykiSrednia, statystykiPomiary } from './home';
 	    }}
 	  />
 
-	  <Text> Śrenie wyniki pomiarów z ostatnich 7 dni </Text>
+  <Text style={styles.s1}> Średnie wyniki pomiarów z ostatnich 7 dni </Text>
 	  <LineChart
 	    data={{
 	      labels: dni,
