@@ -12,7 +12,8 @@ import _ from 'lodash';
 
 YellowBox.ignoreWarnings([
   'Unrecognized WebSocket connection option(s) `agent`, `perMessageDeflate`, `pfx`, `key`, `passphrase`, `cert`, `ca`, `ciphers`, `rejectUnauthorized`. Did you mean to put these under `headers`?',
-  'Setting a timer'
+  'Setting a timer',
+  'Require cycle'
 ])
 const _console = _.clone(console);
 console.warn = message => {

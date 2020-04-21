@@ -51,9 +51,12 @@ function receiveResult(){
     if(results.pomiar > 85){
       resultText1 = "Twój puls jest za wysoki";
       resultText2 = "Po kliknięcie przycisku poniżej\nznajdziesz porady,\nktóre pomogą Ci go obniżyć";
-    }else{
+    }else if(results.pomiar < 75){
       resultText1 = "Twój puls jest zbyt niski";
       resultText2 = "Kliknij przycisk poniżej,\naby poznać sposoby\n na podwyższenie pulsu";
+    }else{
+      resultText1 = "Twój puls jest idealny";
+      resultText2 = "Jesteś okazem zdrowia";
     }
   }
 }
