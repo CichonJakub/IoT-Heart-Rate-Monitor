@@ -8,7 +8,6 @@ def function_check():
     counter = 0
     count_line = 0
     pulse = []
-    #/home/pi/Desktop/results.txt
 
     with open("/home/pi/Desktop/results.txt", mode='r') as f:
         for line in f:
@@ -29,10 +28,7 @@ def function_check():
         single_pulse = "BADMEASURE"
     else:
         single_pulse = "FAILEDTOMEASURE"
-    # erasing file after reading data, if We wanna keep the data it should be redirected somewhere else ;)
-    # erase_file = open("/home/pi/Desktop/results.txt", mode="r+")
-    # erase_file.seek(0)
-    # erase_file.truncate()
+    
 
     return single_pulse
 
@@ -52,6 +48,4 @@ def get_raw_data():
     if count_line == 0:
         raw_data = 'pusty plik'
     return raw_data
-
-#print(function_check())
-#print(get_raw_data())
+    

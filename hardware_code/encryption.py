@@ -13,5 +13,3 @@ def encrypt_my_pulse(pulse):
     ciphertext = b64encode(encrypted).decode('utf-8')
     print(ciphertext)
     return ciphertext
-
-#encrypt_my_pulse('70.9')

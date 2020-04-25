@@ -8,9 +8,6 @@ import chech3_2
 import threading
 import encryption
 
-#is_measure = False
-# my_pulse = 0
-
 class PulseMeasure:
     def __init__(self, user, pomiar):
         self.user = user
@@ -78,7 +75,7 @@ def message_received(message):
         print(message)
         user_id = message
         print("trigger otrzymany")
-        # broker.measure()
+        
         if trigger:
             x = threading.Thread(target=broker.measure())
             x.start()
@@ -100,4 +97,3 @@ def message_received(message):
 
 is_measure = 0
 sio.connect('https://iot-pulsometr.herokuapp.com')
-
