@@ -30,37 +30,40 @@ import { styles } from '../styles/global';
 		dni_tygodnia[(dzis.getDay()-1+7) % 7],
 		dni_tygodnia[dzis.getDay()]
 		]
-
- 	if(statystykiSrednia != undefined){
-	 	for(let i=0; i < statystykiSrednia.length; i++){
-	 		switch(statystykiSrednia[i].data_pomiaru.substr(0,10)){
-	 			case dzis.getFullYear()+'-0'+(dzis.getMonth()+1)+'-'+dzis.getDate():
-	 				srednie[6] = statystykiSrednia[i].srednia;
-	 				break;
-	 			case dzis.getFullYear()+'-0'+(dzis.getMonth()+1)+'-'+(dzis.getDate()-1):
-	 				srednie[5] = statystykiSrednia[i].srednia;
-	 				break;
-	 			case dzis.getFullYear()+'-0'+(dzis.getMonth()+1)+'-'+(dzis.getDate()-2):
-	 				srednie[4] = statystykiSrednia[i].srednia;
-	 				break;
-	 			case dzis.getFullYear()+'-0'+(dzis.getMonth()+1)+'-'+(dzis.getDate()-3):
-	 				srednie[3] = statystykiSrednia[i].srednia;
-	 				break;
-	 			case dzis.getFullYear()+'-0'+(dzis.getMonth()+1)+'-'+(dzis.getDate()-4):
-	 				srednie[2] = statystykiSrednia[i].srednia;
-	 				break;
-	 			case dzis.getFullYear()+'-0'+(dzis.getMonth()+1)+'-'+(dzis.getDate()-5):
-	 				srednie[1] = statystykiSrednia[i].srednia;
-	 				break;
-	 			case dzis.getFullYear()+'-0'+(dzis.getMonth()+1)+'-'+(dzis.getDate()-6):
-	 				srednie[0] = statystykiSrednia[i].srednia;
-	 				break;
-	 			default:
-	 				console.log("cos nie tak");
-	 		}
-
-	 	}
+	
+	if(statystykiSrednia != undefined){
+		for(let i=0; i < statystykiSrednia.length; i++){
+			switch(statystykiSrednia[i].data_pomiaru.substr(0,10)){
+				case dzis.getFullYear()+'-'+('0'+(dzis.getMonth()+1)).slice(-2)+'-'+('0' + dzis.getDate()).slice(-2): 
+					srednie[6] = statystykiSrednia[i].srednia;
+					break;
+				case dzis.getFullYear()+'-'+('0'+(dzis.getMonth()+1)).slice(-2)+'-'+('0' + dzis.getDate()-1).slice(-2):
+					srednie[5] = statystykiSrednia[i].srednia;
+					break;
+				case dzis.getFullYear()+'-'+('0'+(dzis.getMonth()+1)).slice(-2)+'-'+('0' + dzis.getDate()-2).slice(-2):
+					srednie[4] = statystykiSrednia[i].srednia;
+					break;
+				case dzis.getFullYear()+'-'+('0'+(dzis.getMonth()+1)).slice(-2)+'-'+('0' + dzis.getDate()-3).slice(-2):
+					srednie[3] = statystykiSrednia[i].srednia;
+					break;
+				case dzis.getFullYear()+'-'+('0'+(dzis.getMonth()+1)).slice(-2)+'-'+('0' + dzis.getDate()-4).slice(-2):
+					srednie[2] = statystykiSrednia[i].srednia;
+					break;
+				case dzis.getFullYear()+'-'+('0'+(dzis.getMonth()+1)).slice(-2)+'-'+('0' + dzis.getDate()-5).slice(-2):
+					srednie[1] = statystykiSrednia[i].srednia;
+					break;
+				case dzis.getFullYear()+'-'+('0'+(dzis.getMonth()+1)).slice(-2)+'-'+('0' + dzis.getDate()-6).slice(-2):
+					srednie[0] = statystykiSrednia[i].srednia;
+					break;
+				default:
+					console.log("Brak daty");
+			}
+		}
 	 }
+
+
+
+
 
 	 if(statystykiPomiary != undefined){
 	 	for(let i=0; i < statystykiPomiary.length; i++){
