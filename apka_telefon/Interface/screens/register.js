@@ -6,6 +6,7 @@ import { Formik } from 'formik';
 import DrawerNavigator from '../routes/drawer';
 import Login from './login';
 import Err_reg from './err_reg';
+import Err_reg2 from './err_reg2';
 import Wait from './wait';
 import { socket } from './login';
 import FormInput from '../styles/FormInput';
@@ -25,6 +26,11 @@ export default function Register({ navigation }) {
   const toErr_reg = () => {
     console.log('probuje');
     navigation.navigate('Err_reg');
+  }
+
+  const toErr_reg2 = () => {
+    console.log('probuje2');
+    navigation.navigate('Err_reg2');
   }
 
   const toLogin = () => {
@@ -101,7 +107,7 @@ export default function Register({ navigation }) {
                       toLogin();
                   }
                   else{
-                      toRegister();
+                    toErr_reg2();
                   }
                 });
 

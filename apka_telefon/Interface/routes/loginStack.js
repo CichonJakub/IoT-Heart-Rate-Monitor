@@ -4,6 +4,7 @@ import { createStackNavigator } from 'react-navigation-stack';
 import Login from '../screens/login';
 import Register from '../screens/register';
 import Err_reg from '../screens/err_reg';
+import Err_reg2 from '../screens/err_reg2';
 import Err_log from '../screens/err_log';
 import Wait from '../screens/wait';
 
@@ -33,7 +34,14 @@ const screens = {
     navigationOptions: {
       headerShown: false,
     },
-  },  
+  },
+
+  Err_reg2: {
+    screen: Err_reg2,
+    navigationOptions: {
+      headerShown: false,
+    },
+  }, 
 
   Wait: {
     screen: Wait,

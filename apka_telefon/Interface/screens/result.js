@@ -22,6 +22,8 @@ function receiveResult(){
     result = "Coś poszło źle";
     helpText = "Sprawdź urządzenie \n i spróbuj ponownie";
     circle = "";
+    resultText1 = "";
+    resultText2 = "";    
   }else if(results.pomiar == "BADMEASURE"){
     header = "";
     result = "Błąd pomiaru";
@@ -50,7 +52,7 @@ function receiveResult(){
     circle = styles.resultCircle;
     if(results.pomiar > 85){
       resultText1 = "Twój puls jest za wysoki";
-      resultText2 = "Po kliknięcie przycisku poniżej\nznajdziesz porady,\nktóre pomogą Ci go obniżyć";
+      resultText2 = "Po kliknięciu przycisku poniżej\nznajdziesz porady,\nktóre pomogą Ci go obniżyć";
     }else if(results.pomiar < 75){
       resultText1 = "Twój puls jest zbyt niski";
       resultText2 = "Kliknij przycisk poniżej,\naby poznać sposoby\n na podwyższenie pulsu";
