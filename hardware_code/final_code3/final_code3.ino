@@ -5,8 +5,18 @@
 #include "heartRate.h"
 
 const char caCert[] PROGMEM = R"EOF(
------BEGIN CERTIFICATE-----
-*************************** // place for certificate generated locally on OpenSSL
+-----BEGIN CERTIFICATE-----	// Key taken from the internet, to make it work change it into Your own keys generated locally in OpenSSL
+MIHcAgEBBEIATXmkkoaxsd7d6QvaLYOFBpVWIKkpZiIVifjWyEvG7KORzlGXuWzA
+67CkiTbUMscnzM7kn/YrwmITRDaYQ2eF0jagBwYFK4EEACOhgYkDgYYABAFzgTPk
+co/CM1hNYyRm8Tnlq0l+rnFSst74VHqoj2wD9XOz7W8iFX1C0J4KsQy2N6FAccym
+72tTstwCruZmuc91mgC+RyRm9TxcwvztEOFDkWeKpVCrheILGH03zBqb93p9nTIa
+bUMscnzM7kn/YrwmITRDaYQ2eF0jagBwYFK4EEACOhgYkDgYYABAFzgTPkco/CM1
+Rm8Tnlq0l+rnFSst74VHqoj2wD9XOz7W8iFX1C0J4KsQy2N6FAccymFSst74VHqF
+zBqb93p9nTIa72tTstwCruZmuc91mgC+RyRm9TxcwvztEOFDkWeKpVCrheILGH03
+zM7kn/YrwmITRDaYQ2eF0jag67CkiTbUMscnBwYFK4EEACOhgYkDgYYABAFzgTPk
+qoj2wD9XOzco/CM1hNYJ4KsQy2N6FAccymyRm8Tnlq0l+7W8iFX1C0rnFSst74VH
+rheILGH03zBqb93p9nTIa72tTc91mgC+RyRm9TxcwvztEOFDkWeKpVCstwCruZmu
+qoj2wD9XOzco/CM1hGbPfS2UEKITVxTth9OZ+4rplg==
 -----END CERTIFICATE-----
 )EOF";
 
@@ -17,14 +27,15 @@ MAX30105 particleSensor;
 
 
 // WiFi configuration
-const char* ssid = "Name_of_the_network";	// needs to be filled depending from user settings
+const char* ssid = "NETWORK NAME";	// needs to be filled depending from user settings
 const char* password = "********";		// needs to be filled depending from user settings
 
 // MQTT configuration
 // hostname of the server is his IP address
 const IPAddress serverIPAddress(192, 168, 1, 43);	// needs to be filled depending from user settings IP address of the broker in this case raspberry pi
 
-const uint8_t mqttCertFingerprint[] = {0xB1,0x93,0x88,0xA6,0x3D,0xB0,0x21,0xA1,0xF4,0xB5,0xFB,0xD9,0xCE,0xCC,0x1F,0x66,0x8F,0x31,0x8F,0xA4};
+// Fingerprint taken from the internet, to make it work change it into broker's fingerprint
+const uint8_t mqttCertFingerprint[] = {0xFF,0x69,0xBB,0xAD,0xF0,0xDE,0x5F,0x89,0x23,0xF6,0x96,0xC1,0x03,0x04,0x23,0xB4,0xD3,0xD5,0x53,0x94};
 
 X509List caCertX509(caCert); 
 
