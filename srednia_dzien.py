@@ -22,8 +22,7 @@ def srednia_dzien(id_uzytkownika):
         select_values = "SELECT wartosc FROM pomiary where id_uzytkownika = " + str(id_uzytkownika) + " and timestamp::TIMESTAMP::DATE = \'" + str(today) + "\'"
         c.execute(select_values)
         measurement_values = c.fetchall()
-
-        # zmiana krotki -> liste
+        
         x = []
         for value in measurement_values:
             x.extend(value)
