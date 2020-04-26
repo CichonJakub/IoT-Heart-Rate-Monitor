@@ -93,7 +93,7 @@ def message_received(message):
     print("server chce raw data")
     raw_data = chech3_2.get_raw_data()
     print(raw_data)
-    emit_to_server(user_id, raw_data)
+    emit_raw_data(user_id, raw_data)
 
 is_measure = 0
 sio.connect('https://iot-pulsometr.herokuapp.com')
