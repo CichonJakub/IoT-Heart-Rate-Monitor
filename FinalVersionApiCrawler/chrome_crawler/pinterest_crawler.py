@@ -28,9 +28,9 @@ class PinCrawling:
         email = driver.find_element_by_xpath("//input[@type='email']")
         password = driver.find_element_by_xpath("//input[@type='password']")
         time.sleep(3)
-        email.send_keys("IoT.agh123@gmail.com") # IoT.agh123@gmail.com
+        email.send_keys("email")
         time.sleep(3)
-        password.send_keys("qwerty#1234") # qwerty#1234
+        password.send_keys("haslo") 
         # driver.find_element_by_xpath("//div[@data-reactid='30']").click()
         time.sleep(3)
         password.submit()
