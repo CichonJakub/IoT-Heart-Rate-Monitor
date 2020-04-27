@@ -66,7 +66,7 @@ def zdjecia_test():
 
 def check_urls():
     DATABASE_URL = os.environ[
-        'DATABASE_URL'] = 'postgres://lweqbohgxkcciy:7141ba34c439114499df64f7c3e33db129f7961287f7dffa300255988e1fb029@ec2-176-34-97-213.eu-west-1.compute.amazonaws.com:5432/df7co2dencuc14'
+        'DATABASE_URL'] = 'url'
     conn = pg.connect(DATABASE_URL, sslmode='require')
     c = conn.cursor()
 
