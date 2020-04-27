@@ -23,7 +23,7 @@ def get_results(search_term):
         browser.get(url)
     wait = ui.WebDriverWait(browser, 10)
     wait.until(page_is_loaded)
-    search_box = browser.find_element_by_id("query")
+    search_box = browser.find_element_by_id("q")
     search_box.send_keys(search_term)
     search_box.submit()
     time.sleep(3)
@@ -32,9 +32,9 @@ def get_results(search_term):
     results = []
     i=0
     max = 23
-    print("Crawling for porady started!")
+    #print("Crawling for porady started!")
     while next and i < max:
-        links = soup.find_all("a", {"class": "w-gl__result-url"})
+        links = soup.find_all("a", {"class": "w-gl__result-title"})
         for link in links:
             if i < max:
                 href = link.get('href')

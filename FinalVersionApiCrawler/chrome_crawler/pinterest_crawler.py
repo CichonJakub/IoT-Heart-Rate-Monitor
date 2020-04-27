@@ -53,7 +53,7 @@ class PinCrawling:
             end = time.time()
 
             pin_counter = 0
-            pin_amount = 500
+            pin_amount = 300
             #print("Crawling for photos started!")
             while pin_counter < pin_amount and beginning - end < 20:
                 beginning = time.time()
