@@ -6,7 +6,7 @@ import numpy as np
 class YTSearch:
 
     def __init__(self):
-        self.api_key = 'AIzaSyCYdB0Tcsw6xkYqaD8be3BYGlG9Ca7glUk'
+        self.api_key = 'api_key'
         self.yt = YouTubeDataAPI(self.api_key)
 
     def get_videos(self, key_words):  # key_word = co wyszukiwac czy spokojne czy jakies do rozruszenia
