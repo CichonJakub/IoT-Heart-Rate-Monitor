@@ -31,7 +31,7 @@ class PinCrawling:
         email.send_keys("email") 
         time.sleep(3)
         password.send_keys("haslo")
-        # driver.find_element_by_xpath("//div[@data-reactid='30']").click()
+    
         time.sleep(3)
         password.submit()
         time.sleep(3)
