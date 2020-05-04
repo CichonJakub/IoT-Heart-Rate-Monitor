@@ -14,7 +14,7 @@ const screens = {
     navigationOptions: ({ navigation }) => {
       return {
         headerLeft: () => <MainHeader navigation={navigation} title='Hello screen' />,
-        title: 'Nazwa Aplikacji',
+      title: 'PulsApka',
       }
     }
   },
@@ -23,7 +23,7 @@ const screens = {
     navigationOptions: ({ navigation }) => {
       return {
         headerLeft: () => <MeasureHeader navigation={navigation} title='Hello screen' />,
-        title: 'Nazwa Aplikacji',
+      title: 'PulsApka',
       }
     }
   },

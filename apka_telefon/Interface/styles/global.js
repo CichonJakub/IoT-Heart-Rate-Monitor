@@ -25,6 +25,7 @@ export const styles = StyleSheet.create({
   logoText: {
     fontFamily: 'rubik-regular',
     fontSize: 16,
+    padding: 5,
   },
   loginScreen: {
     flex: 1,

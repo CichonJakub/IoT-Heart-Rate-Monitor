@@ -88,6 +88,7 @@ export default function Register({ navigation }) {
     <View style={styles.loginScreen}>
       <View style={styles.logoContainer}>
         <Image source= {require('../assets/Logo.png')} style={styles.logoImage} />
+        <Text style={styles.h5}>PulsApka</Text>
         <Text style={styles.logoText}>Utwórz konto</Text>
       </View>
       <View style={styles.loginScreen}>
