@@ -36,22 +36,22 @@ import { styles } from '../styles/global';
 				case dzis.getFullYear()+'-'+('0'+(dzis.getMonth()+1)).slice(-2)+'-'+('0' + dzis.getDate()).slice(-2): 
 					srednie[6] = statystykiSrednia[i].srednia;
 					break;
-				case dzis.getFullYear()+'-'+('0'+(dzis.getMonth()+1)).slice(-2)+'-'+('0' + dzis.getDate()-1).slice(-2):
+				case dzis.getFullYear()+'-'+('0'+(dzis.getMonth()+1)).slice(-2)+'-'+('0' + (dzis.getDate()-1)).slice(-2):
 					srednie[5] = statystykiSrednia[i].srednia;
 					break;
-				case dzis.getFullYear()+'-'+('0'+(dzis.getMonth()+1)).slice(-2)+'-'+('0' + dzis.getDate()-2).slice(-2):
+				case dzis.getFullYear()+'-'+('0'+(dzis.getMonth()+1)).slice(-2)+'-'+('0' + (dzis.getDate()-2)).slice(-2):
 					srednie[4] = statystykiSrednia[i].srednia;
 					break;
-				case dzis.getFullYear()+'-'+('0'+(dzis.getMonth()+1)).slice(-2)+'-'+('0' + dzis.getDate()-3).slice(-2):
+				case dzis.getFullYear()+'-'+('0'+(dzis.getMonth()+1)).slice(-2)+'-'+('0' + (dzis.getDate()-3)).slice(-2):
 					srednie[3] = statystykiSrednia[i].srednia;
 					break;
-				case dzis.getFullYear()+'-'+('0'+(dzis.getMonth()+1)).slice(-2)+'-'+('0' + dzis.getDate()-4).slice(-2):
+				case dzis.getFullYear()+'-'+('0'+(dzis.getMonth()+1)).slice(-2)+'-'+('0' + (dzis.getDate()-4)).slice(-2):
 					srednie[2] = statystykiSrednia[i].srednia;
 					break;
-				case dzis.getFullYear()+'-'+('0'+(dzis.getMonth()+1)).slice(-2)+'-'+('0' + dzis.getDate()-5).slice(-2):
+				case dzis.getFullYear()+'-'+('0'+(dzis.getMonth()+1)).slice(-2)+'-'+('0' + (dzis.getDate()-5)).slice(-2):
 					srednie[1] = statystykiSrednia[i].srednia;
 					break;
-				case dzis.getFullYear()+'-'+('0'+(dzis.getMonth()+1)).slice(-2)+'-'+('0' + dzis.getDate()-6).slice(-2):
+				case dzis.getFullYear()+'-'+('0'+(dzis.getMonth()+1)).slice(-2)+'-'+('0' + (dzis.getDate()-6)).slice(-2):
 					srednie[0] = statystykiSrednia[i].srednia;
 					break;
 				default:
