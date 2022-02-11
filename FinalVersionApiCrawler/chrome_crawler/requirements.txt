@@ -80,7 +80,7 @@ systemd-python==234
 termcolor==1.1.0
 testresources==2.0.1
 traitlets==4.3.2
-Twisted==19.10.0
+Twisted==22.1.0
 tzlocal==2.0.0
 virtualenv==15.1.0
 wadllib==1.3.2
