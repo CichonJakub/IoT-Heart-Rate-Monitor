@@ -39,7 +39,7 @@ parsel==1.5.2
 pbr==5.4.4
 pexpect==4.2.1
 pickleshare==0.7.4
-Pillow==5.1.0
+Pillow==9.3.0
 pinterest-api==0.0.8
 prompt-toolkit==1.0.15
 Protego==0.1.16
